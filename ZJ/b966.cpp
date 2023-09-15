@@ -28,7 +28,7 @@ signed main() {
 			continue;
 	}
 	ans += (r-l);
-	if(n==1)
+	if(n == 1)
 		cout << (r-l) << '\n';
 	else
 		cout << ans << '\n';

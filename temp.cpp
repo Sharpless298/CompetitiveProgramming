@@ -1,6 +1,11 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 signed main() {
-	cout << (int)('1') << '\n';
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	
+	int n;
+	cin.ignore();
 }
