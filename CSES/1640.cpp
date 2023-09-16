@@ -46,6 +46,7 @@ signed main() {
 			}
 		}
 	}
+
 	if(!f)
 		cout << "IMPOSSIBLE\n";
 }

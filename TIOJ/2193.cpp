@@ -30,12 +30,15 @@ signed main() {
 		b[i] = count(i);
 		
 	int n;
+
 	cin >> n;
 	for(int i=0; i<n; i++) {
 		cin >> ary[i].v;
 		ary[i].order = i;
 	}
+	
 	sort(ary, ary+n, cmp);
+
 	for(int i=0; i<n; i++) {
 		if(i) cout << ' ';
 		cout << ary[i].v;

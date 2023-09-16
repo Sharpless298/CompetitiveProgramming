@@ -30,6 +30,7 @@ signed main() {
 		cin >> ary[i];
 	
 	sort(ary, ary+n);
+
 	cin >> t;
 	for(int i=0, x, k; i<t; i++) {
 		cin >> x;

@@ -23,6 +23,7 @@ int main() {
 	cout.tie();
 	
 	int n;
+
 	while(cin >> n && n) {
 		id++;
 		for(int i=0; i<n; i++)

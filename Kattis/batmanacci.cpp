@@ -31,6 +31,7 @@ signed main() {
 	
 	int n;
 	lli k;
+
 	cin >> n >> k;
 
 	fib[1] = fib[2] = 1;

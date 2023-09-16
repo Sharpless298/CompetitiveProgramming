@@ -45,6 +45,7 @@ signed main() {
 	cin >> m;
 	
 	sort(ary, ary+n);
+
 	while(m--) {
 		cin >> k;
 		cout << ubound(0, n, k) - lbound(0, n, k) << '\n';

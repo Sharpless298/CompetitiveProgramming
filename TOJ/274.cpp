@@ -20,8 +20,10 @@ signed main() {
 	cout.tie(nullptr);
 
 	cin >> n;
+
 	while(n--) {
 		cin >> s;
+
 		if(check(0, s.size()-1, 0))
 			cout << "YES\n";
 		else

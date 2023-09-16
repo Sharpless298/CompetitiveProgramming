@@ -21,6 +21,7 @@ signed main() {
 	cin.tie(nullptr);
 	
 	int n;
+
 	while(cin >> n && n) {
 		for(int i=0; i<n; i++) {
 			cin >> str[i].name;
@@ -28,6 +29,7 @@ signed main() {
 		}
 
 		sort(str, str+n, cmp);
+
 		for(int i=0; i<n; i++)
 			cout << str[i].name << '\n';
 		cout << '\n';
