@@ -32,12 +32,13 @@ signed main() {
 	cin >> t;
 	cin.ignore();
 	cin.ignore();
-	while(t--) {
-		k = 0;
 
+	while(t--) {
 		if(f) cout << '\n';
 		f = true;
-	
+
+		k = 0;
+
 		getline(cin, s);
 		while(1) {
 			getline(cin ,newspaper[k]);

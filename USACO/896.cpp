@@ -22,6 +22,7 @@ signed main() {
 	freopen("mountains.out", "w", stdout);
 
 	int x, y, ans = 0, maxq = -1;
+
 	cin >> n;
 	for(int i=0; i<n; i++) {
 		cin >> x >> y;
@@ -36,6 +37,7 @@ signed main() {
 			maxq = q[id[i]];
 		}
 	}
+
 	cout << ans << '\n';
 }
 

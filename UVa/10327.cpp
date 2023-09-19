@@ -9,8 +9,10 @@ signed main() {
 	cout.tie(nullptr);
 
 	int n, cnt;
+
 	while(cin >> n) {
 		cnt = 0;
+
 		for(int i=0; i<n; i++)
 			cin >> ary[i];
 
@@ -22,6 +24,7 @@ signed main() {
 				}
 			}
 		}
+
 		cout << "Minimum exchange operations : " << cnt << '\n';
 	}
 }

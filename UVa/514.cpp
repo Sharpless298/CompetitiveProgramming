@@ -26,6 +26,7 @@ signed main() {
 	cout.tie(nullptr);
 
 	int n;
+
 	while(cin >> n) {
 		if(n==0) {
 			cin.ignore();

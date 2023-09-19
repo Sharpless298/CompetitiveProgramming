@@ -29,11 +29,12 @@ signed main() {
 	cout.tie(nullptr);
 
 	while(cin >> n && n) {
-		if(f) 
-			cout << '\n';
+		if(f) cout << '\n';
 		f = true;
+
 		for(int i=0; i<n; i++)
 			cin >> ary[i];
+		
 		DFS(0, 0);
 	}
 }

@@ -79,8 +79,8 @@ signed main() {
 				}
 			}
 		}
-		
 		res = BFS();
+
 		if(res != -1)
 			cout << "Escaped in " << res << " minute(s).\n";
 		else

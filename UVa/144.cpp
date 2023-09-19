@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 bool f = false;
 int n, k, temp = 0, cur;
 int stu[30];
@@ -21,6 +20,7 @@ int main() {
 		for(int i=1; i<=n; i++)
 			que.push(i);
 		fill(stu, stu+n+1, 40);
+
 		while(!que.empty()) {
 			if(!f) {
 				cur = (cur+1)%(k+1);

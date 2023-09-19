@@ -8,6 +8,7 @@ int fpow(int b, int p) {
 	if(p==1) return b;
 	
 	int a = fpow(b, p/2);
+
 	if(p&1) return (((a*a)%m)*b)%m;
 	else return (a*a)%m;
 }
@@ -17,6 +18,7 @@ signed main() {
 	cin.tie(nullptr);
 	
 	int b, p;
+
 	while(cin >> b >> p >> m) {
 		cout << fpow(b%m, p) << '\n';
 	}

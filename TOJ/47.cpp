@@ -9,6 +9,7 @@ int ary[MAXN];
 
 int bsearch(int k) {
 	int l = 0, r = n, m;
+
 	while(l < r) {
 		m = (l+r)/2;
 		if(ary[m] == k)
@@ -32,8 +33,10 @@ signed main() {
 	sort(ary, ary+n);
 
 	cin >> t;
+
 	for(int i=0, x, k; i<t; i++) {
 		cin >> x;
+
 		k = bsearch(x);
 		if(ary[k] == x)
 			cout << x << '\n';

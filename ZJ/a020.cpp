@@ -10,6 +10,7 @@ int main() {
 	cin.tie(nullptr);
 
 	cin >> c >> x;
+
 	for(int i=10; i<id.size(); i++)
 		tbl[id[i]] = i;
 
@@ -19,6 +20,7 @@ int main() {
 		else sum += (x%10)*i;
 		x/=10;
 	}
+
 	if(sum%10 == 0)
 		cout << "real\n";
 	else

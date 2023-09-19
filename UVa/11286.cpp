@@ -38,6 +38,7 @@ signed main() {
 	cin.tie(nullptr);
 
 	int n, t, ans, k;
+
 	while(cin >> n && n) {
 		k = 0;
 		t = 1;
@@ -65,6 +66,7 @@ signed main() {
 			}
 		}
 		sort(q, q+k);
+
 		cout << count(k) << '\n';
 	}
 }

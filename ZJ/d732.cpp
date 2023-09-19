@@ -8,6 +8,7 @@ int ary[MAXN];
 
 int bsearch(int x) {
 	int l = 0, r = n, m;
+
 	while(l<r) {
 		m = (l+r)/2;
 		if(ary[m] == x)
@@ -25,10 +26,12 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n >> k;
+
 	for(int i=0; i<n; i++)
 		cin >> ary[i];
 	for(int i=0; i<k; i++) {
 		cin >> t;
+
 		cout << bsearch(t) << '\n';
 	}
 }

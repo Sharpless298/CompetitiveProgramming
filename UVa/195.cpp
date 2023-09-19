@@ -51,9 +51,12 @@ int main() {
 	cin.tie(nullptr);
 
 	int n;
+
 	cin >> n;
+
 	while(n--) {
 		cin >> s;
+
 		solve();
 	}
 }

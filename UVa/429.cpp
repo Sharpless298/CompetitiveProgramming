@@ -52,6 +52,7 @@ signed main() {
 
 	cin >> t;
 	cin.ignore();
+
 	while(t--) {
 		if(f++) cout << '\n';
 
@@ -63,7 +64,6 @@ signed main() {
 		}
 		
 		while(getline(cin, temp)) {
-
 			if(temp == "") break;
 			
 			memset(vis, 0, sizeof(vis));

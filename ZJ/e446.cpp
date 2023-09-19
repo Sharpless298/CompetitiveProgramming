@@ -32,6 +32,8 @@ signed main() {
 	cout.tie(nullptr);
 
 	cin >> n;
+
 	DFS(0);
+
 	cout << ans;
 }

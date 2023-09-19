@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define int unsigned int
+#define int long long int
 
 bool bsearch(int l, int r, int k) {	
 	int m;
@@ -23,6 +23,7 @@ signed main() {
 	cin.tie(nullptr);
 
 	int n;
+
 	while(cin >> n && n) {
 		if(bsearch(1, 1<<16, n))
 			cout << "yes" << '\n';
