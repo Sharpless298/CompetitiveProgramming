@@ -15,6 +15,7 @@ bool binary_search(int l, int r, int k) {
 		else
 			r = m;
 	}
+
 	return false;
 }
 
@@ -28,6 +29,7 @@ int lower_bound(int l, int r, int k) {
 		else
 			r = m;
 	}
+
 	return l;
 }
 
@@ -41,6 +43,7 @@ int upper_bound(int l, int r, int k) {
 		else
 			r =m;
 	}
+
 	return l;
 }
 

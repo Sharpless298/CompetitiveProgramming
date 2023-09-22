@@ -9,7 +9,9 @@ signed main() {
 	cin.tie(nullptr);
 
 	int tc, ans, n, med;
+
 	cin >> tc;
+
 	while(tc--) {
 		ans = 0;
 
@@ -21,6 +23,7 @@ signed main() {
 		med = ary[n/2];
 		for(int i=0; i<n; i++)
 			ans += abs(med - ary[i]);
+
 		cout << ans << '\n';
 	}
 }
