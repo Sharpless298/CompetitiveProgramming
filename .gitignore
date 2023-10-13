@@ -1,13 +1,4 @@
-# Executables
-*.exe
-*.app
-*.gitignore
-*.sh
-
-# Temp Runner
+*
+!*.cpp
 temp.cpp
-temp.exe
-
-# Vim
-*.swo
-*.swp
+!del_exe.sh
