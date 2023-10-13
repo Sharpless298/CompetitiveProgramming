@@ -1,3 +1,13 @@
-*
-!*.cpp
-/temp.cpp
+# Executables
+*.exe
+*.app
+*.gitignore
+*.sh
+
+# Temp Runner
+temp.cpp
+temp.exe
+
+# Vim
+*.swo
+*.swp
