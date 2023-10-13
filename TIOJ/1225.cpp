@@ -19,40 +19,27 @@ signed main() {
 	lli ans = 0;
 
 	cin >> n;
-	for(int i=0, x; i<n; i++) {
-		cin >> x;
-		ary[i] = x;
-		v.emplace_back(x, i);
+	for(int i=1; i<=n; i++) {
+		cin >> ary[i];
+		pre[i] = i-1;
+		nxt[i] = i+1;
+		v.emplace_back(ary[i], i);
 	}
+
+	ary[0] = ary[n+1] = INF;
+	pre[n+1] = n;
+	nxt[0] = 1;
 	sort(v.begin(), v.end());
 
-	pre[0] = nxt[n-1] = INF;
-	for(int i=1; i<n; i++)
-		pre[i] = i-1;
-	for(int i=0; i<n-1; i++)
-		nxt[i] = i+1;
-
+	
 	for(int i=0, idx; i<n-1; i++) {
 		idx = v[i].second;
-		if(pre[idx]==INF || nxt[idx]==INF) {
-			if(pre[idx] < nxt[idx]) {
-				ans += ary[pre[idx]];
-				nxt[pre[idx]] = nxt[idx];
-			}
-			else {
-				ans += ary[nxt[idx]];
-				pre[nxt[idx]] = pre[idx];
-			}
-		}
-		else {
-			if(ary[pre[idx]] < ary[nxt[idx]])
-				ans += ary[pre[idx]];
-			else 
-				ans += ary[nxt[idx]];
 
-			pre[nxt[idx]] = pre[idx];
-			nxt[pre[idx]] = nxt[idx];
-		}
+		if(ary[pre[idx]] < ary[nxt[idx]]) ans += ary[pre[idx]];
+		else ans += ary[nxt[idx]];
+
+		pre[nxt[idx]] = pre[idx];
+		nxt[pre[idx]] = nxt[idx];
 	}
 
 	cout << ans << '\n';
