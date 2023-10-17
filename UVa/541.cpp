@@ -12,7 +12,7 @@ signed main() {
 	cin.tie(nullptr);
 
 	int n;
-	while(cin >> n && n) {
+	while(cin>>n && n) {
 		memset(r, 0, 420);
 		memset(c, 0, 420);
 		r_odd=0, c_odd=0;
