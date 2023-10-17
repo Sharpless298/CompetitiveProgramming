@@ -24,7 +24,7 @@ signed main() {
 
 	int n;
 
-	while(cin >> n && n) {
+	while(cin>>n && n) {
 		if(bsearch(1, 1<<16, n))
 			cout << "yes" << '\n';
 		else
