@@ -24,7 +24,7 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	
-	while(cin >> n && n) {
+	while(cin>>n && n) {
 		ans = 0;
 		mask = (1<<n)-1;
 		memset(G, 0, sizeof(G));
