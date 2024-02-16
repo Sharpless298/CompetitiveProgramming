@@ -1,4 +1,5 @@
 *
+!*.cpp
 /temp.cpp
 /temp2.cpp
 !/2023IONCamp
