@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-const int MAXN = 2e5 + 5;
+const int MAXN = 2e5+5;
 
 bool f;
 int n, x;
