@@ -15,10 +15,11 @@ signed main() {
 	for(int i=0; i<n; i++)
 		cin >> ary[i];
 	
-	for(int i=0, j=1; i<n; ) {
-		ans = max(ary[i]-ary[j]);
+	for(int i=0, j=1; i<n&&j<n; j++) {
+		ans = max(ans, ary[i]-ary[j]);
 
-		if(ary[i] <= ary[j]) i = j, j++;
-		else j++;
+		if(ary[i] <= ary[j]) i = j;
 	}
+
+	cout << ans << '\n';
 }
