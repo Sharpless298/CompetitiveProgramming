@@ -48,10 +48,12 @@ int upper_bound(int l, int r, int k) {
 }
 
 signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
 
 	int k;
+
+	for(int i=0; i<10; i++)
+		cout << ary[i] << ' ';
+	cout << '\n';
 
 	while(cin >> k) {
 		cout << "binary_search: " << binary_search(0, 10, k) << '\n';
