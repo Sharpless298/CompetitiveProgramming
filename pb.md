@@ -1,4 +1,6 @@
 # problem_list
+
+### Misc
 ZJ c296 c471 e273
 TOJ 11 512 126
 TIOJ 1941 
@@ -23,9 +25,23 @@ TIOJ 1911 1231
 TIOJ 1911 1161 1221
 
 ## 2
-algorithm
+## algorithm
 TIOJ 1617 1187
 
-enumerate
+## enumerate
 ZJ b893
 TIOJ 1235 2054
+
+## binary search
+ZJ b870 c250
+TIOJ 1598 1839 1926
+
+## trinary search
+NEOJ 72
+Sky OJ 18
+TIOJ 1635
+CF 939E
+
+## greedy
+TIOJ 1073 1441 2009
+ZJ b231 d418 c471
