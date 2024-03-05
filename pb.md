@@ -25,23 +25,26 @@ TIOJ 1911 1231
 TIOJ 1911 1161 1221
 
 ## 2
-## algorithm
+### algorithm
 TIOJ 1617 1187
 
-## enumerate
+### enumerate
 ZJ b893
 TIOJ 1235 2054
 
-## binary search
+### binary search
 ZJ b870 c250
 TIOJ 1598 1839 1926
 
-## trinary search
+### ternary search
 NEOJ 72
-Sky OJ 18
 TIOJ 1635
 CF 939E
 
-## greedy
-TIOJ 1073 1441 2009
+### greedy
+TIOJ 1441 2009
 ZJ b231 d418 c471
+
+## 3
+### D&C
+TIOJ 1500 1208
