@@ -25,7 +25,6 @@ signed main() {
 			cin >> ary[i].first >> ary[i].second;
 		
 		sort(ary, ary+n);
-
 		for(int i=0; i<n; i++) {
 			pq.push(ary[i].second);
 			if((int)pq.size() > k) pq.pop();

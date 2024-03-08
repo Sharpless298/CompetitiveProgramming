@@ -12,19 +12,9 @@ ZJ c223 c272
 ### queue
 ZJ c249 c223
 
-### linked-list
-
-### deque
-
-### priority-queue
-TIOJ 1231
-
-### multiset
-TIOJ 1911 1161 1221
-
 ## 2
 ### algorithm
-TIOJ 1617 1187
+TIOJ 1617
 
 ### enumerate
 ZJ b893
@@ -35,7 +25,6 @@ ZJ b870 c250
 TIOJ 1598 1839 1926
 
 ### ternary search
-NEOJ 72
 TIOJ 1635
 CF 939E
 

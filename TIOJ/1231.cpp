@@ -3,30 +3,32 @@
 #include <queue>
 using namespace std;
 
-pair<int, int> ary[100005];
+int n, t, idx = 0, ans = 0;
+pair<int, int> p[100005];
 priority_queue<int> pq;
+
+bool cmp(pair<int, int> a, pair<int, int> b) {
+	return a.second > b.second;
+}
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-
-	int n, idx = 0, ans = 0, t;
-
+	
 	cin >> n;
 	for(int i=0; i<n; i++)
-		cin >> ary[i].second >> ary[i].first;
+		cin >> p[i].first >> p[i].second;
 	cin >> t;
 
-	sort(ary, ary+n, greater<pair<int, int>>());
-	
-	while(t)  {
-		while(idx<n && ary[idx].first>=t) {
-			pq.push(ary[idx].second);
+	sort(p, p+n, cmp);
+	while(t) {
+		while(idx<n && p[idx].second>=t) {
+			pq.push(p[idx].first);
 			idx++;
 		}
 		if(pq.empty()) {
-			ans -= t-ary[idx].first;
-			t = ary[idx].first;
+			ans -= t-p[idx].second;
+			t = p[idx].second;
 		}
 		else {
 			ans += pq.top();
@@ -34,5 +36,6 @@ signed main() {
 			t--;
 		}
 	}
+	
 	cout << ans << '\n';
 }
