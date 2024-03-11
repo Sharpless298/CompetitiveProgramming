@@ -18,7 +18,7 @@ TIOJ 1617
 
 ### enumerate
 ZJ b893
-TIOJ 1235 2054
+TIOJ 2054
 
 ### binary search
 ZJ b870 c250
@@ -29,9 +29,12 @@ TIOJ 1635
 CF 939E
 
 ### greedy
-TIOJ 1441 2009
-ZJ b231 d418 c471
+TIOJ 2009
+ZJ c471
 
 ## 3
 ### D&C
 TIOJ 1500 1208
+
+### DP
+
