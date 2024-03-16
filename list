@@ -16,3 +16,5 @@ getchar_unlocked() ZJ c412
 
 NEOJ 72 math 
 CF 939E ternary search
+
+ZJ d652 最小矩陣鏈乘積
