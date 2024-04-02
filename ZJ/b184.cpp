@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 const int INF = 2e9;
@@ -10,19 +11,16 @@ signed main() {
 	cin.tie(nullptr);
 
 	while(cin >> n) {
-		fill(dp, dp+101, -INF);
-		ans = dp[0] = 0;
+		ans = 0;
+		memset(dp, 0, sizeof(dp));
 
 		for(int i=0; i<n; i++)
 			cin >> w[i] >> v[i];
 
-		for(int i=0; i<n; i++) {
-			for(int j=100; j>=w[i]; j--) {
-				dp[j] = max(dp[j], dp[j-w[i]]+v[i]);
-				ans = max(ans, dp[j]);
-			}
-		}
+		for(int i=0; i<n; i++)
+			for(int j=100; j>=w[i]; j--)
+				dp[j] = max(dp[j-w[i]]+v[i], dp[j]);
 
-		cout << ans << '\n';
+		cout << dp[100] << '\n';
 	}
 }
