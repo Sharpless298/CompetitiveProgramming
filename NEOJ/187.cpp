@@ -14,8 +14,6 @@ signed main() {
 	
 	cin >> T;
 	while(T--) {
-		memset(dp, 0x3f3f3f3f, sizeof(dp));
-		dp[0][1] = 0;
 		ans = INF;
 
 		cin >> n;
@@ -23,7 +21,9 @@ signed main() {
 			for(int j=i+1; j<n; j++)
 				cin >> x, dis[i][j] = dis[j][i] = x;
 		m = (1<<n);
-
+		
+		memset(dp, 0x3f3f3f3f, sizeof(dp));
+		dp[0][1] = 0;
 		for(int i=0; i<(1<<n); i++) {
 			for(int j=0; j<n; j++) {
 				if(!(i & (1<<j))) continue;
