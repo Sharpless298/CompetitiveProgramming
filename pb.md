@@ -49,3 +49,6 @@ Codeforces 995C
 ### DFS BFS
 ZJ d537 c402 
 NEOJ 46
+### Tree
+TIOJ 1106
+ZJ c126
