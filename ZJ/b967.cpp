@@ -1,19 +1,15 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
 using namespace std;
 
-bool vis[100005];
 int ans, k, n;
 vector<int> G[100005];
 
-void DFS(int u, int depth) {
+void DFS(int u, int f, int depth) {
 	if(depth > ans) k = u, ans = depth;
 
-	vis[u] = true;
-	
 	for(int v:G[u])
-		if(!vis[v]) DFS(v, depth+1);
+		if(v!=f) DFS(v, u, depth+1);
 }
 
 signed main() {
@@ -27,9 +23,8 @@ signed main() {
 		G[v].push_back(u);
 	}
 
-	DFS(0, 0);
-	memset(vis, 0, sizeof(vis));
-	DFS(k, 0);
+	DFS(0, -1, 0);
+	DFS(k, -1, 0);
 
 	cout << ans << '\n';
 }
