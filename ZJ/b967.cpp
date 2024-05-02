@@ -9,7 +9,7 @@ void DFS(int u, int f, int depth) {
 	if(depth > ans) k = u, ans = depth;
 
 	for(int v:G[u])
-		if(v!=f) DFS(v, u, depth+1);
+		if(v != f) DFS(v, u, depth+1);
 }
 
 signed main() {
