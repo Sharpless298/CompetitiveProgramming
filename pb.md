@@ -50,5 +50,3 @@ Codeforces 995C
 ZJ d537 c402 
 NEOJ 46
 
-### BST
-TIOJ 1609

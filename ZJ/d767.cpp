@@ -48,16 +48,11 @@ signed main() {
 		for(int j=1; j<=N; j++)
 			ac[i][j] = ac[i-1][ac[i-1][j]];
 
-	for(int i=0, lca; i<Q; i++) {
+	for(int i=0; i<Q; i++) {
 		ans = 0;
 
 		cin >> a >> b;
 		
-		lca = LCA(a, b);
-		for(int j=lgN; j>=0; j--)
-			if(!ancestor(ac[j][b], lca)) b = ac[j][b], ans+=pow(2, j);
-		if(b != lca) ans++;
-
-		cout << lca << ' ' << ans << '\n';
+		cout << LCA(b, LCA(a, b)) << ' ' << ans << '\n';
 	}
 }
