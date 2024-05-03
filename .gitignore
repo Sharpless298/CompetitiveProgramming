@@ -1,21 +1,18 @@
+# Ignore all, unignore all with extensions, unignore all dirs.
 *
-!*.cpp
-/temp.cpp
-/temp2.cpp
-!/2023IONCamp
-!/CSES
-!/Template
-!/UVa
-!/Atcoder
-!/TIOJ
-!/ZJ
-!/Coderforces
-!/Kattis
-!/TOJ
-!/USACO
-!/POJ
-!/CS Academy
-!/NEOJ
-!/pb.md
-!/list
+!*.*
+!*/
 
+# Executables
+*.exe
+*.app
+*.sh
+
+# Temp Runner
+temp.c
+temp.cpp
+temp.exe
+
+# Vim
+*.swo
+*.swp
