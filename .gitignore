@@ -2,11 +2,13 @@
 *
 !*.*
 !*/
+!list
 
 # Executables
 *.exe
 *.app
 *.sh
+*.gitignore
 
 # Temp Runner
 temp.c
