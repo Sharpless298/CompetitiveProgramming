@@ -20,13 +20,13 @@ void init() {
 		parent[i] = i, rk[i] = 1;
 }
 
-int query(int x) {
+int Find(int x) {
 	if(parent[x] == x) return x;
-	return parent[x] = query(parent[x]);
+	return parent[x] = Find(parent[x]);
 }
 
 void Union(int a, int b) {
-	a = query(a), b = query(b);
+	a = Find(a), b = Find(b);
 	
 	if(rk[a] < rk[b]) parent[a] = b;
 	else if(rk[a] > rk[b]) parent[b] = a;
@@ -46,7 +46,7 @@ signed main() {
 	init();
 	sort(edges.begin(), edges.end());
 	for(int i=0; cnt; i++) {
-		if(query(edges[i].u) != query(edges[i].v)) {
+		if(Find(edges[i].u) != Find(edges[i].v)) {
 			Union(edges[i].u, edges[i].v);
 			MIN += edges[i].w;
 			cnt--;
@@ -57,7 +57,7 @@ signed main() {
 	init();
 	reverse(edges.begin(), edges.end());
 	for(int i=0; cnt; i++) {
-		if(query(edges[i].u) != query(edges[i].v)) {
+		if(Find(edges[i].u) != Find(edges[i].v)) {
 			Union(edges[i].u, edges[i].v);
 			MAX += edges[i].w;
 			cnt--;

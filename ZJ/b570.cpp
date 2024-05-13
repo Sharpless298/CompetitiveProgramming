@@ -9,13 +9,13 @@ int parent[1000005], rk[1000005];
 pair<int ,int> p[1000005];
 vector<int> E, ans;
 
-int query(int x) {
+int Find(int x) {
 	if(parent[x] == x) return x;
-	return parent[x] = query(parent[x]);
+	return parent[x] = Find(parent[x]);
 }
 
 void Union(int a, int b) {
-	a = query(a), b = query(b);
+	a = Find(a), b = Find(b);
 
 	if(a == b) return;
 	if(rk[a] < rk[b]) parent[a] = b;
