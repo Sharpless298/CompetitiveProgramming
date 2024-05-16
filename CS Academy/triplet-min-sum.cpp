@@ -11,11 +11,11 @@ bool ancestor(int u, int v) {
 	return false;
 }
 
-void DFS(int depth, int u, int f) {
-	d[u] = depth;
+void DFS(int u, int f) {
+	d[u] = d[f]+1;
 	in[u] = ++t;
 	for(int v:G[u])
-		if(v != f) ac[0][v] = u, DFS(depth+1, v, u);
+		if(v != f) ac[0][v] = u, DFS(v, u);
 	out[u] = t;
 }
 
@@ -43,7 +43,7 @@ signed main() {
 	}
 
 	lgN = __lg(N);
-	DFS(0, 1, 0);
+	DFS(1, 0);
 	ac[0][1] = 1;
 	for(int i=1; i<=lgN; i++)
 		for(int j=1; j<=N; j++)
