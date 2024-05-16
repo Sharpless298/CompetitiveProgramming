@@ -39,7 +39,6 @@ int dis(int u, int v) {
 
 int f(int u, int k) {
 	if(!k) return u;
-
 	int lgk = __lg(k);
 	
 	for(int i=0; i<=lgk; i++, k>>=1)
@@ -75,3 +74,4 @@ signed main() {
 		else cout << f(S, K) << '\n';
 	}
 }
+
