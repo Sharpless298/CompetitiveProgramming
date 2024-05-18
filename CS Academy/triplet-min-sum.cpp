@@ -7,8 +7,7 @@ int in[100005], out[100005], d[100005], ac[32][100005];
 vector<int> G[100005];
 
 bool ancestor(int u, int v) {
-	if(in[u]<=in[v] && out[u]>=out[v]) return true;
-	return false;
+	return in[u]<=in[v] && out[u]>=out[v];
 }
 
 void DFS(int u, int f) {

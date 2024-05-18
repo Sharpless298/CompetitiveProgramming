@@ -32,8 +32,6 @@ int upper_bound(int l, int r, int k) {
 	return l;
 }
 
-
-
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);

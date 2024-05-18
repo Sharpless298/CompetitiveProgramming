@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -6,6 +7,7 @@ struct Node {
 };
 
 int N;
+priority_queue<> pq;
 Node node[1005];
 
 signed main() {
@@ -14,6 +16,6 @@ signed main() {
 
 	cin >> N;
 	for(int i=0; i<n; i++) {
-		
+				
 	}
 }
