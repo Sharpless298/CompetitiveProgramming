@@ -20,7 +20,7 @@ int BFS() {
     dis[sy][sx][0] = 0;
     vis[sy][sx][0] = true;
     
-    for(int i=0, j=1; i<j; i++)  {
+    for(int i=0, j=1; i<j; i++) {
         x = q[i][1];
         y = q[i][0];
         key = q[i][2];
@@ -33,11 +33,9 @@ int BFS() {
             ny = y+dy[k]; 
             nkey = key; 
 
-            if(ny<0 || ny>=R || nx<0 || nx>=C || G[ny][nx]=='#') 
-                continue;
+            if(ny<0 || ny>=R || nx<0 || nx>=C || G[ny][nx]=='#') continue;
             if(G[ny][nx]=='R' || G[ny][nx]=='G' || G[ny][nx]=='B' || G[ny][nx]=='Y')
-                if((key & (1<<key_id[G[ny][nx]-'A'])) == 0) 
-                    continue;
+                if((key & (1<<key_id[G[ny][nx]-'A'])) == 0) continue;
             if(G[ny][nx]=='r' || G[ny][nx]=='g' || G[ny][nx]=='b' || G[ny][nx]=='y')
                 nkey = (key | (1<<(key_id[G[ny][nx]-'a'])));
 
