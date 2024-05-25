@@ -27,6 +27,7 @@ signed main() {
 	
 	DFS(root);
 	ac[0][root] = root;
+	lgN = __lg(N);
 	for(int i=1; i<=lgN; i++)
 		for(int j=1; j<=N; j++)
 			ac[i][j] = ac[i-1][ac[i-1][j]];

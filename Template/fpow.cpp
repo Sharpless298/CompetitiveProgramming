@@ -6,8 +6,10 @@ typedef long long int lli;
 lli fpow(lli a, lli b) {
 	lli res = 1;
 
-	for(lli i=a, t=b; t; i*=i, t>>=1)
-		if(t & 1) res *= i;
+	while(b) {
+		if(b & 1) res *= a;
+		a *= a, b >>= 1;
+	}
 
 	return res;
 }
