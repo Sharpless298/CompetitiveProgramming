@@ -11,7 +11,7 @@ int Find(int x) {
 }
 
 void Union(int a, int b) {
-	a = query(a), b = query(b);
+	a = Find(a), b = Find(b);
 
 	if(a == b) return;
 	
