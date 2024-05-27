@@ -1,17 +1,19 @@
 #include <iostream>
 using namespace std;
 
+int parent[200005], rk[200005];
+
 void init(int n) {
 	for(int i=1; i<=n; i++)
 		parent[i] = i, rk[i] = 1;
 }
 
-int Find(int x) {
-	return x == parent[x] ? x : parent[x] = Find(parent[x]);
+int find(int x) {
+	return x == parent[x] ? x : parent[x] = find(parent[x]);
 }
 
-void Union(int a, int b) {
-	a = Find(a), b = Find(b);
+void unite(int a, int b) {
+	a = find(a), b = find(b);
 
 	if(a == b) return;
 	
