@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 using namespace std;
 
 int parent[200005], rk[200005];

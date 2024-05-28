@@ -44,15 +44,11 @@ signed main() {
 	while(k--) {
 		int a, b;
 
-		cin >> s;
-		if(s[0] == 'a') {
-			cin >> a >> b;
+		cin >> s >> a >> b;
+		if(s[0] == 'a') 
 			v.push_back({0, {a, b}});
-		}
-		else {
-			cin >> a >> b;
+		else 
 			v.push_back({1, {a, b}});
-		}
 	}
 	
 	reverse(v.begin(), v.end());

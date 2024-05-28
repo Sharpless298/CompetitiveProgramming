@@ -18,9 +18,7 @@ void Union(int a, int b, int t) {
 	if(a == b) return;
 
 	if(b == Find(1)) swap(a, b);
-	if(a == Find(1)) 
-		for(int i:v[b]) ans[i] = t;
-	
+	if(a == Find(1)) for(int i:v[b]) ans[i] = t;
 	if(v[a].size() < v[b].size()) swap(a, b);
 	for(int i:v[b]) v[a].push_back(i);
 	parent[b] = a;
