@@ -16,7 +16,7 @@ int LCA(int u, int v) {
 	if(ancestor(u, v)) return u;
 
 	for(int i=lgN; i>=0; i--)
-		if(!ancestor(ac[i][u], v)) u = ac[i][u];
+		if(!ancestor(ac[u][i], v)) u = ac[u][i];
 
 	return ac[0][u];
 }
@@ -28,7 +28,7 @@ signed main() {
 	DFS(root);
 	ac[0][root] = root;
 	lgN = __lg(N);
-	for(int i=1; i<=lgN; i++)
-		for(int j=1; j<=N; j++)
-			ac[i][j] = ac[i-1][ac[i-1][j]];
+	for(int i=1; i<=N; i++)
+		for(int j=1; j<=lgN; j++)
+			ac[i][j] = ac[ac[i][j-1]][j-1];
 }
