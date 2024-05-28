@@ -8,12 +8,12 @@ void init(int n) {
 		parent[i] = i, rk[i] = 1;
 }
 
-int find(int x) {
-	return x == parent[x] ? x : parent[x] = find(parent[x]);
+int Find(int x) {
+	return x == parent[x] ? x : parent[x] = Find(parent[x]);
 }
 
-void unite(int a, int b) {
-	a = find(a), b = find(b);
+void Union(int a, int b) {
+	a = Find(a), b = Find(b);
 
 	if(a == b) return;
 	
