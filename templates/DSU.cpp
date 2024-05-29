@@ -1,5 +1,4 @@
 #include <iostream>
-#include <numeric>
 using namespace std;
 
 int parent[200005], rk[200005];
@@ -19,8 +18,8 @@ void Union(int a, int b) {
 	if(a == b) return;
 	
 	if(rk[a] < rk[b]) swap(a, b);
-	parent[b] = a;
 	if(rk[a] == rk[b]) rk[a]++;
+	parent[b] = a;
 }
 
 signed main() {

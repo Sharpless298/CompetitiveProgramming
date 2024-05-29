@@ -12,10 +12,6 @@ int Find(int x) {
 	return x == parent[x] ? x : Find(parent[x]);
 }
 
-int query(int x) {
-	return x == parent[x] ? ans[x] : ans[x] + query(parent[x]);
-}
-
 void Union(int a, int b) {
 	a = Find(a), b = Find(b);
 
@@ -25,6 +21,10 @@ void Union(int a, int b) {
 	parent[b] = a;
 	ans[b] -= ans[a];
 	if(rk[a] == rk[b]) rk[a]++;
+}
+
+int query(int x) {
+	return x == parent[x] ? ans[x] : ans[x] + query(parent[x]);
 }
 
 signed main() {
@@ -37,6 +37,7 @@ signed main() {
 	cin >> n >> m;
 	
 	init(n);
+
 	while(m--) {
 		cin >> s;
 		
