@@ -47,6 +47,20 @@ int upper_bound(int l, int r, int k) {
 	return l;
 }
 
+int t(int l, int r, int k) {
+	int m;
+	
+	while(l < r) {
+		m = (l+r+1)>>1;
+		if(ary[m] < k)
+			l = m;
+		else
+			r = m-1;
+	}
+
+	return l;
+}
+
 signed main() {
 
 	int k;
@@ -59,5 +73,6 @@ signed main() {
 		cout << "binary_search: " << binary_search(0, 10, k) << '\n';
 		cout << "lower_bound: " << lower_bound(0, 10, k) << '\n';
 		cout << "upper_bound: " << upper_bound(0, 10, k) << '\n';
+		cout << "t: " << t(-1, 9, k) << '\n';
 	}
 }

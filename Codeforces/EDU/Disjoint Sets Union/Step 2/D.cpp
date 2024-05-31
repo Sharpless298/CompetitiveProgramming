@@ -12,13 +12,6 @@ int Find(int x) {
 	return parent[x] = root;
 }
 
-void Union(int a, int b) {
-	if(Find(a) == Find(b)) return;
-
-	parent[a] = b;
-	depth[a] = depth[b] + 1;
-}
-
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -34,7 +27,8 @@ signed main() {
 
 		if(t == 1) {
 			cin >> a >> b;
-			Union(a, b);
+			parent[a] = b;
+			depth[a]++;
 		}
 		else {
 			cin >> a;
