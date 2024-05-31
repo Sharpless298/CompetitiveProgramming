@@ -26,9 +26,9 @@ signed main() {
 	cin.tie(nullptr);
 	
 	DFS(root);
-	ac[0][root] = root;
+	ac[root][0] = root;
 	lgN = __lg(N);
-	for(int i=1; i<=N; i++)
-		for(int j=1; j<=lgN; j++)
-			ac[i][j] = ac[ac[i][j-1]][j-1];
+	for(int i=1; i<=lgN; i++)
+		for(int j=1; j<=N; j++)
+			ac[j][i] = ac[ac[j][i-1]][i-1];
 }

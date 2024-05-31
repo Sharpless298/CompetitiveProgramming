@@ -1,11 +1,13 @@
 #include <iostream>
+#include <cstring>
+#include <numeric>
 using namespace std;
 
 int parent[200005], rk[200005];
 
 void init(int n) {
-	for(int i=1; i<=n; i++)
-		parent[i] = i, rk[i] = 1;
+	iota(parent, parent+n+1, 0);
+	memset(rk, 0, sizeof(rk));
 }
 
 int Find(int x) {

@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <utility>
 #include <queue>
+#include <cstring>
+#include <numeric>
 using namespace std;
 
 typedef long long int lli;
@@ -17,14 +19,14 @@ struct Edge {
 bool used[200005];
 int N, M;
 int parent[200005], rk[200005];
-int ac[20][200005], mx[20][200005], depth[200005];
+int ac[200005][20], mx[200005][20], depth[200005];
 lli sum, ans[200005];
 Edge edges[200005];
 vector<pair<int, int>> G[200005];
 
-void init(int n) {
-	for(int i=1; i<=n; i++)
-		parent[i] = i, rk[i] = 0;
+void init() {
+	iota(parent, parent+200005, 0);
+	memset(rk, 0, sizeof(rk));
 }
 
 int Find(int x) {
@@ -47,30 +49,34 @@ int query(int u, int v) {
 
 	if(depth[u] < depth[v]) swap(u, v);
 	for(int i=17; i>=0; i--) {
-		if(depth[ac[i][u]] >= depth[v]) {
-			res = max(res, mx[i][u]);
-			u = ac[i][u];
+		if(depth[ac[u][i]] >= depth[v]) {
+			res = max(res, mx[u][i]);
+			u = ac[u][i];
 		}
 	}
 	if(u == v) return res;
 
 	for(int i=17; i>=0; i--) {
-		if(ac[i][u] != ac[i][v]) {
-			res = max({res, mx[i][u], mx[i][v]});
-			u = ac[i][u];
-			v = ac[i][v];
+		if(ac[u][i] != ac[v][i]) {
+			res = max({res, mx[u][i], mx[v][i]});
+			u = ac[u][i];
+			v = ac[v][i];
 		}
 	}
 
-	return max({res, mx[0][u], mx[0][v]});
+	return max({res, mx[u][0], mx[v][0]});
 }
 
 void DFS(int u, int f) {
 	depth[u] = depth[f]+1;
 	for(auto &v:G[u]) {
 		if(v.first == f) continue;
-		ac[0][v.first] = u; 
-		mx[0][v.first] = v.second;
+		ac[v.first][0] = u; 
+		mx[v.first][0] = v.second;
+		for(int i=1; i<=17; i++) {
+			ac[v.first][i] = ac[ac[v.first][i-1]][i-1];
+			mx[v.first][i] = max(mx[v.first][i-1], mx[ac[v.first][i-1]][i-1]);
+		}
 		DFS(v.first, u);
 	}
 }
@@ -85,7 +91,7 @@ signed main() {
 		edges[i].id = i;
 	}
 	
-	init(N);
+	init();
 	sort(edges, edges+M);
 	for(int i=0; i<M; i++) {
 		if(Union(edges[i].u, edges[i].v)) {
@@ -96,12 +102,6 @@ signed main() {
 	}
 	
 	DFS(1, 0);
-	for(int i=1; i<=17; i++) {
-		for(int j=1; j<=N; j++) {
-			ac[i][j] = ac[i-1][ac[i-1][j]];
-			mx[i][j] = max(mx[i-1][j], mx[i-1][ac[i-1][j]]);
-		}
-	}
 	
 	for(int i=0; i<M; i++) {
 		if(used[i]) ans[edges[i].id] = sum;
