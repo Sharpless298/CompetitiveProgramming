@@ -105,9 +105,10 @@ signed main() {
 	
 	for(int i=0; i<M; i++) {
 		if(used[i]) ans[edges[i].id] = sum;
-		else ans[edges[i].id] = sum+edges[i].w-query(edges[i].u, edges[i].v);
+		else ans[edges[i].id] = sum-query(edges[i].u, edges[i].v)+edges[i].w;
 	}
 	
 	for(int i=0; i<M; i++) 
 		cout << ans[i] << '\n';
 }
+
