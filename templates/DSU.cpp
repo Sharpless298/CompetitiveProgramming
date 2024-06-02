@@ -5,8 +5,8 @@ using namespace std;
 
 int parent[200005], rk[200005];
 
-void init(int n) {
-	iota(parent, parent+n+1, 0);
+void init() {
+	iota(parent, parent+200005, 0);
 	memset(rk, 0, sizeof(rk));
 }
 
