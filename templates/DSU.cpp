@@ -5,7 +5,7 @@ using namespace std;
 
 int parent[200005], rk[200005];
 
-void init() {
+void init(int n) {
 	iota(parent, parent+200005, 0);
 	memset(rk, 0, sizeof(rk));
 }
@@ -19,9 +19,9 @@ void Union(int a, int b) {
 
 	if(a == b) return;
 	
-	if(rk[a] < rk[b]) swap(a, b);
-	if(rk[a] == rk[b]) rk[a]++;
-	parent[b] = a;
+	if(rk[a] > rk[b]) swap(a, b);
+	if(rk[a] == rk[b]) rk[b]++;
+	parent[a] = b;
 }
 
 signed main() {

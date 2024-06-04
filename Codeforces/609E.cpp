@@ -44,6 +44,20 @@ bool Union(int a, int b) {
 	return true;
 }
 
+void DFS(int u, int f) {
+	depth[u] = depth[f]+1;
+	for(auto &v:G[u]) {
+		if(v.first == f) continue;
+		ac[v.first][0] = u; 
+		mx[v.first][0] = v.second;
+		for(int i=1; i<=17; i++) {
+			ac[v.first][i] = ac[ac[v.first][i-1]][i-1];
+			mx[v.first][i] = max(mx[v.first][i-1], mx[ac[v.first][i-1]][i-1]);
+		}
+		DFS(v.first, u);
+	}
+}
+
 int query(int u, int v) {
 	int res = 0;
 
@@ -67,20 +81,6 @@ int query(int u, int v) {
 	return max({res, mx[u][0], mx[v][0]});
 }
 
-void DFS(int u, int f) {
-	depth[u] = depth[f]+1;
-	for(auto &v:G[u]) {
-		if(v.first == f) continue;
-		ac[v.first][0] = u; 
-		mx[v.first][0] = v.second;
-		for(int i=1; i<=17; i++) {
-			ac[v.first][i] = ac[ac[v.first][i-1]][i-1];
-			mx[v.first][i] = max(mx[v.first][i-1], mx[ac[v.first][i-1]][i-1]);
-		}
-		DFS(v.first, u);
-	}
-}
-
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -101,6 +101,7 @@ signed main() {
 		}
 	}
 	
+	ac[1][0] = 1;
 	DFS(1, 0);
 	
 	for(int i=0; i<M; i++) {

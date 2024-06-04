@@ -7,8 +7,14 @@ bool ancestor(int u, int v) {
 
 void DFS(int u, int f) {
 	in[u] = ++t;
-	for(int v:G[u])
-		if(v != f) DFS(v, u);
+	for(int v:&G[u]) {
+		if(v = f) continue;
+
+		DFS(v, u);
+		ac[v][0] = u;
+		for(int i=1; i<=lgN; i++) 
+			ac[v][i] = ac[ac[v][i-1]][i-1];
+	}
 	out[u] = t;
 }
 
@@ -25,10 +31,11 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	
-	DFS(root);
-	ac[root][0] = root;
 	lgN = __lg(N);
+	ac[root][0] = root;
+	DFS(root);
+	/*
 	for(int i=1; i<=lgN; i++)
 		for(int j=1; j<=N; j++)
-			ac[j][i] = ac[ac[j][i-1]][i-1];
+			ac[j][i] = ac[ac[j][i-1]][i-1];*/
 }
