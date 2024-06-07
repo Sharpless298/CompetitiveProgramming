@@ -11,6 +11,7 @@
 *.gitignore
 
 # Temp Runner
+/Contest
 temp.c
 temp.cpp
 temp2.cpp
