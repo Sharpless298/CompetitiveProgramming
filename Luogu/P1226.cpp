@@ -5,7 +5,6 @@ typedef long long int lli;
 
 lli fpow(lli a, lli b, lli m) {
 	lli res = 1;
-
 	while(b) {
 		if(b & 1) res = res*a%m;
 		a = a*a%m, b >>= 1;
@@ -14,7 +13,9 @@ lli fpow(lli a, lli b, lli m) {
 }
 
 signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
+	lli a, b, p;
 
+	cin >> a >> b >> p;
+
+	cout << a << '^' << b << " mod " << p << '=' << fpow(a, b, p) << '\n';
 }
