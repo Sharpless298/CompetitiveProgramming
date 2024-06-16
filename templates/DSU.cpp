@@ -3,11 +3,11 @@
 #include <numeric>
 using namespace std;
 
-int parent[200005], rk[200005];
+int parent[200005], sz[200005];
 
 void init(int n) {
-	iota(parent, parent+200005, 0);
-	memset(rk, 0, sizeof(rk));
+	iota(parent, parent+n+1, 0);
+	fill(sz, sz+n+1, 1);
 }
 
 int Find(int x) {
@@ -19,9 +19,9 @@ void Union(int a, int b) {
 
 	if(a == b) return;
 	
-	if(rk[a] > rk[b]) swap(a, b);
-	if(rk[a] == rk[b]) rk[b]++;
+	if(sz[a] > sz[b]) swap(a, b);
 	parent[a] = b;
+	sz[b] += sz[a];
 }
 
 signed main() {
