@@ -8,7 +8,7 @@ int parent[1000005], sz[1000005];
 
 void init(int n) {
 	iota(parent, parent+n, 0);
-	for(int i=0; i<n; i++) sz[i] = 1;
+	fill(sz, sz+n, 1);
 }
 
 int Find(int x) {
