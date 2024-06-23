@@ -1,62 +1,59 @@
 #include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 
-bool vis[32], e[32][32];
-string s[105];
+bool f;
+int in[32];
+string s, t;
+vector<int> G[32], ans;
 
-int get(char c) {
-	if(c == ' ') return 0;
-	return c - 'a' +1;
+void build() {
+	int idx = 0;
+	while(idx < (int)min(s.size(), t.size())) {
+		if(s[idx] != t[idx]) {
+			G[s[idx]-'a'].push_back(t[idx]-'a');
+			in[t[idx]-'a']++;
+			return;
+		}
+		idx++;
+	}	
+	
+	if(s.size() > t.size()) f = true;
 }
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n;
+	int n, v;
 
 	cin >> n;
-	for(int i=0; i<n; i++) {
-		cin >> s[i];
-		s[i] += ' ';
-	}
-	for(int i=1; i<=26; i++)
-		e[0][i] = true;
-
+	cin >> s;
 	for(int i=0; i<n-1; i++) {
-		int j = 0;
-		while(s[i][j] == s[i+1][j]) j++;
-		e[get(s[i][j])][get(s[i+1][j])] = true;
+		cin >> t;
+		build();
+		s = t;
 	}
-	
-	for(int k=0; k<=26; k++)
-		for(int i=0; i<=26; i++)
-			for(int j=0; j<=26; j++)
-				e[i][j] |= e[i][k] & e[k][j];
-
-	bool f = false;
-	for(int i=0; i<=26; i++)
-		f |= e[i][i];
 
 	if(f) 
 		cout << "Impossible\n";
 	else {
-		for(int i=0; i<=26; i++) {
-			int now = 0;
+		queue<int> q;
+		for(int i=0; i<26; i++)
+			if(in[i] == 0) q.push(i);
 
-			for(int j=0; j<=26; j++) {
-				f = !vis[j];
-				for(int k=0; k<=26; k++) 
-					if(e[k][j] && !vis[k]) f = false;
-				if(f) {
-					now = j;
-					break;
-				}
-			}
-			
-			if(i > 0) cout << (char)('a'+now-1);
-			vis[now] = true;
+		while(!q.empty()) {
+			v = q.front(), q.pop();
+			ans.push_back(v);
+			for(int i:G[v]) 
+				if(--in[i] == 0) q.push(i);
 		}
+
+		if(ans.size() != 26) 
+			cout << "Impossible";
+		else 
+			for(int i:ans) cout << (char)(i+'a');
 		cout << '\n';
 	}
 }
