@@ -46,6 +46,7 @@ signed main() {
 		while(!q.empty()) {
 			v = q.front(), q.pop();
 			ans.push_back(v);
+
 			for(int i:G[v]) 
 				if(--in[i] == 0) q.push(i);
 		}
