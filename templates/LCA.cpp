@@ -7,13 +7,13 @@ bool ancestor(int u, int v) {
 
 void DFS(int u, int f) {
 	in[u] = ++t;
-	for(int v:&G[u]) {
-		if(v = f) continue;
+	for(int &v:G[u]) {
+		if(v == f) continue;
 
-		DFS(v, u);
 		ac[v][0] = u;
 		for(int i=1; i<=lgN; i++) 
 			ac[v][i] = ac[ac[v][i-1]][i-1];
+		DFS(v, u);
 	}
 	out[u] = t;
 }
