@@ -62,3 +62,4 @@ signed main() {
 		cout << dis[n*m-1] + maze[0][0] << '\n';
 	}
 }
+
