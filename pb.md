@@ -60,6 +60,4 @@ TIOJ 2038
 ZJ b058
 
 ### shortest path
-TIOJ 1706
-CF 938D
 POJ 3169
