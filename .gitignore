@@ -12,6 +12,8 @@
 
 # Temp Runner
 /Contest
+/Codeforces/contest
+/Atcoder/contest
 temp.c
 temp.cpp
 temp2.cpp
