@@ -2,18 +2,21 @@
 #include <vector>
 using namespace std;
 
-int prime[100005];
+int lpf[100005];
 vector<int> p;
 
 void sieve(int n) {
-	fill(prime, prime+n+1, 1);
+	fill(lpf, lpdf+n+1, 1);
 
 	for(int i=2; i<=n; i++) {
-		if(prime[i] == 1) p.push_back(i);
+		if(lpf[i] == 1) {
+			lpf[i] = i;
+			p.push_back(i);
+		}
 		for(int j:p) {
 			if(i*j > n) break;
-			prime[i*j] = j;
-			if(i%j == 0) break;
+			lpf[i*j] = j;
+			if(j == lpf[i]) break;
 		}
 	}
 }
