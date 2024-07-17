@@ -3,12 +3,12 @@ using namespace std;
 
 typedef long long int lli;
 
-lli solve(lli a, lli b, lli m) { 
+lli f(lli a, lli b, lli m) { 
     lli res = 0; 
 
 	a %= m, b %= m;
 	while(b) {
-        if(b&1) 
+        if(b & 1) 
             res = (res + a) % m;
 		a = a*2%m, b >>= 1;
     } 
@@ -21,7 +21,6 @@ signed main() {
 	
 	lli a, b, n;
 
-	while(cin >> a >> b >> n) {
-		cout << solve(a, b, n) << '\n';
-	}
+	while(cin >> a >> b >> n) 
+		cout << f(a, b, n) << '\n';
 }
