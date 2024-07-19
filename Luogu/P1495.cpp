@@ -6,9 +6,9 @@ typedef long long int lli;
 int n;
 lli a[16], b[16], M[16], t[16];
 
-pair<lli, lli> extgcd(lli x, lli y) {
+pair<lli, lli> exgcd(lli x, lli y) {
 	if(y == 0) return make_pair(1, 0);
-	pair<lli, lli> res = extgcd(y, x%y);
+	pair<lli, lli> res = exgcd(y, x%y);
 	return make_pair(res.second, res.first-x/y*res.second);
 }
 
@@ -30,7 +30,7 @@ lli CRT() {
 		MM *= a[i];
 	for(int i=0; i<n; i++) {
 		M[i] = MM/a[i];
-		t[i] = (extgcd(M[i], a[i]).first%a[i]+a[i])%a[i];
+		t[i] = (exgcd(M[i], a[i]).first%a[i]+a[i])%a[i];
 	}
 
 	lli ans = 0;
