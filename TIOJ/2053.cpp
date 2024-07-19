@@ -12,7 +12,7 @@ const lli MOD = 1e9+7;
 int x1, x2, a, b, n;
 matrix A;
 
-matrix mul(matrix x, matrix y) {
+matrix mul(matrix &x, matrix &y) {
 	matrix t;
 	for(int i=0; i<2; i++) {
 		for(int j=0; j<2; j++) {

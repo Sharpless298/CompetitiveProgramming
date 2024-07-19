@@ -65,8 +65,9 @@ POJ 3169
 ## 5
 ### number theory
 TIOJ 1514 1535 1135
-ZJ a289(euler's phi)
+ZJ a289(euler's phi)(mod inverse)
 leetcode 952
 CF 850B
+
 ### matrix
-TIOJ 1157
+TIOJ 1157 2005 1428
