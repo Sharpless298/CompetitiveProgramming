@@ -70,4 +70,9 @@ leetcode 952
 CF 850B
 
 ### matrix
-TIOJ 1157 2005 1428
+TIOJ 1157 2005
+
+### comb
+ZJ c248 O(n) 
+TIOJ 2052 1607
+HDU 3037

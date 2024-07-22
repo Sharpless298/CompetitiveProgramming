@@ -3,17 +3,17 @@ using namespace std;
 
 typedef long long int lli;
 
-struct matrix {
+struct Matrix {
 	lli m[2][2];
 };
 
 const lli MOD = 1e9+7;
 
 int x1, x2, a, b, n;
-matrix A;
+Matrix A;
 
-matrix mul(matrix &x, matrix &y) {
-	matrix t;
+Matrix mul(Matrix &x, Matrix &y) {
+	Matrix t;
 	for(int i=0; i<2; i++) {
 		for(int j=0; j<2; j++) {
 			t.m[i][j] = 0;
@@ -28,7 +28,7 @@ matrix mul(matrix &x, matrix &y) {
 void fpow() {
 	for(int i=0; i<2; i++)
 		A.m[i][i] = 1;
-	matrix B = {b, 1, a, 0};
+	Matrix B = {b, 1, a, 0};
 
 	while(n) {
 		if(n & 1) A = mul(A, B); 
