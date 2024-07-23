@@ -12,13 +12,14 @@ signed main() {
 
 	int T;
 
-	vector<lli> fact(2197157), inv(1148581), fact_inv(1148581);
-	fact[0] = 1;
-	for(int i=1; i<=2197152; i++) fact[i] = fact[i-1]*i%MOD;
+	vector<lli> inv(1148581);
 	inv[1] = 1;
-	for(int i=2; i<=1148576; i++) inv[i] = inv[MOD%i]*(MOD-MOD/i)%MOD;
-	fact_inv[0] = 1;
-	for(int i=1; i<=1148576; i++) fact_inv[i] = fact_inv[i-1]*inv[i]%MOD;
+	for(int i=2; i<=1148576; i++) 
+		inv[i] = inv[MOD%i] * (MOD-MOD/i) % MOD;
+	vector<lli> f(1148581);
+	f[0] = 1;
+	for(int i=1; i<=1148575; i++)
+		f[i] = f[i-1] * (4*i-2) % MOD * inv[i+1] % MOD;
 
 	cin >> T;
 	while(T--) {
@@ -26,7 +27,7 @@ signed main() {
 
 		cin >> n;
 
-		cout << fact[2*n]*fact_inv[n]%MOD*fact_inv[n+1]%MOD << '\n';
+		cout << f[n] << '\n';	
 	}
 }
 

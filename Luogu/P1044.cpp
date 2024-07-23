@@ -14,9 +14,7 @@ signed main() {
 	vector<lli> f(20);
 	f[0] = 1;
 	for(int i=1; i<=n; i++)
-		for(int j=0; j<i; j++)
-			f[i] += f[j]*f[i-j-1];
-
+		f[i] = f[i-1] * (4*i-2) / (i+1);
 	cout << f[n] << '\n';
 }
 
