@@ -1,38 +1,22 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 typedef long long int lli;
 
-struct matrix {
-	lli m[128][128];
-};
-
 const lli MOD = 1e9+7;
 
 int n;
-matrix A, ans;
 
-matrix mul(matrix &a, matrix &b) {
-	matrix t;
+vector<vector<lli>> mul(vector<vector<lli>> &a, vector<vector<lli>> &b) {
+	vector<vector<lli>> res(n, vector<lli>(n));
+
 	for(int i=0; i<n; i++)
 		for(int j=0; j<n; j++)
-			t.m[i][j] = 0;
-
-	for(int i=0; i<n; i++) 
-		for(int j=0; j<n; j++) 
 			for(int k=0; k<n; k++)
-				t.m[i][j] = (t.m[i][j]+a.m[i][k]*b.m[k][j])%MOD;
-		
-	return t;
-}
+				res[i][j] = (res[i][j] + a[i][k]*b[k][j]) % MOD;
 
-void fpow(lli k) {
-	matrix B = A;
-
-	while(k) {
-		if(k & 1) ans = mul(ans, B);
-		B = mul(B, B), k >>= 1;
-	}
+	return res;
 }
 
 signed main() {
@@ -42,17 +26,21 @@ signed main() {
 	lli k;
 
 	cin >> n >> k;
+	vector<vector<lli>> A(n, vector<lli>(n));
 	for(int i=0; i<n; i++)
-		for(int j=0; j<n; j++)
-			cin >> A.m[i][j];
-	
-	for(int i=0; i<n; i++)
-		ans.m[i][i] = 1;
+		A[i][i] = 1;
+	vector<vector<lli>> B(n, vector<lli>(n));
+	for(auto &i:B)
+		for(auto &j:i) cin >> j;
 
-	fpow(k);
-	for(int i=0; i<n; i++) {
-		for(int j=0; j<n; j++)
-			cout << ans.m[i][j] << ' ';
+	while(k) {
+		if(k & 1) A = mul(A, B);
+		B = mul(B, B), k >>= 1;
+	}
+
+	for(auto &i:A) {
+		for(auto &j:i) cout << j << ' ';
 		cout << '\n';
 	}
 }
+
