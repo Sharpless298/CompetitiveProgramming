@@ -3,12 +3,12 @@ using namespace std;
 
 void hanoi(int n, char from, char to, char mid) {
 	if(n == 1) {
-		cout << "Move ring " << n << " from " << from << " to " << to << '\n';
+		cout << from << ' ' << to << '\n';
 		return;
 	}
 
 	hanoi(n-1, from, mid, to);
-	cout << "Move ring " << n << " from " << from << " to " << to << '\n';
+	cout << from << ' ' << to << '\n';
 	hanoi(n-1, mid, to, from);
 }
 
@@ -18,8 +18,9 @@ signed main() {
 
 	int n;
 
-	while(cin >> n) {
-		hanoi(n, 'A', 'C', 'B');
-		cout << '\n';
-	}
+	cin >> n;
+
+	cout << (1<<n)-1 << '\n';
+	hanoi(n, '1', '3', '2');
 }
+

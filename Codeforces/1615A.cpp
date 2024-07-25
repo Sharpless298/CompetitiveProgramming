@@ -5,10 +5,17 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int T;
+
 	cin >> T;
 	while(T--) {
-		cin >> n >> k;
-		for(int i=0; i<n; i++)
-			cin >> ary[i];
+		int n;
+
+		cin >> n;
+		int sum = 0;
+		for(int i=0, x; i<n; i++)
+			cin >> x, sum += x;
+
+		cout << (sum%n ? 1 : 0) << '\n';
 	}
 }

@@ -19,6 +19,7 @@ inline void readint(T &x) {
     }
     x *= f;
 }
+
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
