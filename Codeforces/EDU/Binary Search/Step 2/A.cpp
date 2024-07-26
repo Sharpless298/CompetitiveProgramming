@@ -3,21 +3,28 @@ using namespace std;
 
 typedef long long int lli;
 
+lli w, h, n;
+
+bool f(lli x) {
+	return (x/w) * (x/h) >= n;
+}
+
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int w, h, n;
 	cin >> w >> h >> n;
 	
-	lli l = 0, r = 1e14;
+	lli l = 0, r = 1;
+	while(!f(r)) r *= 2;
 
 	while(l < r) {
 		lli m = (l+r)/2;
 	
-		if((__int128)(m/w)*(m/h) < n) l = m+1;
-		else r = m;
+		if(f(m)) r = m;
+		else l = m+1;
 	}
 
 	cout << l << '\n';
 }
+
