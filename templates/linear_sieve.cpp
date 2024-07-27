@@ -2,11 +2,10 @@
 #include <vector>
 using namespace std;
 
-int lpf[100005];
-vector<int> p;
+vector<int> p, lpf(100005);
 
 void sieve(int n) {
-	fill(lpf, lpf+n+1, 1);
+	fill(lpf.begin(), lpf.end(), 1);
 
 	for(int i=2; i<=n; i++) {
 		if(lpf[i] == 1) {

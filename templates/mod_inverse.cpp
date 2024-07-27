@@ -4,7 +4,7 @@ using namespace std;
 typedef long long int lli;
 
 int n, p;
-lli inv[3000005];
+vector<lli> inv(300000);
 
 signed main() {
 	ios_base::sync_with_stdio(false);
