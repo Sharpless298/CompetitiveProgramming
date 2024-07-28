@@ -16,6 +16,8 @@ pair<T, T> operator*(const T b, pair<T, T> a) { return make_pair(a.first*b, a.se
 template<typename T>
 pair<T, T> operator/(pair<T, T> a, const T b) { return make_pair(a.first/b, a.second/b); }
 template<typename T>
+pair<T, T> operator/(const T b, pair<T, T> a) { return make_pair(a.first/b, a.second/b); }
+template<typename T>
 T dot(pair<T, T> a, pair<T, T> b) { return a.first*b.first + a.second*b.second; }
 template<typename T>
 T cross(pair<T, T> a, pair<T, T> b) { return a.first*b.second - a.second*b.first; }
@@ -47,31 +49,14 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 }
 
 template<typename T>
-int quadrant(pair<T, T> &a) {
-	if(a.first>0 && a.second>=0) return 1;
-	if(a.first<=0 && a.second>0) return 2;
-	if(a.first<0 && a.second<=0) return 3;
-	if(a.first>=0 && a.second<0) return 4;
-}
-
-template<typename T>
-bool cmp(pair<T, T> a, pair<T, T> b) {
-	if(quadrant(a) != quadrant(b))
-		return quadrant(a) < quadrant(b);
-	if(cross(a, b) == 0) return abs(a) < abs(b);
-	return cross(a, b) > 0;
-}
-
-template<typename T>
 vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
-	int n = (int)pnts.size();
 	sort(pnts.begin(), pnts.end());
 	
 	vector<pair<T, T>> hull;
 	for(int i=0; i<2; i++) {
-		int t = hull.size();
+		int t = (int)hull.size();
 		for(pair<T, T> pnt : pnts) {
-			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
+			while(hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
 				hull.pop_back();
 			hull.push_back(pnt);
 		}
@@ -86,4 +71,12 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	
+	int n;
+	cin >> n;
+	vector<pair<long long int, long long int>> v(n);
+	for(int i=0; i<n; i++)
+		cin >> v[i].first >> v[i].second;
+
+	cout << getConvexHull(v).size() << '\n';;
 }
+
