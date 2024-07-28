@@ -5,6 +5,8 @@
 #include <cassert>
 using namespace std;
 
+const double EPS = 1e-8;
+
 template<typename T>
 pair<T, T> operator+(pair<T, T> a, pair<T, T> b) { return make_pair(a.first+b.first, a.second+b.second); }
 template<typename T>
@@ -23,6 +25,13 @@ template<typename T>
 T abs2(pair<T, T> a) { return dot(a, a); }
 template<typename T>
 T abs(pair<T, T> a) { return sqrt(dot(a, a)); }
+
+template<typename T>
+int ori(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
+	T res = cross(a-p, b-p);
+	if(fabs(res) < EPS) return 0;
+	return res>0 ? 1 : -1;
+}
 
 template<typename T>
 bool collinear(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
