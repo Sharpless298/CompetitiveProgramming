@@ -10,10 +10,11 @@
 *.sh
 *.gitignore
 
-# Temp Runner
 /Contest
 /Codeforces/contest
 /Atcoder/contest
+/Atcoder/ABC/contest
+# Temp Runner
 temp.c
 temp.cpp
 temp2.cpp
