@@ -92,8 +92,23 @@ vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 }
 
 signed main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
+	int n, a;
+	cin >> n >> a;
+	vector<pair<double, double>> v(n);
+	for(int i=0; i<n; i++)
+		cin >> v[i].first >> v[i].second;
 
+	double tmp = 0;
+	for(int i=0; i<n; i++)
+		tmp += cross(v[i], v[(i+1)%n]);
+	tmp /= 2;
+
+	v = getConvexHull(v);
+	n = (int)v.size();
+	double tmp2 = 0;
+	for(int i=0; i<n; i++)
+		tmp2 += cross(v[i], v[(i+1)%n]); 
+	tmp2 /= 2;
+
+	cout << (int)ceil((tmp2-tmp)/a) << '\n';
 }
-

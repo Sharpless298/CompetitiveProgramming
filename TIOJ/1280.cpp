@@ -55,8 +55,8 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 	return a + (b-a) * cross(a-c, d-c) / cross(d-c, b-a);
 }
 
-template<typename T>
-int quadrant(pair<T, T> &a) {
+//template<typename T>
+int quadrant(pair<double, double> &a) {
 	if(a.first>0 && a.second>=0) return 1;
 	if(a.first<=0 && a.second>0) return 2;
 	if(a.first<0 && a.second<=0) return 3;
@@ -64,8 +64,7 @@ int quadrant(pair<T, T> &a) {
 	return -1;
 }
 
-template<typename T>
-bool cmp(pair<T, T> &a, pair<T, T> &b) {
+bool cmp(pair<double, double> &a, pair<double, double> &b) {
 	if(quadrant(a) != quadrant(b))
 		return quadrant(a) < quadrant(b);
 	if(cross(a, b) == 0) return abs2(a) < abs2(b);
@@ -95,5 +94,19 @@ signed main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<int, int>> v(n);
+	for(int i=0; i<n; i++)
+		cin >> v[i].first >> v[i].second;
+
+	v = getConvexHull(v);
+	n = (int)v.size();
+	int ans = 0;
+	for(int i=0; i<n; i++)
+		ans += cross(v[i], v[(i+1)%n]);
+
+	cout << (ans+1)/2 << '\n';
 }
+
 
