@@ -75,3 +75,12 @@ TIOJ 1157 2005
 ### comb
 ZJ c248 O(n) 
 TIOJ 2052
+
+### geometry
+TIOJ 1105 1205 1876
+CF 1036E
+abc 139F
+
+## 6
+### sparse table
+TIOJ 1995
