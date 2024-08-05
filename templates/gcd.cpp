@@ -2,7 +2,7 @@
 using namespace std;
 
 int gcd(int a, int b) {
-	return b?gcd(b, a%b):a;
+	return b ? gcd(b, a%b) : a;
 }
 
 long long int gcd(long long int a, long long int b) {
