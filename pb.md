@@ -82,5 +82,3 @@ CF 1036E
 abc 139F
 
 ## 6
-### sparse table
-TIOJ 1995

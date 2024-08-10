@@ -5,7 +5,7 @@
 #include <cassert>
 using namespace std;
 
-const double EPS = 1e-8;
+typedef long long int lli;
 
 template<typename T>
 pair<T, T> operator+(pair<T, T> a, pair<T, T> b) { return make_pair(a.first+b.first, a.second+b.second); }
@@ -29,25 +29,25 @@ T abs(pair<T, T> a) { return sqrt(dot(a, a)); }
 template<typename T>
 int ori(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
 	T res = cross(a-p, b-p);
-	if(fabs(res) < EPS) return 0;
+	if(res == 0) return 0;
 	return res>0 ? 1 : -1;
 }
 
 template<typename T>
 bool collinear(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
-	return fabs(cross(a-p, b-p)) < EPS;
+	return cross(a-p, b-p) == 0;
 }
 
 template<typename T>
 bool onSegment(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
-	return collinear(a, b, p) && dot(a-p, b-p)<0;
+	return collinear(a, b, p) && dot(a-p, b-p)<=0;
 }
 
 template<typename T>
 bool intersect(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> &d) {
 	if(onSegment(a, b, c) || onSegment(a, b, d)) return true;
 	if(onSegment(c, d, a) || onSegment(c, d, b)) return true;
-	return ori(b, c, a)*ori(b, d, a)<0 && ori(d, a, c)*ori(d, b, c)<0;
+	return ori(b, c, a)*ori(b, d, a)==-1 && ori(d, a, c)*ori(d, b, c)==-1;
 }
 
 template<typename T>
@@ -99,12 +99,13 @@ signed main(){
 	int T;
 	cin >> T;
 	while(T--) {
-		pair<double, double> p1, p2, q1, q2;
+		pair<lli, lli> p1, p2, q1, q2;
 
 		cin >> p1.first >> p1.second >> p2.first >> p2.second;
 		cin >> q1.first >> q1.second >> q2.first >> q2.second;
 
-		cout << (intersect(p1, p2, q1, q2) ? "Yes" : "NO") << '\n';
+		cout << (intersect(p1, p2, q1, q2) ? "Yes" : "No") << '\n';
 	}
 }
+
 
