@@ -3,11 +3,11 @@
 #include <numeric>
 using namespace std;
 
-int parent[200005], sz[200005];
+int parent[200000], sz[200000];
 
 void init(int n) {
-	iota(parent, parent+n+1, 0);
-	fill(sz, sz+n+1, 1);
+	iota(parent, parent+n, 0);
+	fill(sz, sz+n, 1);
 }
 
 int Find(int x) {
