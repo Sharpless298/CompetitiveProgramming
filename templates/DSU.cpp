@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 #include <cstring>
 #include <numeric>
 using namespace std;
 
-int parent[200000], sz[200000];
+vector<int> parent(200000), sz(200000);
 
-void init(int n) {
-	iota(parent, parent+n, 0);
-	fill(sz, sz+n, 1);
+void init() {
+	iota(parent.begin(), parent.end(), 0);
+	fill(sz.begin(), sz.end(), 1);
 }
 
 int Find(int x) {
