@@ -92,19 +92,3 @@ vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 	return hull;
 }
 
-signed main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-	int T;
-	cin >> T;
-	while(T--) {
-		pair<double, double> p1, p2, q1, q2;
-
-		cin >> p1.first >> p1.second >> p2.first >> p2.second;
-		cin >> q1.first >> q1.second >> q2.first >> q2.second;
-
-		cout << (intersect(p1, p2, q1, q2) ? "Yes" : "NO") << '\n';
-	}
-}
-

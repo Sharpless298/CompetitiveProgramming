@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 vector<int> p, lpf(100005);
 
 void sieve(int n) {
@@ -18,11 +14,4 @@ void sieve(int n) {
 			if(j == lpf[i]) break;
 		}
 	}
-}
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-	sieve(100);
 }
