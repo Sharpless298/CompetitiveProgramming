@@ -2,29 +2,27 @@
 #include <vector>
 using namespace std;
 
-vector<Node> seg;
+vector<Node> segtree;
 
-void pull(){}
-
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
-		seg[id] = a[L];
+		segtree[id] = a[L];
 		return;
 	}
 
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	pull(id);
 }
 
-void update(int l, int r, int L = 0, int R = n, int id = 0) {
+void update(int l, int r, int id = 0, int L = 0, int R = n) {
 	if(l>=R || r<=L) return;
-	if(l<=L && R<=r) return seg[id];
+	if(l<=L && R<=r) return segtree[id];
 
 	int M = (L+R)/2;
-	update(l, r, L, M, id*2+1);
-	update(l, r, M, R, id*2+2);
+	update(l, r, id*2+1, L, M);
+	update(l, r, id*2+2, M, R);
 	pull(id);
 }
 

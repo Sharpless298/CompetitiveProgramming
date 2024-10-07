@@ -65,8 +65,7 @@ signed main() {
 			int x;
 			cin >> x;
 			if(seg[0] < x) cout << -1 << '\n';
-			else cout << query(x) << '\n';;
+			else cout << query(x) << '\n';
 		}
 	}
 }
-
