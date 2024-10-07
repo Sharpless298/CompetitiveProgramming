@@ -8,18 +8,18 @@ int n, m;
 vector<int> a;
 vector<lli> seg;
 
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = a[L];
 		return;
 	}
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	seg[id] = seg[id*2+1] + seg[id*2+2];
 }
 
-void update(int x, int v, int L = 0, int R = n, int id = 0) {
+void update(int x, int v, int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = v;
 		return;
@@ -27,18 +27,18 @@ void update(int x, int v, int L = 0, int R = n, int id = 0) {
 	
 	int M = (L+R)/2;
 	if(x < M)
-		update(x, v, L, M, id*2+1);
+		update(x, v, id*2+1, L, M);
 	else 
-		update(x, v, M, R, id*2+2);
+		update(x, v, id*2+2, M, R);
 	seg[id] = seg[id*2+1] + seg[id*2+2];
 }
 
-lli query(int l, int r, int L = 0, int R = n, int id = 0) {
+lli query(int l, int r, int id = 0, int L = 0, int R = n) {
 	if(l>=R || r<=L) return 0;
 	if(l<=L && R<=r) return seg[id];
 	
 	int M = (L+R)/2;
-	return query(l, r, L, M, id*2+1) + query(l, r, M, R, id*2+2);
+	return query(l, r, id*2+1, L, M) + query(l, r, id*2+2, M, R);
 }
 
 signed main() {

@@ -20,19 +20,19 @@ void pull(int id) {
 		seg[id].mn = seg[id*2+1].mn, seg[id].cnt = seg[id*2+1].cnt + seg[id*2+2].cnt;
 }
 
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id].mn = a[L];
 		seg[id].cnt = 1;
 		return;
 	}
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	pull(id);
 }
 
-void update(int x, int v, int L = 0, int R = n, int id = 0) {
+void update(int x, int v, int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id].mn = v;
 		return;
@@ -40,18 +40,18 @@ void update(int x, int v, int L = 0, int R = n, int id = 0) {
 	
 	int M = (L+R)/2;
 	if(x < M)
-		update(x, v, L, M, id*2+1);
+		update(x, v, id*2+1, L, M);
 	else 
-		update(x, v, M, R, id*2+2);
+		update(x, v, id*2+1, M, R);
 	pull(id);
 }
 
-Node query(int l, int r, int L = 0, int R = n, int id = 0) {
+Node query(int l, int r, int id = 0, int L = 0, int R = n) {
 	if(l>=R || r<=L) return {2000000000, 1};
 	if(l<=L && R<=r) return seg[id];
 	
 	int M = (L+R)/2;
-	Node x = query(l, r, L, M, id*2+1), y = query(l, r, M, R, id*2+2);
+	Node x = query(l, r, id*2+1, L, M), y = query(l, r, id*2+2, M, R);
 	
 	if(x.mn < y.mn) 
 		return x;

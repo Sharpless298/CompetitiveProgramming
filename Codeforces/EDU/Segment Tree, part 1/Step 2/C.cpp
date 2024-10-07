@@ -5,7 +5,7 @@ using namespace std;
 int n, m;
 vector<int> a, seg;
 
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = a[L];
 		return;
@@ -17,7 +17,7 @@ void build(int L = 0, int R = n, int id = 0) {
 	seg[id] = max(seg[id*2+1], seg[id*2+2]);
 }
 
-void update(int x, int v, int L = 0, int R = n, int id = 0) {
+void update(int x, int v, int id = 0, int L = 0, int R = n) {
 	if(x<L || x>=R) return;
 	if(R-L == 1) {
 		seg[id] = v;
@@ -25,19 +25,19 @@ void update(int x, int v, int L = 0, int R = n, int id = 0) {
 	}
 	
 	int M = (L+R)/2;
-	update(x, v, L, M, id*2+1);
-	update(x, v, M, R, id*2+2);
+	update(x, v, id*2+1, L, M);
+	update(x, v, id*2+2, M, R);
 	seg[id] = max(seg[id*2+1], seg[id*2+2]);
 }
 
-int query(int x, int L = 0, int R = n, int id = 0) {
+int query(int x, int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) return L;
 
 	int M = (L+R)/2;
 	if(seg[id*2+1] >= x) 
-		return query(x, L, M, id*2+1);
+		return query(x, id*2+1, L, M);
 	else 
-		return query(x, M, R, id*2+2);
+		return query(x, id*2+2, M, R);
 }
 
 signed main() {

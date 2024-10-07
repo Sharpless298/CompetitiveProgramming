@@ -20,19 +20,19 @@ void merge(Node &cur, Node &l, Node &r) {
 	cur.mx = max({l.mx, r.mx, l.suf+r.pref});
 }
 
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = {a[L], a[L], a[L], a[L]};	
 		return;
 	}
 
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	merge(seg[id], seg[id*2+1], seg[id*2+2]);
 }
 
-void update(int x, int v, int L = 0, int R = n, int id = 0) {
+void update(int x, int v, int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = {v, v, v, v};
 		return;
@@ -40,9 +40,9 @@ void update(int x, int v, int L = 0, int R = n, int id = 0) {
 	
 	int M = (L+R)/2;
 	if(x < M)
-		update(x, v, L, M, id*2+1);
+		update(x, v, id*2+1, L, M);
 	else 
-		update(x, v, M, R, id*2+2);
+		update(x, v, id*2+2, M, R);
 	
 	merge(seg[id], seg[id*2+1], seg[id*2+2]);
 }

@@ -5,19 +5,19 @@ using namespace std;
 int n, m;
 vector<int> a, seg;
 
-void build(int L = 0, int R = n, int id = 0) {
+void build(int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) {
 		seg[id] = a[L];
 		return;
 	}
 
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	seg[id] = seg[id*2+1] + seg[id*2+2];
 }
 
-void update(int k, int L = 0, int R = n, int id = 0) {
+void update(int k, int id = 0, int L = 0, int R = n) {
 	if(k<L || k>=R) return;
 	if(R-L==1) {
 		seg[id] = !seg[id];
@@ -25,19 +25,19 @@ void update(int k, int L = 0, int R = n, int id = 0) {
 	}
 
 	int M = (L+R)/2;
-	update(k, L, M, id*2+1);
-	update(k, M, R, id*2+2);
+	update(k, id*2+1, L, M);
+	update(k, id*2+2, M, R);
 	seg[id] = seg[id*2+1] + seg[id*2+2];
 }
 
-int find(int k, int L = 0, int R = n, int id = 0) {
+int find(int k, int id = 0, int L = 0, int R = n) {
 	if(R-L == 1) return L;
 
 	int M = (L+R)/2;
 	if(k < seg[id*2+1]) 
-		return find(k, L, M, id*2+1);
+		return find(k, id*2+1, L, M);
 	else 
-		return find(k-seg[id*2+1], M, R, id*2+2);
+		return find(k-seg[id*2+1], id*2+2, M, R);
 
 }
 
