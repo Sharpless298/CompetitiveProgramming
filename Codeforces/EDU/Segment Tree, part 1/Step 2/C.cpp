@@ -12,8 +12,8 @@ void build(int id = 0, int L = 0, int R = n) {
 	}
 
 	int M = (L+R)/2;
-	build(L, M, id*2+1);
-	build(M, R, id*2+2);
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
 	seg[id] = max(seg[id*2+1], seg[id*2+2]);
 }
 
