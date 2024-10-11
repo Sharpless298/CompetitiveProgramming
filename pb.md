@@ -82,3 +82,8 @@ CF 1036E
 abc 139F
 
 ## 6
+### Segment Tree
+ZJ c652 
+TIOJ 1836
+
+### BIT
