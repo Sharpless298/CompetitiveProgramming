@@ -3,30 +3,27 @@
 using namespace std;
 
 int n;
-vector<int> a, seg;
+vector<int> a, segtree;
 
-void build(int L = 0, int R = n-1, int id = 0) {
-	if(L == R) {
-		seg[id] = a[L];
+void build(int id = 0, int L = 0, int R = n) {
+	if(R-L == 1) {
+		segtree[id] = a[L];
 		return;
 	}
-	int M = (L+R)/2;
 
-	build(L, M, id*2+1);
-	build(M+1, R, id*2+2);
-	seg[id] = max(seg[id*2+1], seg[id*2+2]);
+	int M = (L+R)/2;
+	build(id*2+1, L, M);
+	build(id*2+2, M, R);
+
+	segtree[id] = max(segtree[id*2+1], segtree[id*2+2]);
 }
 
-int query(int l, int r, int L = 0, int R = n-1, int id = 0) {
-	if(l<=L && R<=r) return seg[id];
+int query(int l, int r, int id = 0, int L = 0, int R = n) {
+	if(l>=R || r<=L) return 0;
+	if(l<=L && R<=r) return segtree[id];
 
 	int M = (L+R)/2;
-	if(r <= M)
-		return query(l, r, L, M, id*2+1);
-	else if(l > M)
-		return query(l, r, M+1, R, id*2+2);
-	else
-		return max(query(l, r, L, M, id*2+1), query(l, r, M+1, R, id*2+2));
+	return max(query(l, r, id*2+1, L, M), query(l, r, id*2+2, M, R));
 }
 
 signed main() {
@@ -38,18 +35,17 @@ signed main() {
 	for(int i=0; i<n; i++)
 		cin >> a[i];
 
-	seg.resize(4*n);
+	segtree.resize(4*n);
 	build();
-
-	int q;
-	cin >> q;
-	while(q--) {
+	
+	int m;
+	cin >> m;
+	while(m--) {
 		int l, r;
 		cin >> l >> r;
-		l--, r--;
-
 		if(l > r) swap(l, r);
+		l--;
+
 		cout << query(l, r) << '\n';
 	}
 }
-

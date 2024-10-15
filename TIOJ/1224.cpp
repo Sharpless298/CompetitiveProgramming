@@ -18,7 +18,7 @@ struct Node2 {
 
 vector<Node2> seg(4000004);
 
-void update(int l, int r, int x, int L = 0, int R = 1000001, int id = 0) {
+void update(int l, int r, int x, int id = 0, int L = 0, int R = 1000001) {
 	if(l>=R || L>=r) return;
 	if(l<=L && R<=r) {
 		seg[id].tag += x;
@@ -26,8 +26,8 @@ void update(int l, int r, int x, int L = 0, int R = 1000001, int id = 0) {
 	}
 
 	int M = (L+R)/2;
-	update(l, r, x, L, M, id*2+1);
-	update(l, r, x, M, R, id*2+2);
+	update(l, r, x, id*2+1, L, M);
+	update(l, r, x, id*2+2, M, R);
 
 	seg[id].data = (seg[id*2+1].tag ? M-L : seg[id*2+1].data) + (seg[id*2+2].tag ? R-M : seg[id*2+2].data);
 }
