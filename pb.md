@@ -90,3 +90,8 @@ TIOJ 1836
 ### BIT
 TIOJ 1227
 ZJ c310
+
+### Mo's algorithm
+TIOJ 1922
+ZJ d539
+ZJ a331
