@@ -4,7 +4,6 @@
 #include <cmath>
 using namespace std;
 
-int k;
 struct Query {
 	int l, r, block, id;
 	bool operator <(Query &a) {
@@ -39,7 +38,7 @@ signed main() {
 
 	int n, q;
 	cin >> n >> q;
-	k = n/(int)sqrt(q);
+	int k = n/(int)sqrt(q);
 	vector<int> a(n);
 	for(int i=0; i<n; i++)
 		cin >> a[i];

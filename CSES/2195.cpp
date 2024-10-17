@@ -85,7 +85,7 @@ vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 	for(int i=0; i<2; i++) {
 		int t = (int)hull.size();
 		for(pair<T, T> pnt : pnts) {
-			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
+			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<0)
 				hull.pop_back();
 			hull.push_back(pnt);
 		}
@@ -96,20 +96,18 @@ vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 	return hull;
 }
 
-/*
-template<typename T>
-bool inPolygon(vector<pair<T, T>> &polygon, pair<T, T> p) {
-	int n = (int)polygon.size();
-	for(int i=0; i<n; i++) {
-		if(cross(p-polygon[i], polygon[(i-1+n)%n]-polygon[i])*cross(p-polygon[i], polygon[(i+1)%n]-polygon[i]) > 0)
-			return false;
-	}
-	return true;
-}
-*/
-
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<long long, long long>> a(n);
+	for(int i=0; i<n; i++)
+		cin >> a[i].first >> a[i].second;
+	a = getConvexHull(a);
+
+	cout << a.size() << '\n';
+	for(auto i:a) cout << i.first << ' ' << i.second << '\n';
 }
+

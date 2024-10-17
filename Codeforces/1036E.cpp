@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <set>
 #include <cassert>
 using namespace std;
 
@@ -59,57 +60,32 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 }
 
 template<typename T>
-int quadrant(pair<T, T> &a) {
-	if(a.first>0 && a.second>=0) return 1;
-	if(a.first<=0 && a.second>0) return 2;
-	if(a.first<0 && a.second<=0) return 3;
-	if(a.first>=0 && a.second<0) return 4;
-	return -1;
+bool check(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> &d) {
+	return (__gcd(b.first-a.first, b.second-a.second)*cross(a-c, d-c))%cross(d-c, b-a) == 0;
 }
-
-template<typename T>
-bool cmp(pair<T, T> &a, pair<T, T> &b) {
-	if(quadrant(a) != quadrant(b))
-		return quadrant(a) < quadrant(b);
-	if(cross(a, b) == 0) return abs2(a) < abs2(b);
-	return cross(a, b) > 0;
-}
-
-template<typename T>
-vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
-	sort(pnts.begin(), pnts.end());
-	// pnts.resize(unique(pnts.begin(), pnts.end()-pnts.begin()));
-	// if(pnts < 3) return pnts;
-
-	vector<pair<T, T>> hull;
-	for(int i=0; i<2; i++) {
-		int t = (int)hull.size();
-		for(pair<T, T> pnt : pnts) {
-			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
-				hull.pop_back();
-			hull.push_back(pnt);
-		}
-		hull.pop_back();
-		reverse(pnts.begin(), pnts.end());
-	}
-
-	return hull;
-}
-
-/*
-template<typename T>
-bool inPolygon(vector<pair<T, T>> &polygon, pair<T, T> p) {
-	int n = (int)polygon.size();
-	for(int i=0; i<n; i++) {
-		if(cross(p-polygon[i], polygon[(i-1+n)%n]-polygon[i])*cross(p-polygon[i], polygon[(i+1)%n]-polygon[i]) > 0)
-			return false;
-	}
-	return true;
-}
-*/
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<long long, long long>> a(n), b(n);
+	for(int i=0; i<n; i++) 
+		cin >> a[i].first >> a[i].second >> b[i].first >> b[i].second;
+	
+	long long ans = 0;
+	for(int i=0; i<n; i++) {
+		ans += abs(__gcd(a[i].first-b[i].first, a[i].second-b[i].second)) + 1;
+
+		set<pair<long long, long long>> s;
+		for(int j=0; j<i; j++) {
+			if(intersect(a[i], b[i], a[j], b[j]) && check(a[i], b[i], a[j], b[j])) 
+				s.insert(intersection(a[i], b[i], a[j], b[j]));
+		}
+		ans -= (int)s.size();
+	}
+
+	cout << ans << '\n';
 }
+
