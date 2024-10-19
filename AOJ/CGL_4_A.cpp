@@ -24,7 +24,7 @@ T cross(pair<T, T> a, pair<T, T> b) { return a.first*b.second - a.second*b.first
 template<typename T>
 T abs2(pair<T, T> a) { return dot(a, a); }
 template<typename T>
-double abs(pair<T, T> a) { return sqrt(dot(a, a)); }
+T abs(pair<T, T> a) { return sqrt(dot(a, a)); }
 
 template<typename T>
 int ori(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
@@ -62,7 +62,7 @@ template<typename T>
 bool cmp1(pair<T, T> &a, pair<T, T> &b) {
 	// a = a-c, b = b-c;
 	if(atan2(a.second, a.first)-atan2(b.second, b.first) != 0)
-		return atan2(a.second, a.first) < atan2(b.second, b.first);
+		return atan2(a.second, a.first) < atan2(b.seoncd, b.first);
 	return abs(a) < abs(b);
 }
 
@@ -93,7 +93,7 @@ vector<pair<T, T>> ConvexHull(vector<pair<T, T>> &pnts) {
 	for(int i=0; i<2; i++) {
 		int t = (int)hull.size();
 		for(pair<T, T> pnt : pnts) {
-			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
+			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<0)
 				hull.pop_back();
 			hull.push_back(pnt);
 		}
@@ -108,5 +108,20 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<int, int>> v(n);
+	for(int i=0; i<n; i++)
+		cin >> v[i].first >> v[i].second;
+	v = ConvexHull(v);
+	
+	int tmp = 2e9, idx;
+	for(int i=0; i<(int)v.size(); i++)
+		if(v[i].second < tmp) tmp = v[i].second, idx = i;
 
+	n = (int)v.size();
+	cout << v.size() << '\n';
+	for(int i=idx, j=0; j<n; j++)
+		cout << v[(i+j)%n].first << ' ' << v[(i+j)%n].second << '\n';
 }
+

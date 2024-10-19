@@ -59,11 +59,9 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 }
 
 template<typename T>
-bool cmp1(pair<T, T> &a, pair<T, T> &b) {
+bool cmp1(pair<pair<T, T>, int> &a, pair<pair<T, T>, int> &b) {
 	// a = a-c, b = b-c;
-	if(atan2(a.second, a.first)-atan2(b.second, b.first) != 0)
-		return atan2(a.second, a.first) < atan2(b.second, b.first);
-	return abs(a) < abs(b);
+	return atan2(a.first.second, a.first.first) < atan2(b.first.second, b.first.first);
 }
 
 template<typename T>
@@ -76,11 +74,11 @@ int quadrant(pair<T, T> &a) {
 }
 
 template<typename T>
-bool cmp2(pair<T, T> &a, pair<T, T> &b) {
-	if(quadrant(a) != quadrant(b))
-		return quadrant(a) < quadrant(b);
-	if(cross(a, b) == 0) return abs2(a) < abs2(b);
-	return cross(a, b) > 0;
+bool cmp2(pair<pair<T, T>, int> &a, pair<pair<T, T>, int> &b) {
+	if(quadrant(a.first) != quadrant(b.first))
+		return quadrant(a.first) < quadrant(b.first);
+	if(cross(a.first, b.first) == 0) return abs2(a.first) < abs2(b.first);
+	return cross(a.first, b.first) > 0;
 }
 
 template<typename T>
@@ -104,9 +102,51 @@ vector<pair<T, T>> ConvexHull(vector<pair<T, T>> &pnts) {
 	return hull;
 }
 
+bool check(long long x, long long y) {
+	return y<0 || (y==0 && x<0);
+}
+
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<pair<long long, long long>, int>> p(n);
+	for(int i=0; i<n; i++) {
+		cin >> p[i].first.first >> p[i].first.second >> p[i].second;
+		if(check(p[i].first.first, p[i].first.second)) p[i].first.first *= -1, p[i].first.second *= -1;
+	}
+	// sort(p.begin(), p.end(), cmp1<long long>);
+	// sort(p.begin(), p.end(), cmp2<long long>);
+	sort(p.begin(), p.end(), [&](auto &a, auto &b) {
+			return cross(a.first, b.first) > 0;
+	});
 
+	vector<int> a;
+	for(int i=0, j=0; i<n; i=j) {
+		int tot = 0;
+		while(j<n && cross(p[i].first, p[j].first)==0)
+			tot += p[j++].second;
+		a.push_back(tot);
+	}
+
+	int ans = 0, tot = 0;
+	for(int i:a) {
+		tot += i;
+		ans = max(ans, tot);
+		tot = max(0, tot);
+	}
+	int sum = 0, mn = 0;
+	tot = 0;
+	for(int i:a) {
+		sum += i;
+		tot += i;
+		mn = min(mn, tot);
+		tot = min(tot, 0);
+	}
+	ans = max(ans, sum-mn);
+
+	cout << ans << '\n';
 }
+

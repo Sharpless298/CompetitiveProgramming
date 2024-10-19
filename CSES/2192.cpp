@@ -24,7 +24,7 @@ T cross(pair<T, T> a, pair<T, T> b) { return a.first*b.second - a.second*b.first
 template<typename T>
 T abs2(pair<T, T> a) { return dot(a, a); }
 template<typename T>
-double abs(pair<T, T> a) { return sqrt(dot(a, a)); }
+T abs(pair<T, T> a) { return sqrt(dot(a, a)); }
 
 template<typename T>
 int ori(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
@@ -41,7 +41,7 @@ bool collinear(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
 }
 
 template<typename T>
-bool on_segment(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
+bool onSegment(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
 	return collinear(a, b, p) && dot(a-p, b-p)<=0;
 }
 
@@ -59,14 +59,6 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 }
 
 template<typename T>
-bool cmp1(pair<T, T> &a, pair<T, T> &b) {
-	// a = a-c, b = b-c;
-	if(atan2(a.second, a.first)-atan2(b.second, b.first) != 0)
-		return atan2(a.second, a.first) < atan2(b.second, b.first);
-	return abs(a) < abs(b);
-}
-
-template<typename T>
 int quadrant(pair<T, T> &a) {
 	if(a.first>0 && a.second>=0) return 1;
 	if(a.first<=0 && a.second>0) return 2;
@@ -76,7 +68,7 @@ int quadrant(pair<T, T> &a) {
 }
 
 template<typename T>
-bool cmp2(pair<T, T> &a, pair<T, T> &b) {
+bool cmp(pair<T, T> &a, pair<T, T> &b) {
 	if(quadrant(a) != quadrant(b))
 		return quadrant(a) < quadrant(b);
 	if(cross(a, b) == 0) return abs2(a) < abs2(b);
@@ -84,7 +76,7 @@ bool cmp2(pair<T, T> &a, pair<T, T> &b) {
 }
 
 template<typename T>
-vector<pair<T, T>> ConvexHull(vector<pair<T, T>> &pnts) {
+vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 	sort(pnts.begin(), pnts.end());
 	// pnts.resize(unique(pnts.begin(), pnts.end()-pnts.begin()));
 	// if(pnts < 3) return pnts;
@@ -104,9 +96,40 @@ vector<pair<T, T>> ConvexHull(vector<pair<T, T>> &pnts) {
 	return hull;
 }
 
+int n;
+
+template<typename T>
+void point_in_polygon(vector<pair<T, T>> &polygon, pair<T, T> x) {
+	for(int i=0; i<n; i++) {
+		if(onSegment(polygon[i], polygon[(i+1)%n], x)) {
+			cout << "BOUNDARY\n";
+			return;
+		}
+	}
+
+	int cnt = 0;
+	pair<T, T> y = x + pair<T, T>{1LL, (long long)2e9+5};
+	for(int i=0; i<n; i++)
+		if(intersect(polygon[i], polygon[(i+1)%n], x, y)) cnt++;
+
+	if(cnt%2 == 1) cout << "INSIDE\n";
+	else cout << "OUTSIDE\n";
+}
+
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-
+	int m;
+	cin >> n >> m;
+	vector<pair<long long ,long long>> polygon(n);
+	for(int i=0; i<n; i++) 
+		cin >> polygon[i].first >> polygon[i].second;
+	
+	while(m--) {
+		pair<long long, long long> p;
+		cin >> p.first >> p.second;
+		point_in_polygon(polygon, p);
+	}
 }
+
