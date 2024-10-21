@@ -90,16 +90,21 @@ vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 	// if(pnts < 3) return pnts;
 
 	vector<pair<T, T>> hull;
-	for(int i=0; i<2; i++) {
-		int t = (int)hull.size();
-		for(pair<T, T> pnt : pnts) {
-			while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
-				hull.pop_back();
-			hull.push_back(pnt);
-		}
-		hull.pop_back();
-		reverse(pnts.begin(), pnts.end());
+	for(pair<T, T> pnt : pnts) {
+		while(hull.size()>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
+			hull.pop_back();
+		hull.push_back(pnt);
 	}
+	hull.pop_back();
+
+	reverse(pnts.begin(), pnts.end());
+	int t = (int)hull.size();
+	for(pair<T, T> pnt : pnts) {
+		while(hull.size()-t>=2 && cross(hull.back()-hull[hull.size()-2], pnt-hull[hull.size()-2])<=0)
+			hull.pop_back();
+		hull.push_back(pnt);
+	}
+	hull.pop_back();
 
 	return hull;
 }
@@ -108,5 +113,12 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n;
+	cin >> n;
+	vector<pair<long long, long long>> p(n);
+	for(int i=0; i<n; i++)
+		cin >> p[i].first >> p[i].second;
+	p = convex_hull(p);
 
+	cout << p.size() << '\n';
 }
