@@ -113,12 +113,14 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n;
-	cin >> n;
-	vector<pair<long long, long long>> p(n);
-	for(int i=0; i<n; i++)
-		cin >> p[i].first >> p[i].second;
-	p = convex_hull(p);
+	int T;
+	cin >> T;
+	while(T--) {
+		vector<pair<long long, long long>> p(4);
+		for(int i=0; i<4; i++)
+			cin >> p[i].first >> p[i].second;
 
-	cout << p.size() << '\n';
+		cout << (intersect(p[0], p[1], p[2], p[3]) ? "YES\n" : "NO\n");
+	}
 }
+
