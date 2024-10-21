@@ -97,4 +97,3 @@ signed main() {
 		cout << ans.first << ' ' << ans.second << '\n';
 	}
 }
-

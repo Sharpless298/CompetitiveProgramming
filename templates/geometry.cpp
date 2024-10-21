@@ -86,7 +86,7 @@ bool cmp2(pair<T, T> &a, pair<T, T> &b) {
 template<typename T>
 vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 	sort(pnts.begin(), pnts.end());
-	// pnts.resize(unique(pnts.begin(), pnts.end()-pnts.begin()));
+	// pnts.resize(unique(pnts.begin(), pnts.end())-pnts.begin());
 	// if(pnts < 3) return pnts;
 
 	vector<pair<T, T>> hull;
