@@ -114,7 +114,8 @@ T area(vector<pair<T, T>> &p) {
 	T res = 0;
 	for(int i=0; i<(int)p.size(); i++) 
 		res += cross(p[i], p[(i+1)%p.size()]);
-	return res / 2;
+	//return res / 2;
+	return abs(res);
 }
 
 signed main() {
@@ -126,7 +127,6 @@ signed main() {
 	vector<pair<long long, long long>> p(n);
 	for(int i=0; i<n; i++)
 		cin >> p[i].first >> p[i].second;
-	p = convex_hull(p);
-
-	cout << p.size() << '\n';
+	cout << area(p) << '\n';
 }
+
