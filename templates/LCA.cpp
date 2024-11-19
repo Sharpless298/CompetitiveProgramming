@@ -1,10 +1,3 @@
-#include <iostream>
-using namespace std;
-
-bool ancestor(int u, int v) {
-	return in[u]<=in[v] && out[u]>=out[v];
-}
-
 void DFS(int u, int f) {
 	in[u] = ++t;
 	for(int &v:G[u]) {
@@ -15,7 +8,11 @@ void DFS(int u, int f) {
 			ac[v][i] = ac[ac[v][i-1]][i-1];
 		DFS(v, u);
 	}
-	out[u] = t;
+	out[u] = ++t;
+}
+
+bool ancestor(int u, int v) {
+	return in[u]<=in[v] && out[u]>=out[v];
 }
 
 int LCA(int u, int v) {

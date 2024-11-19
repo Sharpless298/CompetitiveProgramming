@@ -116,17 +116,3 @@ T area(vector<pair<T, T>> &p) {
 		res += cross(p[i], p[(i+1)%p.size()]);
 	return res / 2;
 }
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-	int n;
-	cin >> n;
-	vector<pair<long long, long long>> p(n);
-	for(int i=0; i<n; i++)
-		cin >> p[i].first >> p[i].second;
-	p = convex_hull(p);
-
-	cout << p.size() << '\n';
-}
