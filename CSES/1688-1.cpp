@@ -54,10 +54,6 @@ signed main() {
 	ac.resize(n, vector<int>(lgN+1));
 	ac[0][0] = 0;
 	DFS(0, -1);
-	/*
-	for(int i=1; i<=lgN; i++)
-		for(int j=1; j<=N; j++)
-			ac[j][i] = ac[ac[j][i-1]][i-1];*/
 
 	while(q--) {
 		int a, b;
