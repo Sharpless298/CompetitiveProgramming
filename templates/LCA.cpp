@@ -1,5 +1,5 @@
 void DFS(int u, int f) {
-	in[u] = ++t;
+	in[u] = t++;
 	for(int &v:G[u]) {
 		if(v == f) continue;
 
@@ -8,7 +8,7 @@ void DFS(int u, int f) {
 			ac[v][i] = ac[ac[v][i-1]][i-1];
 		DFS(v, u);
 	}
-	out[u] = ++t;
+	out[u] = t;
 }
 
 bool ancestor(int u, int v) {
