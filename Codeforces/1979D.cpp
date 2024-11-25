@@ -1,13 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <random>
 #include <ctime>
 using namespace std;
 
-mt19937 rnd(time(nullptr));
 const long long MOD = 1e9+7;
-const long long P = rnd()%MOD;
-
+const long long P = time(nullptr);
 int n;
 
 long long f(string &s) {
