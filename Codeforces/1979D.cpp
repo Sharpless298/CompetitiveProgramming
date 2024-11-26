@@ -1,10 +1,13 @@
 #include <iostream>
 #include <vector>
-#include <ctime>
+#include <chrono>
+#include <random>
 using namespace std;
 
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 const long long MOD = 1e9+7;
-const long long P = time(nullptr);
+const long long P = rng()%MOD;
+
 int n;
 
 long long f(string &s) {
