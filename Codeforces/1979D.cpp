@@ -43,8 +43,8 @@ signed main() {
 		for(int i=0; i<n; i++) 
 			pref[i+1] = (pref[i]*P+s[i]-'0') % MOD;
 		suf[0] = 0;
-		for(int i=n-1; i>=0; i--)
-			suf[n-i] = (suf[n-i-1]*P+s[i]-'0') % MOD;
+		for(int i=0; i<n; i++)
+			suf[i+1] = (suf[i]*P+s[n-i-1]-'0') % MOD;
 
 		bool ok = false;
 		long long hash1 = f(s1), hash2 = f(s2);
