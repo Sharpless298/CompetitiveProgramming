@@ -3,25 +3,25 @@
 #include <numeric>
 using namespace std;
 
-vector<int> parent(200000), sz(200000);
+vector<int> parent(200000), sizes(200000);
 
 void init() {
 	iota(parent.begin(), parent.end(), 0);
-	fill(sz.begin(), sz.end(), 1);
+	fill(sizes.begin(), sizes.end(), 1);
 }
 
-int Find(int x) {
-	return x == parent[x] ? x : parent[x] = Find(parent[x]);
+int find(int x) {
+	return x==parent[x] ? x : parent[x] = find(parent[x]);
 }
 
-void Union(int a, int b) {
-	a = Find(a), b = Find(b);
+void unite(int a, int b) {
+	a = find(a), b = find(b);
 
 	if(a == b) return;
 	
-	if(sz[a] > sz[b]) swap(a, b);
+	if(sizes[a] > sizes[b]) swap(a, b);
 	parent[a] = b;
-	sz[b] += sz[a];
+	sizes[b] += sizes[a];
 }
 
 signed main() {
