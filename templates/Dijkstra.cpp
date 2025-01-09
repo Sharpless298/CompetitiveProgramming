@@ -1,7 +1,6 @@
 void Dijkstra() {
+	vector<int> dis(n, INF);
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
-	fill(dis, dis+n, INF);
 	dis[s] = 0;
 	pq.emplace(dis[s], s);
 	
