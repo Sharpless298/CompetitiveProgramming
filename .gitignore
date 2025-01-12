@@ -5,10 +5,10 @@
 !list
 
 # Executables
+*.out
 *.exe
 *.app
 *.sh
-*.gitignore
 
 /Codeforces/contest
 /AtCoder/ABC/contest
