@@ -16,9 +16,9 @@ void build(int id = 0, int L = 0, int R = n) {
 	pull(id);
 }
 
-void update(int l, int r, int id = 0, int L = 0, int R = n) {
+void update(int l, int r, int x, int id = 0, int L = 0, int R = n) {
 	if(l>=R || r<=L) return;
-	if(l<=L && R<=r) return segtree[id];
+	if(l<=L && R<=r) segtree[id] ??? x;
 
 	int M = (L+R)/2;
 	update(l, r, id*2+1, L, M);
