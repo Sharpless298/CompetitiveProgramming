@@ -18,7 +18,10 @@ void build(int id = 0, int L = 0, int R = n) {
 
 void update(int l, int r, int x, int id = 0, int L = 0, int R = n) {
 	if(l>=R || r<=L) return;
-	if(l<=L && R<=r) segtree[id] ??? x;
+	if(l<=L && R<=r) {
+		segtree[id] ??? x;
+		return;
+	}
 
 	int M = (L+R)/2;
 	update(l, r, id*2+1, L, M);

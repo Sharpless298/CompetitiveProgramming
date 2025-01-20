@@ -8,7 +8,7 @@ vector<vector<int>> G, ac;
 
 void DFS(int u, int f) {
 	in[u] = t++;
-	for(int &v:G[u]) {
+	for(int &v : G[u]) {
 		if(v == f) continue;
 
 		ac[v][0] = u;

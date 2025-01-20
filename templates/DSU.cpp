@@ -1,31 +1,21 @@
-#include <iostream>
-#include <vector>
-#include <numeric>
-using namespace std;
+struct DSU {
+	vector<int> parent, sizes;
 
-vector<int> parent(200000), sizes(200000);
+	DSU(int n) {
+		parent.resize(n);
+		iota(parent.begin(), parent.end(), 0);
+		sizes.assign(n, 1);
+	}
+	int find(int x) {
+		return parent[x]==x ? x : parent[x] = find(parent[x]);
+	}
+	bool unite(int x, int y) {
+		x = find(x), y = find(y);
+		if(x == y) return false;
 
-void init() {
-	iota(parent.begin(), parent.end(), 0);
-	fill(sizes.begin(), sizes.end(), 1);
-}
-
-int find(int x) {
-	return x==parent[x] ? x : parent[x] = find(parent[x]);
-}
-
-void unite(int a, int b) {
-	a = find(a), b = find(b);
-
-	if(a == b) return;
-	
-	if(sizes[a] > sizes[b]) swap(a, b);
-	parent[a] = b;
-	sizes[b] += sizes[a];
-}
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-}
+		if(sizes[x] > sizes[y]) swap(x, y);
+		parent[x] = y;
+		sizes[y] += sizes[x];
+		return true;
+	}
+};
