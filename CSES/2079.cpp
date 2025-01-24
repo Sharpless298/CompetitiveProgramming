@@ -13,10 +13,10 @@ int DFS(int u, int p) {
 	return sz[u];
 }
 
-int get_centroid(int u, int p) {
+int find_centroid(int u, int p) {
 	for(int v : G[u]) {
 		if(v == p) continue;
-		if(sz[v]*2 > n) return get_centroid(v, u);
+		if(sz[v]*2 > n) return find_centroid(v, u);
 	}
 	return u;
 }
@@ -36,5 +36,5 @@ signed main() {
 	}
 
 	DFS(0, -1);
-	cout << get_centroid(0, -1)+1 << '\n';
+	cout << find_centroid(0, -1)+1 << '\n';
 }
