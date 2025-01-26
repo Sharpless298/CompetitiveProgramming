@@ -11,6 +11,7 @@
 *.sh
 
 /Codeforces/contest
+/AtCoder/contest
 /AtCoder/ABC/contest
 /AtCoder/ARC/contest
 # Temp Runner
