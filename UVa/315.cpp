@@ -2,22 +2,22 @@
 using namespace std;
 
 vector<vector<int>> G;
-vector<int> L, D;
+vector<int> dfn, low;
 
 int timestamp = 1, ans;
 void DFS(int u, int p) {
 	int cnt = 0;
-	D[u] = L[u] = timestamp++;
+	dfn[u] = low[u] = timestamp++;
 
 	bool f = false;
 	for(int v : G[u]) {
 		if(v == p) continue;
-		if(!D[v]) {
+		if(!dfn[v]) {
 			DFS(v, u), cnt++;
-			if(D[u] <= L[v]) f = true;
-			L[u] = min(L[u], L[v]);
+			if(dfn[u] <= low[v]) f = true;
+			low[u] = min(low[u], low[v]);
 		}
-		L[u] = min(L[u], D[v]);
+		low[u] = min(low[u], dfn[v]);
 	}
 	if(u==p && cnt<2) f = false;
 	if(f) ans++;
@@ -46,7 +46,7 @@ signed main() {
 			}
 		}
 		ans = 0;
-		D.assign(n, 0), L.assign(n, 0);
+		dfn.assign(n, 0), low.assign(n, 0);
 		DFS(0, 0);
 		
 		cout << ans << '\n';

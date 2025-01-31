@@ -2,30 +2,29 @@
 using namespace std;
 
 int timestamp = 1;
-vector<int> D, L, E;
+vector<int> dfn, low, E;
 vector<vector<int>> G, bcc;
 stack<int> stk;
 void DFS(int u, int p) {
-	D[u] = L[u] = timestamp++;
+	dfn[u] = low[u] = timestamp++;
 	stk.push(u);
 
 	for(int idx : G[u]) {
 		int v = E[idx];
-		if(!D[v]) {
+		if(!dfn[v]) {
 			DFS(v, idx^1);
-			L[u] = min(L[u], L[v]);
+			low[u] = min(low[u], low[v]);
 		}
-		else if(idx != p) L[u] = min(L[u], D[v]);
+		else if(idx != p) low[u] = min(low[u], dfn[v]);
 	}
 	
-	if(D[u] == L[u]) {
-		vector<int> a;
+	if(dfn[u] == low[u]) {
+		bcc.push_back({});
 		while(stk.top() != u) {
-			a.push_back(stk.top());
+			bcc.back().push_back(stk.top());
 			stk.pop();
 		}
-		a.push_back(stk.top()); stk.pop();
-		bcc.push_back(a);
+		bcc.back().push_back(stk.top());; stk.pop();
 	}
 }
 
@@ -36,7 +35,6 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.assign(n, vector<int>());
-	set<pair<int, int>> st;
 	for(int i=0; i<m; i++) {
 		int u, v;
 		cin >> u >> v;
@@ -47,9 +45,9 @@ signed main() {
 		E.push_back(u);
 	}
 
-	D.assign(n, 0), L.assign(n, 0);
+	dfn.assign(n, 0), low.assign(n, 0);
 	for(int i=0; i<n; i++)
-		if(!D[i]) DFS(i, -1);
+		if(!dfn[i]) DFS(i, -1);
 
 	cout << bcc.size() << '\n';
 	for(auto i : bcc) {

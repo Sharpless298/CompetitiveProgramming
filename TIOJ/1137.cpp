@@ -2,23 +2,23 @@
 using namespace std;
 
 vector<vector<int>> G;
-vector<int> D, L, AP;
+vector<int> dfn, low, ap;
 int timestamp = 1;
 void DFS(int u, int p) {
 	int cnt = 0;
-	D[u] = L[u] = timestamp++;
+	dfn[u] = low[u] = timestamp++;
 	bool f = false;
 	for(int v : G[u]) {
 		if(v == p) continue;
-		if(!D[v]) {
+		if(!dfn[v]) {
 			DFS(v, u), cnt++;
-			if(D[u] <= L[v]) f = true;
-			L[u] = min(L[u], L[v]);
+			if(dfn[u] <= low[v]) f = true;
+			low[u] = min(low[u], low[v]);
 		}
-		L[u] = min(L[u], D[v]);
+		low[u] = min(low[u], dfn[v]);
 	}
 	if(u==p && cnt<2) f = false;
-	if(f) AP.push_back(u);
+	if(f) ap.push_back(u);
 }
 
 signed main() {
@@ -38,16 +38,16 @@ signed main() {
 			G[u].push_back(v);
 			G[v].push_back(u);
 		}
-		AP.clear();
-		D.assign(n, 0), L.assign(n, 0);
+		ap.clear();
+		dfn.assign(n, 0), low.assign(n, 0);
 		DFS(0, 0);
 		
-		cout << AP.size() << '\n';
-		if(AP.empty()) 
+		cout << ap.size() << '\n';
+		if(ap.empty()) 
 			cout << 0 << '\n';
 		else {
-			sort(AP.begin(), AP.end());
-			for(int i : AP) cout << i+1 << ' ';
+			sort(ap.begin(), ap.end());
+			for(int i : ap) cout << i+1 << ' ';
 			cout << '\n';
 		}
 	}

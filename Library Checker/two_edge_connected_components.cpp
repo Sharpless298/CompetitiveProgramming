@@ -46,13 +46,13 @@ signed main() {
 
 	dfn.assign(n, 0), low.assign(n, 0);
 
-	DFS(0, -1);
-	for(auto &i : bcc) sort(i.begin(), i.end());
-	sort(bcc.begin(), bcc.end());
+	for(int i=0; i<n; i++)
+		if(!dfn[i]) DFS(i, -1);
 
-	for(int i=0; i<(int)bcc.size(); i++) {
-		cout << i+1 << ':';
-		for(auto j : bcc[i]) cout << ' ' << j;
+	cout << bcc.size() << '\n';
+	for(auto i : bcc) {
+		cout << i.size();
+		for(int j : i) cout << ' ' << j;
 		cout << '\n';
 	}
 }
