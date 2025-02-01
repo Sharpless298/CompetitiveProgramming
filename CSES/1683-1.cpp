@@ -4,20 +4,20 @@ using namespace std;
 int timer = 0, cnt;
 vector<vector<int>> G;
 vector<bool> f;
-vector<int> dfn, low, ans;
+vector<int> id, low, ans;
 stack<int> stk;
 
 void DFS(int u) {
 	f[u] = true;
-	dfn[u] = low[u] = ++timer;
+	id[u] = low[u] = ++timer;
 	stk.push(u);
 	for(int v : G[u]) {
-		if(!dfn[v]) 
+		if(!id[v]) 
 			DFS(v), low[u] = min(low[u], low[v]);
 		else if(f[v])
-			low[u] = min(low[u], dfn[v]);
+			low[u] = min(low[u], id[v]);
 	}
-	if(dfn[u] == low[u]) {
+	if(id[u] == low[u]) {
 		for(int v=-1; v!=u; stk.pop())
 			v = stk.top(), f[v] = false, ans[v] = cnt;
 		cnt++;
@@ -38,9 +38,9 @@ signed main() {
 		G[u].push_back(v);
 	}
 
-	ans.assign(n, 0), f.assign(n, 0), dfn.assign(n, 0), low.assign(n, 0);
+	ans.assign(n, 0), f.assign(n, 0), id.assign(n, 0), low.assign(n, 0);
 	for(int i=0; i<n; i++)
-		if(!dfn[i]) DFS(i);
+		if(!id[i]) DFS(i);
 
 	cout << cnt << '\n';
 	for(int i : ans) cout << i+1 << ' ';
