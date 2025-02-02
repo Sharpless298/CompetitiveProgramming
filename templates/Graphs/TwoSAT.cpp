@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 struct TwoSAT {
 	int n;
 	vector<vector<int>> G;
@@ -45,31 +42,3 @@ struct TwoSAT {
 		return true;
 	}
 };
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-	int T;
-	cin >> T;
-	while(T--) {
-		int n;
-		cin >> n;
-		vector a(3, vector<int>(n));
-		for(auto &i : a)
-			for(auto &j : i) cin >> j;
-
-		TwoSAT solver(n);
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<3; j++) {
-				for(int k=j+1; k<3; k++) {
-					int x = (a[j][i]>0 ? a[j][i]-1 : -a[j][i]-1+n);
-					int y = (a[k][i]>0 ? a[k][i]-1 : -a[k][i]-1+n);
-					solver.add_clause(x, y);
-				}
-			}
-		}
-
-		cout << (solver.solve() ? "YES\n" : "NO\n");
-	}
-}

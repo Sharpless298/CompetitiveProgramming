@@ -1,10 +1,10 @@
 struct DSU {
-	vector<int> parent, sizes;
+	vector<int> parent, sz;
 
 	DSU(int n) {
 		parent.resize(n);
 		iota(parent.begin(), parent.end(), 0);
-		sizes.assign(n, 1);
+		sz.assign(n, 1);
 	}
 	int find(int x) {
 		return parent[x]==x ? x : parent[x] = find(parent[x]);
@@ -13,9 +13,9 @@ struct DSU {
 		x = find(x), y = find(y);
 		if(x == y) return false;
 
-		if(sizes[x] > sizes[y]) swap(x, y);
+		if(sz[x] > sz[y]) swap(x, y);
 		parent[x] = y;
-		sizes[y] += sizes[x];
+		sz[y] += sz[x];
 		return true;
 	}
 };

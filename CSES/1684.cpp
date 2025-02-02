@@ -50,26 +50,26 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int T;
-	cin >> T;
-	while(T--) {
-		int n;
-		cin >> n;
-		vector a(3, vector<int>(n));
-		for(auto &i : a)
-			for(auto &j : i) cin >> j;
-
-		TwoSAT solver(n);
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<3; j++) {
-				for(int k=j+1; k<3; k++) {
-					int x = (a[j][i]>0 ? a[j][i]-1 : -a[j][i]-1+n);
-					int y = (a[k][i]>0 ? a[k][i]-1 : -a[k][i]-1+n);
-					solver.add_clause(x, y);
-				}
-			}
-		}
-
-		cout << (solver.solve() ? "YES\n" : "NO\n");
+	int n, m;
+	cin >> n >> m;
+	TwoSAT solver(m);
+	for(int i=0; i<n; i++) {
+		char c, d;
+		int x, y;
+		cin >> c, cin.ignore();
+		cin >> x, cin.ignore();
+		cin >> d, cin.ignore();
+		cin >> y;
+		x--, y--;
+		if(c == '-') x += m;
+		if(d == '-') y += m;
+		solver.add_clause(x, y);
 	}
+	
+	if(solver.solve()) {
+		for(int i=0; i<m; i++)
+			cout << (solver.val[i] ? '+' : '-') << " \n"[i+1==m];
+	}
+	else 
+		cout << "IMPOSSIBLE\n";
 }

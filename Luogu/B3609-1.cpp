@@ -1,26 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int timer = 0;
+int timer = 0, id = 0;
 vector<vector<int>> G, scc;
-vector<bool> f;
+vector<int> scc_id;
 vector<int> dfn, low;
 stack<int> stk;
 
 void DFS(int u) {
-	f[u] = true;
 	dfn[u] = low[u] = ++timer;
 	stk.push(u);
 	for(int v : G[u]) {
-		if(!dfn[v]) 
-			DFS(v), low[u] = min(low[u], low[v]);
-		else if(f[v])
-			low[u] = min(low[u], dfn[v]);
+		if(scc_id[v] == -1) {
+			if(!dfn[v]) DFS(v);
+			low[u] = min(low[u], low[v]);
+		}
 	}
 	if(dfn[u] == low[u]) {
 		scc.push_back({});
 		for(int v=-1; v!=u; stk.pop())
-			v = stk.top(), f[v] = false, scc.back().push_back(v);
+			v = stk.top(), scc.back().push_back(v), scc_id[v]=id;
+		id++;
 	}
 }
 
@@ -38,7 +38,7 @@ signed main() {
 		G[u].push_back(v);
 	}
 
-	f.resize(n, 0), dfn.assign(n, 0), low.assign(n, 0);
+	dfn.assign(n, 0), low.assign(n, 0), scc_id.assign(n, -1);
 	for(int i=0; i<n; i++)
 		if(!dfn[i]) DFS(i);
 
