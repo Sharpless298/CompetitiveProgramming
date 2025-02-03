@@ -1,7 +1,7 @@
 struct TwoSAT {
 	int n;
 	vector<vector<int>> G;
-	
+
 	TwoSAT(int _n):n(_n) {
 		G.assign(2*n, vector<int>());
 	}
@@ -29,7 +29,6 @@ struct TwoSAT {
 			id++;
 		}
 	}
-
 	bool solve() {
 		val.assign(n, false);
 		tin.assign(2*n, -1), low.assign(2*n, -1), comp.assign(2*n, -1);
