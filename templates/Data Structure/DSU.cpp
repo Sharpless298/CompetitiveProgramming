@@ -1,10 +1,10 @@
 struct DSU {
 	vector<int> parent, sz;
 
-	DSU(int n) {
-		parent.resize(n);
+	DSU(int _n) {
+		parent.resize(_n);
 		iota(parent.begin(), parent.end(), 0);
-		sz.assign(n, 1);
+		sz.assign(_n, 1);
 	}
 	int find(int x) {
 		return parent[x]==x ? x : parent[x] = find(parent[x]);
