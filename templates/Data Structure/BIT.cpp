@@ -1,23 +1,16 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+struct BIT {
+	int n;
+	vector<int> bit;
 
-#define lowbit(x) x&-x
-
-vector<int> BIT;
-
-void update(int i, int x) {
-	for(; i<=n; i+=lowbit(i)) BIT[i] += x;
-}
-
-int query(int i) {
-	int sum = 0;
-	for(; i; i-=lowbit(i)) sum += BIT[i];
-	return sum;
-}
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-}
+	BIT(int _n):n(_n) {
+		bit.assign(n+1, 0);
+	}
+	void update(int i, int x) {
+		for(; i<=n; i+=(i&-i)) bit[i] += x;
+	}
+	int query(int i) {
+		int sum = 0;
+		for(; i; i-=(i&-i)) sum += bit[i];
+		return sum;
+	}
+};

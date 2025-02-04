@@ -1,50 +1,45 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-#define lowbit(x) x&-x
+struct BIT {
+	int n;
+	vector<int> bit;
 
-int n;
-vector<int> BIT;
-
-void update(int id) {
-	for(; id<=n; id+=lowbit(id)) BIT[id]++;
-}
-
-int query(int id) {
-	int res = 0;
-	for(; id; id-=lowbit(id)) res += BIT[id];
-	return res;
-}
+	BIT(int _n):n(_n) {
+		bit.assign(n+1, 0);
+	}
+	void update(int i, int x) {
+		for(; i<=n; i+=(i&-i)) bit[i] += x;
+	}
+	int query(int i) {
+		int sum = 0;
+		for(; i; i-=(i&-i)) sum += bit[i];
+		return sum;
+	}
+};
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int Case = 0;
-
+	int n, Case = 0;
 	while(cin>>n && n) {
 		vector<int> a(n);
-		for(int i=0; i<n; i++)
-			cin >> a[i];
+		for(int &i : a) cin >> i;
 
-		vector<int> v = a;
-		sort(v.begin(), v.end());
-		v.resize(unique(v.begin(), v.end())-v.begin());
+		vector<int> b = a;
+		sort(b.begin(), b.end());
+		b.resize(unique(b.begin(), b.end())-b.begin());
 		for(int i=0; i<n; i++)
-			a[i] = (int)(upper_bound(v.begin(), v.end(), a[i])-v.begin());
-
+			a[i] = (int)(lower_bound(b.begin(), b.end(), a[i])-b.begin());
 		reverse(a.begin(), a.end());
-		
-		long long ans = 0;
-		BIT.resize(n+1);
-		fill(BIT.begin(), BIT.end(), 0);
-		for(int i=0; i<n; i++) {
-			ans += query(a[i]-1);
-			update(a[i]);
-		}
 
+		long long ans = 0;
+		BIT bit(n);
+		for(int i=0; i<n; i++) {
+			ans += bit.query(a[i]);
+			bit.update(a[i]+1, 1);
+		}
 		cout << "Case #" << ++Case << ": " << ans << '\n';
 	}
 }
