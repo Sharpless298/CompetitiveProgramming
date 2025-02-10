@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 
 signed main() {
@@ -23,18 +21,16 @@ signed main() {
 	for(int i=0; i<n; i++)
 		if(deg[i] == 0) q.push(i);
 
-	int ans = 0;
 	vector<int> dp(n);
 	while(!q.empty()) {
 		int u = q.front(); q.pop();
 
 		for(int v:G[u]) {
 			dp[v] = dp[u] + 1;
-			ans = max(ans, dp[v]);
 			deg[v]--;
 			if(deg[v] == 0) q.push(v);
 		}
 	}
 
-	cout << ans << '\n';
+	cout << *max_element(dp.begin(), dp.end()) << '\n';
 }
