@@ -1,4 +1,4 @@
-template <typename T>
+template<typename T>
 struct Point {
 	T x, y;
 
@@ -9,7 +9,9 @@ struct Point {
 	Point operator *(T c) { return Point(x*c, y*c); }
 	Point operator /(T c) { return Point(x/c, y/c); }
 };
-template <typename T>
+template<typename T>
 T dot(Point<T> a, Point<T> b) { return a.x*b.x + a.y*b.y; }
-template <typename T>
+template<typename T>
 T cross(Point<T> a, Point<T> b) { return a.x*b.y - a.y*b.x; }
+template<typename T>
+T abs2(Point<T> a) { return dot(a, a); }
