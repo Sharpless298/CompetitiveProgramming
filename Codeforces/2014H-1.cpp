@@ -22,9 +22,9 @@ signed main() {
 		for(int i=0; i<q; i++) 
 			cin >> qry[i].l >> qry[i].r, qry[i].id = i;
 
-		const int K = (int)sqrt(n)+1;
+		const int K = (int)sqrt(n);
 		auto cmp = [&](Query &aa, Query &bb) {
-			return aa.l/K==bb.l/K ? ((aa.l/K)&1 ? aa.r<bb.r : aa.r>bb.r) : (aa.l<bb.l);
+			return (aa.l/K)^(bb.l/K) ? aa.l < bb.l : ((aa.l/K)&1 ? aa.r<bb.r : aa.r>bb.r);
 		};
 		sort(qry.begin(), qry.end(), cmp);
 
