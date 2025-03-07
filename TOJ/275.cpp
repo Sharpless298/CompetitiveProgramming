@@ -1,5 +1,5 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <set>
 using namespace std;
 
@@ -15,26 +15,27 @@ signed main() {
 	cin >> n;
 
 	cin >> a >> b;
-	cout << a*1.0 << '\n';
-	if(a <= b) p.insert(a), q.insert(b);
-	else p.insert(b), q.insert(a);
+	cout << a * 1.0 << '\n';
+	if (a <= b)
+		p.insert(a), q.insert(b);
+	else
+		p.insert(b), q.insert(a);
 
-	cout << (a*1.0+b)/2 << '\n';
+	cout << (a * 1.0 + b) / 2 << '\n';
 
-	for(int i=2; i<n ;i++) {
+	for (int i = 2; i < n; i++) {
 		cin >> t;
-		
-		if(p.size() < q.size()) {
-			if(t <= *q.begin()) 
+
+		if (p.size() < q.size()) {
+			if (t <= *q.begin())
 				p.insert(t);
 			else {
 				p.insert(*q.begin());
 				q.erase(q.begin());
 				q.insert(t);
 			}
-		}
-		else {
-			if(t >= *p.rbegin())
+		} else {
+			if (t >= *p.rbegin())
 				q.insert(t);
 			else {
 				auto iter = --p.end();
@@ -43,9 +44,9 @@ signed main() {
 				p.erase(iter);
 			}
 		}
-		if(p.size() == q.size())
-			cout << (*p.rbegin()*1.0 + *q.begin())/2 << '\n';
+		if (p.size() == q.size())
+			cout << (*p.rbegin() * 1.0 + *q.begin()) / 2 << '\n';
 		else
-			cout << *q.begin()*1.0 << '\n';
+			cout << *q.begin() * 1.0 << '\n';
 	}
 }

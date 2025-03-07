@@ -8,8 +8,7 @@ signed main() {
 	int n, ans = 0;
 
 	cin >> n;
-	for(int i=5; i<=n; i*=5) 
-		ans += n/i;
-	
+	for (int i = 5; i <= n; i *= 5) ans += n / i;
+
 	cout << ans << '\n';
 }

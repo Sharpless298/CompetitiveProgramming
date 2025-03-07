@@ -1,6 +1,6 @@
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
 using namespace std;
 
 typedef long long int lli;
@@ -15,32 +15,31 @@ signed main() {
 	int T;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 
 		cin >> n;
-		
+
 		bool f = false;
 		vector<ld> a(n);
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			cin >> a[i];
-			if(i!=0 && a[i]==1 && a[i-1]>1) f = true;
+			if (i != 0 && a[i] == 1 && a[i - 1] > 1) f = true;
 		}
 
-		if(f) {
+		if (f) {
 			cout << -1 << '\n';
 			continue;
 		}
 
-		for(int i=0; i<n; i++)
-			a[i] = log(log(a[i]));
-		
+		for (int i = 0; i < n; i++) a[i] = log(log(a[i]));
+
 		lli ans = 0;
-		for(int i=1; i<n; i++) {
-			if(a[i] < a[i-1]) {
-				ld k = ceil((a[i-1]-a[i])/log(2)-EPS);
+		for (int i = 1; i < n; i++) {
+			if (a[i] < a[i - 1]) {
+				ld k = ceil((a[i - 1] - a[i]) / log(2) - EPS);
 				ans += (int)k;
-				a[i] += k*log(2);
+				a[i] += k * log(2);
 			}
 		}
 

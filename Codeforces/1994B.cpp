@@ -10,18 +10,20 @@ signed main() {
 	string s, t;
 
 	cin >> T;
-	while(T--) {
-		f = false;	
+	while (T--) {
+		f = false;
 		cin >> n >> s >> t;
 
-		for(int i=0; i<n&&s[i]=='0'; i++) {
-			if(t[i] != '0') {
+		for (int i = 0; i < n && s[i] == '0'; i++) {
+			if (t[i] != '0') {
 				f = true;
 				break;
 			}
 		}
-		
-		if(f) cout << "NO\n";	
-		else cout << "YES\n";
+
+		if (f)
+			cout << "NO\n";
+		else
+			cout << "YES\n";
 	}
 }

@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int n;
@@ -12,14 +12,13 @@ signed main() {
 
 	cin >> n;
 	a.resize(n);
-	for(int i=0; i<n; i++)
-		cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
 
 	int ans = 0;
-	while(true) {
+	while (true) {
 		sort(a.begin(), a.end(), greater<int>());
-		
-		if(a[1] <= 0) break;
+
+		if (a[1] <= 0) break;
 
 		a[0]--, a[1]--;
 		ans++;

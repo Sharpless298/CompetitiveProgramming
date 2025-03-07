@@ -10,16 +10,14 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n;
-	for(int i=0; i<n; i++)
-		cin >> ary[i];
+	for (int i = 0; i < n; i++) cin >> ary[i];
 
-	for(int i=2; i<n; i++) {
-		for(int l=0, r=i; r<n; l++, r++) {
+	for (int i = 2; i < n; i++) {
+		for (int l = 0, r = i; r < n; l++, r++) {
 			dp[l][r] = INF;
-			for(int k=l+1; k<r; k++)
-				dp[l][r] = min(dp[l][r], dp[l][k]+dp[k][r]+ary[l]*ary[k]*ary[r]);
+			for (int k = l + 1; k < r; k++) dp[l][r] = min(dp[l][r], dp[l][k] + dp[k][r] + ary[l] * ary[k] * ary[r]);
 		}
 	}
 
-	cout << dp[0][n-1] << '\n';
+	cout << dp[0][n - 1] << '\n';
 }

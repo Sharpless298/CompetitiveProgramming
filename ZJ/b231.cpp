@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <utility>
 using namespace std;
 
@@ -17,15 +17,13 @@ signed main() {
 	ans = 0;
 
 	cin >> n;
-	for(int i=0; i<n; i++)
-		cin >> p[i].first >> p[i].second;
+	for (int i = 0; i < n; i++) cin >> p[i].first >> p[i].second;
 
-	sort(p, p+n, cmp);
-	for(int i=0, sum=0; i<n; i++) {
+	sort(p, p + n, cmp);
+	for (int i = 0, sum = 0; i < n; i++) {
 		sum += p[i].first;
-		ans = max(ans, sum+p[i].second);
+		ans = max(ans, sum + p[i].second);
 	}
-	
+
 	cout << ans << '\n';
 }
-

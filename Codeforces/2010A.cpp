@@ -7,15 +7,17 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
-		
+
 		int ans = 0;
-		for(int i=0, x; i<n; i++) {
+		for (int i = 0, x; i < n; i++) {
 			cin >> x;
-			if(i & 1) ans -= x;
-			else ans += x;
+			if (i & 1)
+				ans -= x;
+			else
+				ans += x;
 		}
 
 		cout << ans << '\n';

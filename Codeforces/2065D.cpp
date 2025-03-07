@@ -7,23 +7,22 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m;
 		cin >> n >> m;
 		vector<vector<int>> a(n, vector<int>(m));
 		vector<pair<long long, int>> sum(n);
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			sum[i].second = i;
-			for(int j=0; j<m; j++) {
+			for (int j = 0; j < m; j++) {
 				cin >> a[i][j];
 				sum[i].first += a[i][j];
 			}
 		}
 		sort(sum.begin(), sum.end(), greater<pair<long long, int>>());
 		long long ans = 0;
-		for(int i=0; i<n; i++)
-			for(int j=0; j<m; j++) 
-				ans += 1LL*a[sum[i].second][j]*(n*m-(i*m+j));
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++) ans += 1LL * a[sum[i].second][j] * (n * m - (i * m + j));
 		cout << ans << '\n';
 	}
 }

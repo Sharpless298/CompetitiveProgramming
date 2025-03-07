@@ -7,16 +7,15 @@ int ary[128];
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
+
 	int n;
 
-	while(cin >> n && n) {
+	while (cin >> n && n) {
 		queue<int> q;
-		
-		for(int i=1; i<=n; i++)
-			q.push(i);
-		
-		for(int i=0; i<n-1; i++) {
+
+		for (int i = 1; i <= n; i++) q.push(i);
+
+		for (int i = 0; i < n - 1; i++) {
 			ary[i] = q.front();
 			q.pop();
 			q.push(q.front());
@@ -24,8 +23,8 @@ signed main() {
 		}
 
 		cout << "Discarded cards:";
-		for(int i=0; i<n-1; i++) {
-			if(i) cout << ',';
+		for (int i = 0; i < n - 1; i++) {
+			if (i) cout << ',';
 			cout << ' ';
 			cout << ary[i];
 		}

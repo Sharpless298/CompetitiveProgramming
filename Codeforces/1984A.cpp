@@ -10,16 +10,14 @@ signed main() {
 	int T, n;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n;
-		for(int i=0; i<n; i++)
-			cin >> a[i];
+		for (int i = 0; i < n; i++) cin >> a[i];
 
-		if(a[0] == a[n-1]) {
+		if (a[0] == a[n - 1]) {
 			cout << "NO\n";
 			continue;
-		}
-		else {
+		} else {
 			cout << "YES\n";
 			string s(n, 'B');
 			s[1] = 'R';

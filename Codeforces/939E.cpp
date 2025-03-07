@@ -1,5 +1,5 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 using namespace std;
 
 int Q, t;
@@ -13,16 +13,15 @@ signed main() {
 	cout << fixed << setprecision(6);
 
 	cin >> Q;
-	for(int i=0, j=-1; Q--; ) {
+	for (int i = 0, j = -1; Q--;) {
 		cin >> t;
 
-		if(t == 1)
+		if (t == 1)
 			cin >> ary[++j];
 		else {
-			while(i<j && ary[i]<(sum+ary[j])/(i+1)) sum += ary[i++];
+			while (i < j && ary[i] < (sum + ary[j]) / (i + 1)) sum += ary[i++];
 
-			cout << ary[j] - (sum+ary[j])/(i+1) << '\n';
+			cout << ary[j] - (sum + ary[j]) / (i + 1) << '\n';
 		}
 	}
 }
-

@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int MOD = 1e9+7;
+const int MOD = 1e9 + 7;
 
 signed main() {
 	ios_base::sync_with_stdio(false);
@@ -11,8 +11,7 @@ signed main() {
 
 	cin >> n;
 
-	for(int i=0; i<n; i++)
-		ans = ans*2%MOD;
+	for (int i = 0; i < n; i++) ans = ans * 2 % MOD;
 
 	cout << ans << '\n';
 }

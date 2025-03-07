@@ -4,7 +4,7 @@ using namespace std;
 int parent[1000005];
 
 int Find(int x) {
-	if(x == -1) return -1;
+	if (x == -1) return -1;
 	return x == parent[x] ? x : parent[x] = Find(parent[x]);
 }
 
@@ -16,15 +16,16 @@ signed main() {
 	int n, m, k;
 
 	cin >> n >> m;
-	
-	for(int i=1; i<=n; i++) parent[i] = i;
-	parent[n+1] = -1;
 
-	while(m--) {
+	for (int i = 1; i <= n; i++) parent[i] = i;
+	parent[n + 1] = -1;
+
+	while (m--) {
 		cin >> c >> k;
 
-		if(c == '-') parent[k] = Find(k+1);
-		else cout << Find(k) << '\n';
+		if (c == '-')
+			parent[k] = Find(k + 1);
+		else
+			cout << Find(k) << '\n';
 	}
 }
-

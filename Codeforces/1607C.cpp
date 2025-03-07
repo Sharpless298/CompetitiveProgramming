@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 int T, n, ans;
@@ -10,16 +10,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> T;
-	while(T--) {
-
+	while (T--) {
 		cin >> n;
-		for(int i=0; i<n; i++)
-			cin >> a[i];
+		for (int i = 0; i < n; i++) cin >> a[i];
 
-		sort(a, a+n);
+		sort(a, a + n);
 		ans = a[0];
-		for(int i=1; i<n; i++)
-			ans = max(ans, a[i]-a[i-1]);
+		for (int i = 1; i < n; i++) ans = max(ans, a[i] - a[i - 1]);
 
 		cout << ans << '\n';
 	}

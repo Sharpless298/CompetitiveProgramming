@@ -8,14 +8,13 @@ signed main() {
 	int T;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 
 		cin >> n;
 		int sum = 0;
-		for(int i=0, x; i<n; i++)
-			cin >> x, sum += x;
+		for (int i = 0, x; i < n; i++) cin >> x, sum += x;
 
-		cout << (sum%n ? 1 : 0) << '\n';
+		cout << (sum % n ? 1 : 0) << '\n';
 	}
 }

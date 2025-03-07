@@ -6,11 +6,11 @@ vector<bool> vis;
 vector<pair<long long, long long>> p;
 vector<vector<pair<int, pair<int, int>>>> G;
 void DFS(int u) {
-	for(auto v : G[u]) {
-		if(vis[v.first]) continue;
+	for (auto v : G[u]) {
+		if (vis[v.first]) continue;
 
 		vis[v.first] = true;
-		p[v.first] = {p[u].first+v.second.first, p[u].second+v.second.second};
+		p[v.first] = {p[u].first + v.second.first, p[u].second + v.second.second};
 		DFS(v.first);
 	}
 }
@@ -22,7 +22,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.resize(n);
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int a, b, x, y;
 		cin >> a >> b >> x >> y;
 		a--, b--;
@@ -35,8 +35,10 @@ signed main() {
 	p[0] = {0, 0}, vis[0] = true;
 	DFS(0);
 
-	for(int i=0; i<n; i++) {
-		if(vis[i]) cout << p[i].first << ' ' << p[i].second << '\n';
-		else cout << "undecidable\n";
+	for (int i = 0; i < n; i++) {
+		if (vis[i])
+			cout << p[i].first << ' ' << p[i].second << '\n';
+		else
+			cout << "undecidable\n";
 	}
 }

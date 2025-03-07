@@ -7,9 +7,9 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int k;
 		cin >> k;
-		cout << ((k-1)%3==0 ? "YES\n" : "NO\n");
+		cout << ((k - 1) % 3 == 0 ? "YES\n" : "NO\n");
 	}
 }

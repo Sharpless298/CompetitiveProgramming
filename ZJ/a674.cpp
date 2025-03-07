@@ -1,6 +1,6 @@
+#include <cstring>
 #include <iostream>
 #include <vector>
-#include <cstring>
 using namespace std;
 
 const int INF = 0x3f3f3f3f;
@@ -14,28 +14,28 @@ signed main() {
 
 	int C, S, Q;
 
-	while(cin>>C>>S>>Q && C) {
+	while (cin >> C >> S >> Q && C) {
 		memset(dp, 0x3f, sizeof(dp));
 
-		for(int i=0, u, v, d; i<S; i++) {
+		for (int i = 0, u, v, d; i < S; i++) {
 			cin >> u >> v >> d;
 			dp[u][v] = dp[v][u] = d;
 		}
-		
-		for(int k=1; k<=C; k++) 
-			for(int i=1; i<=C; i++) 
-				for(int j=1; j<=C; j++) 
-					dp[i][j] = min(max(dp[i][k], dp[k][j]), dp[i][j]);
-				
-		if(Case) cout << '\n';
+
+		for (int k = 1; k <= C; k++)
+			for (int i = 1; i <= C; i++)
+				for (int j = 1; j <= C; j++) dp[i][j] = min(max(dp[i][k], dp[k][j]), dp[i][j]);
+
+		if (Case) cout << '\n';
 		cout << "Case #" << ++Case << '\n';
-		while(Q--) {
+		while (Q--) {
 			int c1, c2;
 
 			cin >> c1 >> c2;
-			if(dp[c1][c2] == INF) cout << "no path\n";
-			else cout << dp[c1][c2] << '\n';
+			if (dp[c1][c2] == INF)
+				cout << "no path\n";
+			else
+				cout << dp[c1][c2] << '\n';
 		}
 	}
 }
-

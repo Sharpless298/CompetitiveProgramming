@@ -10,21 +10,20 @@ void DFS(int u, int p) {
 	stk.push(u);
 
 	int cnt = 0;
-	for(int idx : G[u]) {
+	for (int idx : G[u]) {
 		int v = E[idx];
-		if(!dfn[v]) {
-			DFS(v, idx^1), cnt++;
+		if (!dfn[v]) {
+			DFS(v, idx ^ 1), cnt++;
 			low[u] = min(low[u], low[v]);
-			if(low[v] >= dfn[u]) {
+			if (low[v] >= dfn[u]) {
 				bcc.push_back({});
-				for(int w=-1; w!=v; stk.pop())
-					w = stk.top(), bcc.back().push_back(w);
+				for (int w = -1; w != v; stk.pop()) w = stk.top(), bcc.back().push_back(w);
 				bcc.back().push_back(u);
 			}
-		}
-		else if(idx != p) low[u] = min(low[u], dfn[v]);
+		} else if (idx != p)
+			low[u] = min(low[u], dfn[v]);
 	}
-	if(p==-1 && cnt==0) bcc.push_back({u});
+	if (p == -1 && cnt == 0) bcc.push_back({u});
 }
 
 signed main() {
@@ -34,7 +33,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.assign(n, vector<int>());
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
 		u--, v--;
@@ -45,16 +44,16 @@ signed main() {
 	}
 
 	dfn.assign(n, 0), low.assign(n, 0);
-	for(int i=0; i<n; i++) {
-		if(dfn[i]) continue;
-		while(!stk.empty()) stk.pop();
+	for (int i = 0; i < n; i++) {
+		if (dfn[i]) continue;
+		while (!stk.empty()) stk.pop();
 		DFS(i, -1);
 	}
 
 	cout << bcc.size() << '\n';
-	for(auto i : bcc) {
+	for (auto i : bcc) {
 		cout << i.size();
-		for(int j : i) cout << ' ' << j+1;
+		for (int j : i) cout << ' ' << j + 1;
 		cout << '\n';
 	}
 }

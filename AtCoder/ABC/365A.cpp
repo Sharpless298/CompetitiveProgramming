@@ -7,12 +7,12 @@ signed main() {
 
 	int y;
 	cin >> y;
-	
-	if(y%400 == 0)
+
+	if (y % 400 == 0)
 		cout << 366 << '\n';
-	else if(y%100 == 0)
+	else if (y % 100 == 0)
 		cout << 365 << '\n';
-	else if(y%4 == 0)
+	else if (y % 4 == 0)
 		cout << 366 << '\n';
 	else
 		cout << 365 << '\n';

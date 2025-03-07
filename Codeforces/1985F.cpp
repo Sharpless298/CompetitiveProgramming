@@ -13,26 +13,26 @@ signed main() {
 	lli l, r, m, sum, h;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> h >> n;
-		for(int i=0; i<n; i++)
-			cin >> a[i];
-		for(int i=0; i<n; i++)
-			cin >> c[i];
-		
-		l = 0, r = 4e10+5;
-		while(l < r) {
-			m = (l+r)>>1, sum = 0;
+		for (int i = 0; i < n; i++) cin >> a[i];
+		for (int i = 0; i < n; i++) cin >> c[i];
 
-			for(int i=0; i<n; i++) {
-				sum += (1+m/c[i])*a[i];
-				if(sum >= h) break;
+		l = 0, r = 4e10 + 5;
+		while (l < r) {
+			m = (l + r) >> 1, sum = 0;
+
+			for (int i = 0; i < n; i++) {
+				sum += (1 + m / c[i]) * a[i];
+				if (sum >= h) break;
 			}
 
-			if(sum < h) l = m+1;
-			else r = m;
+			if (sum < h)
+				l = m + 1;
+			else
+				r = m;
 		}
 
-		cout << l+1 << '\n';
+		cout << l + 1 << '\n';
 	}
 }

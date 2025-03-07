@@ -5,20 +5,20 @@ void solve() {
 	int n, k;
 	cin >> n >> k;
 	vector<int> a(n);
-	for(int &i : a) cin >> i;
+	for (int &i : a) cin >> i;
 
-	if(k == n) {
-		for(int i=1, j=1; i<n; i+=2, j++) {
-			if(a[i] != j) {
+	if (k == n) {
+		for (int i = 1, j = 1; i < n; i += 2, j++) {
+			if (a[i] != j) {
 				cout << j << '\n';
 				return;
 			}
 		}
-		cout << k/2+1 << '\n';
+		cout << k / 2 + 1 << '\n';
 		return;
 	}
-	for(int i=1; i<n-k+2; i++) {
-		if(a[i] != 1) {
+	for (int i = 1; i < n - k + 2; i++) {
+		if (a[i] != 1) {
 			cout << 1 << '\n';
 			return;
 		}
@@ -32,5 +32,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }

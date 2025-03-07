@@ -8,17 +8,17 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cnt = 0;
 
 		cin >> x >> y;
 
 		t = x ^ y;
 		t = t & (-t);
-		while(t) t >>= 1, cnt++;
+		while (t) t >>= 1, cnt++;
 
 		ans = 1;
-		for(int i=0; i<cnt-1; i++) ans *= 2;
+		for (int i = 0; i < cnt - 1; i++) ans *= 2;
 
 		cout << ans << '\n';
 	}

@@ -9,7 +9,7 @@ signed main() {
 
 	lli a, b;
 
-	while(cin >> a >> b) {
+	while (cin >> a >> b) {
 		cout << (a ^ b) << '\n';
 	}
 }

@@ -8,9 +8,9 @@ signed main() {
 	int T, n, p, q;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n;
-		
+
 		cout << (n == 3 ? 3 : 2) << '\n';
 	}
 }

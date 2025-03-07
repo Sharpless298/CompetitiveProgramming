@@ -12,9 +12,7 @@ signed main() {
 
 	dp[0] = 1;
 	dp[1] = 3;
-	for(int i=2; i<=50; i++) 
-		dp[i] = dp[i-1]*2 + dp[i-2];	
+	for (int i = 2; i <= 50; i++) dp[i] = dp[i - 1] * 2 + dp[i - 2];
 
-	while(cin >> n)
-		cout << dp[n] << '\n';
+	while (cin >> n) cout << dp[n] << '\n';
 }

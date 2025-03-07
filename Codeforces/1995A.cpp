@@ -8,12 +8,12 @@ signed main() {
 	int T;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, k;
 
 		cin >> n >> k;
-		
-		if(k == 0) {
+
+		if (k == 0) {
 			cout << 0 << '\n';
 			continue;
 		}
@@ -21,10 +21,10 @@ signed main() {
 		k -= n;
 		n--;
 		int ans = 1;
-		while(k > 0) {
+		while (k > 0) {
 			k -= n;
 			ans++;
-			if(k <= 0) break;
+			if (k <= 0) break;
 			k -= n;
 			ans++;
 			n--;

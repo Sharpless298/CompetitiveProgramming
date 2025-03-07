@@ -6,8 +6,8 @@ signed main() {
 	cin.tie(nullptr);
 
 	int a, b;
-	
+
 	cin >> a >> b;
 
-	cout << a+b << '\n';
+	cout << a + b << '\n';
 }

@@ -7,10 +7,10 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 
-		cout << (n/15*3+min(3, n%15+1)) << '\n';
+		cout << (n / 15 * 3 + min(3, n % 15 + 1)) << '\n';
 	}
 }

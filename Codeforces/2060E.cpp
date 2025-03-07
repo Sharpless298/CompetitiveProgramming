@@ -12,14 +12,14 @@ struct DSU {
 		sizes.assign(n, 1);
 	}
 	int find(int x) {
-		return parent[x]==x ? x : parent[x] = find(parent[x]);
+		return parent[x] == x ? x : parent[x] = find(parent[x]);
 	}
 	bool unite(int x, int y) {
 		x = find(x), y = find(y);
-		if(x == y) return false;
+		if (x == y) return false;
 
 		cc--;
-		if(sizes[x] > sizes[y]) swap(x, y);
+		if (sizes[x] > sizes[y]) swap(x, y);
 		parent[x] = y;
 		sizes[y] += sizes[x];
 		return true;
@@ -32,18 +32,18 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m1, m2;
 		cin >> n >> m1 >> m2;
 		DSU dsu1(n), dsu2(n);
 		vector<pair<int, int>> E;
-		for(int i=0; i<m1; i++) {
+		for (int i = 0; i < m1; i++) {
 			int u, v;
 			cin >> u >> v;
 			u--, v--;
 			E.push_back({u, v});
 		}
-		for(int i=0; i<m2; i++) {
+		for (int i = 0; i < m2; i++) {
 			int u, v;
 			cin >> u >> v;
 			u--, v--;
@@ -51,13 +51,13 @@ signed main() {
 		}
 
 		int ans = 0;
-		for(auto p : E) {
-			if(dsu2.find(p.first) != dsu2.find(p.second)) 
+		for (auto p : E) {
+			if (dsu2.find(p.first) != dsu2.find(p.second))
 				ans++;
-			else 
+			else
 				dsu1.unite(p.first, p.second);
 		}
-		
-		cout << ans+dsu1.cc-dsu2.cc << '\n';
+
+		cout << ans + dsu1.cc - dsu2.cc << '\n';
 	}
 }

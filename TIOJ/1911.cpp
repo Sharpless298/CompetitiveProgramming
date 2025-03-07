@@ -7,23 +7,21 @@ multiset<int> s;
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
+
 	int t;
 
-	while(cin>>t && t) {
-		if(t > 0) {
+	while (cin >> t && t) {
+		if (t > 0) {
 			s.insert(t);
-		}
-		else {
-			if(s.empty()) continue;
+		} else {
+			if (s.empty()) continue;
 
-			if(t == -2) {
+			if (t == -2) {
 				auto iter = s.end();
 				iter--;
 				cout << *iter;
 				s.erase(iter);
-			}
-			else {
+			} else {
 				cout << *s.begin();
 				s.erase(s.begin());
 			}

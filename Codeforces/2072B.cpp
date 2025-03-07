@@ -7,17 +7,17 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		string s;
 		cin >> s;
 		long long a = 0, b = 0;
-		for(char c : s) {
-			if(c == '_') a++;
-			if(c == '-') b++;
+		for (char c : s) {
+			if (c == '_') a++;
+			if (c == '-') b++;
 		}
 
-		cout << (b/2)*a*((b/2)+(b&1)) << '\n';
+		cout << (b / 2) * a * ((b / 2) + (b & 1)) << '\n';
 	}
 }

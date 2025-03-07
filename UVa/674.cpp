@@ -6,7 +6,6 @@ signed main() {
 	cin.tie(nullptr);
 
 	int n;
-	while(cin >> n) {
-
+	while (cin >> n) {
 	}
 }

@@ -13,15 +13,14 @@ signed main() {
 	lli p, d, sum, mx;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n;
-		for(int i=0; i<n; i++)
-			cin >> a[i];
-		
+		for (int i = 0; i < n; i++) cin >> a[i];
+
 		p = sum = mx = 0;
-		for(int i=0; i<n; i++) {
-			p = max(p, 1LL*a[i]);
-			
+		for (int i = 0; i < n; i++) {
+			p = max(p, 1LL * a[i]);
+
 			d = p - a[i];
 			sum += d;
 			mx = max(mx, d);

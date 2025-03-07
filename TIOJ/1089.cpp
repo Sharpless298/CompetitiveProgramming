@@ -6,8 +6,8 @@ vector<bool> vis;
 vector<int> mp, mq;
 bool DFS(int u) {
 	vis[u] = true;
-	for(int v : G[u]) {
-		if(mq[v]==-1 || (!vis[mq[v]] && DFS(mq[v]))) {
+	for (int v : G[u]) {
+		if (mq[v] == -1 || (!vis[mq[v]] && DFS(mq[v]))) {
 			mp[u] = v;
 			mq[v] = u;
 			return true;
@@ -23,7 +23,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.assign(n, vector<int>());
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
 		u--, v--;
@@ -33,9 +33,9 @@ signed main() {
 	int ans = 0;
 	vis.resize(n);
 	mp.assign(n, -1), mq.assign(n, -1);
-	for(int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		fill(vis.begin(), vis.end(), false);
-		if(DFS(i)) ans++;
+		if (DFS(i)) ans++;
 	}
 	cout << ans << '\n';
 }

@@ -9,18 +9,18 @@ signed main() {
 	int n;
 	cin >> n;
 	vector<int> a(n);
-	for(int i=0; i<n; i++)
-		cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
 
 	int len = 0, ans = 0;
-	for(int i=1; i<n; i++) {
-		if(a[i] < a[i-1]) len++;
+	for (int i = 1; i < n; i++) {
+		if (a[i] < a[i - 1])
+			len++;
 		else {
-			ans = max(len+1, ans);
+			ans = max(len + 1, ans);
 			len = 0;
 		}
 	}
-	ans = max(len+1, ans);
+	ans = max(len + 1, ans);
 
 	cout << ans << '\n';
 }

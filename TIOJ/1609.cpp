@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 int n;
@@ -10,15 +10,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n;
-	for(int i=0; i<n; i++)
-		cin >> ary[i];
-	
-	sort(ary, ary+n);
+	for (int i = 0; i < n; i++) cin >> ary[i];
 
-	for(int i=0; i<n; i++) {
-		if(i) cout << ' ';
+	sort(ary, ary + n);
+
+	for (int i = 0; i < n; i++) {
+		if (i) cout << ' ';
 		cout << ary[i];
 	}
 	cout << '\n';
 }
-

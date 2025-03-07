@@ -6,24 +6,25 @@ int n, path[16];
 string ans;
 
 void DFS(int depth) {
-	if(depth == n) {
-		for(int i=0; i<n; i++) {
-			if(path[i] != 10) ans += path[i]+'0';
-			else ans += "10";
+	if (depth == n) {
+		for (int i = 0; i < n; i++) {
+			if (path[i] != 10)
+				ans += path[i] + '0';
+			else
+				ans += "10";
 			ans += ' ';
 		}
 		ans += '\n';
 	}
 
-	for(int i=1; i<=n; i++) {
-		if(!vis[i]) {
+	for (int i = 1; i <= n; i++) {
+		if (!vis[i]) {
 			vis[i] = true;
 			path[depth] = i;
-			DFS(depth+1);
+			DFS(depth + 1);
 			vis[i] = false;
 		}
 	}
-	
 }
 
 signed main() {

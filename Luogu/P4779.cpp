@@ -1,7 +1,7 @@
-#include <iostream>
 #include <climits>
-#include <vector>
+#include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
 const int INF = 0x3f3f3f3f;
@@ -13,16 +13,17 @@ vector<pair<int, int>> G[100005];
 void Dijkstra() {
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
-	fill(dis, dis+n, INF);
+	fill(dis, dis + n, INF);
 	dis[s] = 0;
 	pq.emplace(dis[s], s);
-	
-	while(!pq.empty()) {
-		auto [d, u] = pq.top(); pq.pop();
 
-		if(dis[u] != d) continue;
-		for(auto &[v, w]:G[u]) 
-			if(dis[u]+w < dis[v]) dis[v] = dis[u]+w, pq.emplace(dis[v], v);
+	while (!pq.empty()) {
+		auto [d, u] = pq.top();
+		pq.pop();
+
+		if (dis[u] != d) continue;
+		for (auto &[v, w] : G[u])
+			if (dis[u] + w < dis[v]) dis[v] = dis[u] + w, pq.emplace(dis[v], v);
 	}
 }
 
@@ -32,7 +33,7 @@ signed main() {
 
 	cin >> n >> m >> s;
 	s--;
-	for(int i=0, u, v, w; i<m; i++) {
+	for (int i = 0, u, v, w; i < m; i++) {
 		cin >> u >> v >> w;
 		u--, v--;
 		G[u].push_back({v, w});
@@ -40,9 +41,6 @@ signed main() {
 
 	Dijkstra();
 
-	for(int i=0; i<n; i++)
-		cout << dis[i] << ' ';
+	for (int i = 0; i < n; i++) cout << dis[i] << ' ';
 	cout << '\n';
 }
-
-

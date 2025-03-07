@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-pair<int, int> operator +(pair<int, int> &a, pair<int, int> &b) {
-	return {a.first+b.first, a.second+b.second};
+pair<int, int> operator+(pair<int, int> &a, pair<int, int> &b) {
+	return {a.first + b.first, a.second + b.second};
 }
 
 signed main() {
@@ -11,14 +11,14 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m;
 		string s;
 		cin >> n >> m >> s;
 		vector<vector<long long>> G(n, vector<long long>(m));
 		vector<long long> r(n), c(m);
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<m; j++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				cin >> G[i][j];
 				r[i] += G[i][j];
 				c[j] += G[i][j];
@@ -29,22 +29,21 @@ signed main() {
 		mp['D'] = {1, 0}, mp['R'] = {0, 1};
 
 		pair<int, int> cur = {0, 0};
-		for(int i=0; i<(int)s.size(); i++) {
-			if(s[i] == 'D') {
+		for (int i = 0; i < (int)s.size(); i++) {
+			if (s[i] == 'D') {
 				G[cur.first][cur.second] = -r[cur.first];
 				c[cur.second] += -r[cur.first];
-			}
-			else { 
+			} else {
 				G[cur.first][cur.second] = -c[cur.second];
 				r[cur.first] += -c[cur.second];
 			}
 			cur = cur + mp[s[i]];
 		}
 
-		G[n-1][m-1] = -r[n-1];
+		G[n - 1][m - 1] = -r[n - 1];
 
-		for(auto i : G) {
-			for(auto j : i) cout << j << ' ';
+		for (auto i : G) {
+			for (auto j : i) cout << j << ' ';
 			cout << '\n';
 		}
 	}

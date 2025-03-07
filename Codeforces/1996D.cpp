@@ -7,15 +7,14 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, x;
 		cin >> n >> x;
 
 		int ans = 0;
-		for(int a=1; a<=n-2; a++)
-			for(int b=1; a*b<=n&&a+b<=x; b++)
-				ans += min((n-a*b)/(a+b), x-a-b);
-		
+		for (int a = 1; a <= n - 2; a++)
+			for (int b = 1; a * b <= n && a + b <= x; b++) ans += min((n - a * b) / (a + b), x - a - b);
+
 		cout << ans << '\n';
 	}
 }

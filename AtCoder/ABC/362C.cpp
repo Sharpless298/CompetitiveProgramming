@@ -13,24 +13,23 @@ signed main() {
 	lli suml = 0, sumr = 0;
 
 	cin >> n;
-	for(int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		cin >> l[i] >> r[i];
 		suml += l[i], sumr += r[i];
 	}
-	
-	if(suml<=0 && sumr>=0) {
+
+	if (suml <= 0 && sumr >= 0) {
 		cout << "Yes\n";
-		
+
 		suml = -suml;
-		for(int i=0; i<n; i++) {
-			lli t = min(suml, r[i]-l[i]);
+		for (int i = 0; i < n; i++) {
+			lli t = min(suml, r[i] - l[i]);
 			suml -= t;
 			l[i] += t;
 		}
 
-		for(int i=0; i<n; i++)
-			cout << l[i] << ' ';
+		for (int i = 0; i < n; i++) cout << l[i] << ' ';
 		cout << '\n';
-	}
-	else cout << "No\n";
+	} else
+		cout << "No\n";
 }

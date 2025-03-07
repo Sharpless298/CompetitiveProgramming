@@ -7,7 +7,10 @@ signed main() {
 
 	int l, r;
 	cin >> l >> r;
-	if((l && r) || (!l && !r)) cout << "Invalid\n";
-	else if(l) cout << "Yes\n";
-	else cout << "No\n";
+	if ((l && r) || (!l && !r))
+		cout << "Invalid\n";
+	else if (l)
+		cout << "Yes\n";
+	else
+		cout << "No\n";
 }

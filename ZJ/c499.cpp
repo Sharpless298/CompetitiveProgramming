@@ -13,18 +13,18 @@ signed main() {
 	cin >> T;
 
 	s = "0" + a, t = "0" + b;
-	
-	for(int i=1; i<(int)s.size(); i++) {
-		for(int j=1; j<(int)t.size(); j++) {
-			if(s[i] == t[j]) 
-				dp[i][j] = dp[i-1][j-1] + 1;
+
+	for (int i = 1; i < (int)s.size(); i++) {
+		for (int j = 1; j < (int)t.size(); j++) {
+			if (s[i] == t[j])
+				dp[i][j] = dp[i - 1][j - 1] + 1;
 			else
-				dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+				dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
 		}
 	}
 
-	if(dp[(int)s.size()-1][(int)t.size()-1] >= T)
+	if (dp[(int)s.size() - 1][(int)t.size() - 1] >= T)
 		cout << "kwa nini unaendesha\n";
-	else 
+	else
 		cout << "sitini na tisa\n";
 }

@@ -8,11 +8,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	int a, b, c;
-	
+
 	cin >> a >> b >> c;
-	
+
 	cnt[a]++, cnt[b]++, cnt[c]++;
-	
-	if(cnt[5]==2 && cnt[7]==1) cout << "YES\n";
-	else cout << "NO\n";
+
+	if (cnt[5] == 2 && cnt[7] == 1)
+		cout << "YES\n";
+	else
+		cout << "NO\n";
 }

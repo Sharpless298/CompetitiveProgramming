@@ -7,15 +7,15 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
-		vector<int> b(n-2);
-		for(int &i : b) cin >> i;
+		vector<int> b(n - 2);
+		for (int &i : b) cin >> i;
 
 		bool ok = true;
-		for(int i=1; i<n-3; i++) {
-			if(b[i]==0 && b[i-1]==1 && b[i+1]==1) {
+		for (int i = 1; i < n - 3; i++) {
+			if (b[i] == 0 && b[i - 1] == 1 && b[i + 1] == 1) {
 				ok = false;
 				break;
 			}

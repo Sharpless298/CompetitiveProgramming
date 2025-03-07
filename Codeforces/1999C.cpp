@@ -6,20 +6,19 @@ void solve() {
 	int n, s, m;
 	cin >> n >> s >> m;
 	vector<int> l(n), r(n);
-	for(int i=0; i<n; i++) 
-		cin >> l[i] >> r[i];
-	
-	if(l[0] >= s) {
+	for (int i = 0; i < n; i++) cin >> l[i] >> r[i];
+
+	if (l[0] >= s) {
 		cout << "YES\n";
 		return;
 	}
-	for(int i=1; i<n; i++) {
-		if(l[i]-r[i-1] >= s) {
+	for (int i = 1; i < n; i++) {
+		if (l[i] - r[i - 1] >= s) {
 			cout << "YES\n";
 			return;
 		}
 	}
-	if(m-r[n-1] >= s) {
+	if (m - r[n - 1] >= s) {
 		cout << "YES\n";
 		return;
 	}
@@ -33,6 +32,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }
-

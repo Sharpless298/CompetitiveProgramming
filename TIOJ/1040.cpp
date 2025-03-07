@@ -1,17 +1,17 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 void solve(int a, int b) {
-	if(a%b == 0) {
-		cout << a/b;
+	if (a % b == 0) {
+		cout << a / b;
 		return;
 	}
 
-	cout << a/b << "+1/";
-	if(b%(a%b) != 0) cout << '{';
-	solve(b, a%b);
-	if(b%(a%b) != 0) cout << '}';
+	cout << a / b << "+1/";
+	if (b % (a % b) != 0) cout << '{';
+	solve(b, a % b);
+	if (b % (a % b) != 0) cout << '}';
 }
 
 signed main() {
@@ -21,10 +21,10 @@ signed main() {
 	int T, P, Q;
 
 	cin >> T;
-	while(T--) { cin >> P >> Q;
+	while (T--) {
+		cin >> P >> Q;
 		cout << P << '/' << Q << " = ";
 		solve(P, Q);
 		cout << '\n';
 	}
 }
-

@@ -8,8 +8,7 @@ lli inv[3000005];
 
 void mod_inv() {
 	inv[1] = 1;
-	for(int i=2; i<=n; i++)
-		inv[i] = ((p-(p/i)) * inv[p%i]) % p;
+	for (int i = 2; i <= n; i++) inv[i] = ((p - (p / i)) * inv[p % i]) % p;
 }
 
 signed main() {
@@ -18,7 +17,5 @@ signed main() {
 
 	cin >> n >> p;
 	mod_inv();
-	for(int i=1; i<=n; i++)
-		cout << inv[i] << '\n';
+	for (int i = 1; i <= n; i++) cout << inv[i] << '\n';
 }
-

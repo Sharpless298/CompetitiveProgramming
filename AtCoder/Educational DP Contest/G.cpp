@@ -9,7 +9,7 @@ signed main() {
 	cin >> n >> m;
 	vector<int> deg(n);
 	vector<vector<int>> G(n);
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int x, y;
 		cin >> x >> y;
 		x--, y--;
@@ -18,17 +18,18 @@ signed main() {
 	}
 
 	queue<int> q;
-	for(int i=0; i<n; i++)
-		if(deg[i] == 0) q.push(i);
+	for (int i = 0; i < n; i++)
+		if (deg[i] == 0) q.push(i);
 
 	vector<int> dp(n);
-	while(!q.empty()) {
-		int u = q.front(); q.pop();
+	while (!q.empty()) {
+		int u = q.front();
+		q.pop();
 
-		for(int v:G[u]) {
+		for (int v : G[u]) {
 			dp[v] = dp[u] + 1;
 			deg[v]--;
-			if(deg[v] == 0) q.push(v);
+			if (deg[v] == 0) q.push(v);
 		}
 	}
 

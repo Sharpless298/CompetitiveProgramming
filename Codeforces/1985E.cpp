@@ -11,17 +11,17 @@ signed main() {
 	lli k, t, ans;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		ans = 0;
 
 		cin >> x >> y >> z >> k;
 
-		for(int i=1; i<=x; i++) {
-			for(int j=1; j<=y; j++) {
-				t = k/i/j;
-				if(i*j*t!=k || t>z) continue;
+		for (int i = 1; i <= x; i++) {
+			for (int j = 1; j <= y; j++) {
+				t = k / i / j;
+				if (i * j * t != k || t > z) continue;
 
-				ans = max(ans, 1LL*(x-i+1)*(y-j+1)*(z-t+1));
+				ans = max(ans, 1LL * (x - i + 1) * (y - j + 1) * (z - t + 1));
 			}
 		}
 

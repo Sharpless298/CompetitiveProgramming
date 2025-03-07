@@ -8,10 +8,10 @@ signed main() {
 	int n;
 	cin >> n;
 	vector<long long> a(n);
-	for(long long &i : a) cin >> i;
-	
+	for (long long &i : a) cin >> i;
+
 	bool ok = true;
-	for(int i=1; i<n-1; i++) 
-		if(a[i]*a[i] != a[i-1]*a[i+1]) ok = false;
+	for (int i = 1; i < n - 1; i++)
+		if (a[i] * a[i] != a[i - 1] * a[i + 1]) ok = false;
 	cout << (ok ? "Yes\n" : "No\n");
 }

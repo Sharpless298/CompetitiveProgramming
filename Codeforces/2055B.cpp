@@ -7,21 +7,20 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		vector<int> a(n), b(n);
-		for(int &i : a) cin >> i;
-		for(int &i : b) cin >> i;
+		for (int &i : a) cin >> i;
+		for (int &i : b) cin >> i;
 
 		vector<int> c;
-		for(int i=0; i<n; i++) 
-			c.push_back(a[i]-b[i]);
+		for (int i = 0; i < n; i++) c.push_back(a[i] - b[i]);
 		sort(c.begin(), c.end());
 
-		if(c[0]<0 && -c[0]>c[1]) 
+		if (c[0] < 0 && -c[0] > c[1])
 			cout << "NO\n";
-		else 
+		else
 			cout << "YES\n";
 	}
 }

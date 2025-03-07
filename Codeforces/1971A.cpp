@@ -7,11 +7,11 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int x, y;
 		cin >> x >> y;
-		if(x > y) swap(x, y);
-		
+		if (x > y) swap(x, y);
+
 		cout << x << ' ' << y << '\n';
 	}
 }

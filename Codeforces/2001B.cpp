@@ -8,22 +8,20 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
-		
-		if(n%2 == 0) 
+
+		if (n % 2 == 0)
 			cout << -1 << '\n';
 		else {
 			vector<int> ans(n);
 			int j = 1;
-			for(int i=n/2; i>=0; i--, j++)
-				ans[i] = j;
-			for(int i=n/2+1; i<n; i++, j++)
-				ans[i] = j;
+			for (int i = n / 2; i >= 0; i--, j++) ans[i] = j;
+			for (int i = n / 2 + 1; i < n; i++, j++) ans[i] = j;
 
-			for(int &i:ans) cout << i << ' ';
-				cout << '\n';
+			for (int &i : ans) cout << i << ' ';
+			cout << '\n';
 		}
 	}
 }

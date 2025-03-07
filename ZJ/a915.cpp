@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 pair<int, int> p[1005];
@@ -11,11 +11,9 @@ signed main() {
 	int n;
 
 	cin >> n;
-	for(int i=0; i<n; i++) 
-		cin >> p[i].first >> p[i].second;
-	
-	sort(p, p+n);
+	for (int i = 0; i < n; i++) cin >> p[i].first >> p[i].second;
 
-	for(int i=0; i<n; i++)
-		cout << p[i].first << ' ' << p[i].second << '\n';
+	sort(p, p + n);
+
+	for (int i = 0; i < n; i++) cout << p[i].first << ' ' << p[i].second << '\n';
 }

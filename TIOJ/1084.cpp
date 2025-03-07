@@ -1,14 +1,14 @@
+#include <algorithm>
 #include <iostream>
 #include <set>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 multiset<int> ms[500];
 vector<int> ans;
 
 void DFS(int u) {
-	while(ms[u].size()) {
+	while (ms[u].size()) {
 		int nxt = *ms[u].begin();
 		ms[u].erase(ms[u].find(nxt));
 		ms[nxt].erase(ms[nxt].find(u));
@@ -22,8 +22,8 @@ signed main() {
 	cin.tie(nullptr);
 
 	int m;
-	while(cin>>m && m) {
-		for(int i=0; i<m; i++) {
+	while (cin >> m && m) {
+		for (int i = 0; i < m; i++) {
 			int u, v;
 			cin >> u >> v;
 			u--, v--;
@@ -32,17 +32,17 @@ signed main() {
 		}
 
 		int st;
-		for(int i=0; i<500; i++) {
-			if(ms[i].size() & 1) {
+		for (int i = 0; i < 500; i++) {
+			if (ms[i].size() & 1) {
 				st = i;
 				break;
 			}
 		}
-		
+
 		ans.clear();
 		DFS(st);
 		reverse(ans.begin(), ans.end());
-		for(int i:ans) cout << i+1 << '\n';
+		for (int i : ans) cout << i + 1 << '\n';
 		cout << '\n';
 	}
 }

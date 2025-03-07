@@ -9,9 +9,9 @@ signed main() {
 	string s;
 
 	cin >> s;
-	for(int i=1; i<(int)s.size(); i++) {
+	for (int i = 1; i < (int)s.size(); i++) {
 		cnt = 1;
-		while(i<(int)s.size() && s[i-1]==s[i]) cnt++, i++;
+		while (i < (int)s.size() && s[i - 1] == s[i]) cnt++, i++;
 		ans = max(ans, cnt);
 	}
 

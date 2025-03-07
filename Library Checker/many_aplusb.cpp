@@ -8,8 +8,8 @@ signed main() {
 	int T;
 	long long int a, b;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> a >> b;
-		cout << a+b << '\n';
+		cout << a + b << '\n';
 	}
 }

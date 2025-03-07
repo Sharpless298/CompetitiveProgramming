@@ -9,36 +9,36 @@ vector<int> a;
 vector<lli> seg;
 
 void build(int id = 0, int L = 0, int R = n) {
-	if(R-L == 1) {
+	if (R - L == 1) {
 		seg[id] = a[L];
 		return;
 	}
-	int M = (L+R)/2;
-	build(id*2+1, L, M);
-	build(id*2+2, M, R);
-	seg[id] = min(seg[id*2+1], seg[id*2+2]);
+	int M = (L + R) / 2;
+	build(id * 2 + 1, L, M);
+	build(id * 2 + 2, M, R);
+	seg[id] = min(seg[id * 2 + 1], seg[id * 2 + 2]);
 }
 
 void update(int x, int v, int id = 0, int L = 0, int R = n) {
-	if(R-L == 1) {
+	if (R - L == 1) {
 		seg[id] = v;
 		return;
 	}
-	
-	int M = (L+R)/2;
-	if(x < M)
-		update(x, v, id*2+1, L, M);
-	else 
-		update(x, v, id*2+2, M, R);
-	seg[id] = min(seg[id*2+1], seg[id*2+2]);
+
+	int M = (L + R) / 2;
+	if (x < M)
+		update(x, v, id * 2 + 1, L, M);
+	else
+		update(x, v, id * 2 + 2, M, R);
+	seg[id] = min(seg[id * 2 + 1], seg[id * 2 + 2]);
 }
 
 lli query(int l, int r, int id = 0, int L = 0, int R = n) {
-	if(l>=R || r<=L) return 2000000000;
-	if(l<=L && R<=r) return seg[id];
-	
-	int M = (L+R)/2;
-	return min(query(l, r, id*2+1, L, M), query(l, r, id*2+2, M, R));
+	if (l >= R || r <= L) return 2000000000;
+	if (l <= L && R <= r) return seg[id];
+
+	int M = (L + R) / 2;
+	return min(query(l, r, id * 2 + 1, L, M), query(l, r, id * 2 + 2, M, R));
 }
 
 signed main() {
@@ -47,24 +47,21 @@ signed main() {
 
 	cin >> n >> m;
 	a.resize(n);
-	for(int i=0; i<n; i++)
-		cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
 
-	seg.resize(4*n);
+	seg.resize(4 * n);
 	build();
-	
-	while(m--) {
+
+	while (m--) {
 		int t, i, v, l, r;
 		cin >> t;
-		
-		if(t == 1) {
+
+		if (t == 1) {
 			cin >> i >> v;
 			update(i, v);
-		}
-		else {
+		} else {
 			cin >> l >> r;
 			cout << query(l, r) << '\n';
 		}
 	}
 }
-

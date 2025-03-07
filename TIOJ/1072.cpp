@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <utility>
 using namespace std;
 
@@ -14,18 +14,17 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	while(cin>>n && n) {
+	while (cin >> n && n) {
 		ans = 0;
 
-		for(int i=0; i<n; i++)
-			cin >> p[i].first >> p[i].second;
+		for (int i = 0; i < n; i++) cin >> p[i].first >> p[i].second;
 
-		sort(p, p+n, cmp);
-		for(int i=0, sum=0; i<n; i++) {
+		sort(p, p + n, cmp);
+		for (int i = 0, sum = 0; i < n; i++) {
 			sum += p[i].first;
-			ans = max(ans, sum+p[i].second);
+			ans = max(ans, sum + p[i].second);
 		}
-		
+
 		cout << ans << '\n';
 	}
 }

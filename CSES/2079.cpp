@@ -6,17 +6,17 @@ vector<int> sz;
 vector<vector<int>> G;
 int DFS(int u, int p) {
 	sz[u] = 1;
-	for(int v : G[u]) {
-		if(v == p) continue;
+	for (int v : G[u]) {
+		if (v == p) continue;
 		sz[u] += DFS(v, u);
 	}
 	return sz[u];
 }
 
 int find_centroid(int u, int p) {
-	for(int v : G[u]) {
-		if(v == p) continue;
-		if(sz[v]*2 > n) return find_centroid(v, u);
+	for (int v : G[u]) {
+		if (v == p) continue;
+		if (sz[v] * 2 > n) return find_centroid(v, u);
 	}
 	return u;
 }
@@ -27,7 +27,7 @@ signed main() {
 
 	cin >> n;
 	sz.resize(n), G.resize(n);
-	for(int i=0; i<n-1; i++) {
+	for (int i = 0; i < n - 1; i++) {
 		int u, v;
 		cin >> u >> v;
 		u--, v--;
@@ -36,5 +36,5 @@ signed main() {
 	}
 
 	DFS(0, -1);
-	cout << find_centroid(0, -1)+1 << '\n';
+	cout << find_centroid(0, -1) + 1 << '\n';
 }

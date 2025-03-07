@@ -9,22 +9,24 @@ void DFS(int u, int p) {
 	dfn[u] = low[u] = timestamp++;
 	stk.push(u);
 
-	for(int idx : G[u]) {
+	for (int idx : G[u]) {
 		int v = E[idx];
-		if(!dfn[v]) {
-			DFS(v, idx^1);
+		if (!dfn[v]) {
+			DFS(v, idx ^ 1);
 			low[u] = min(low[u], low[v]);
-		}
-		else if(idx != p) low[u] = min(low[u], dfn[v]);
+		} else if (idx != p)
+			low[u] = min(low[u], dfn[v]);
 	}
-	
-	if(dfn[u] == low[u]) {
+
+	if (dfn[u] == low[u]) {
 		bcc.push_back({});
-		while(stk.top() != u) {
+		while (stk.top() != u) {
 			bcc.back().push_back(stk.top());
 			stk.pop();
 		}
-		bcc.back().push_back(stk.top());; stk.pop();
+		bcc.back().push_back(stk.top());
+		;
+		stk.pop();
 	}
 }
 
@@ -35,7 +37,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.assign(n, vector<int>());
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
 		u--, v--;
@@ -46,13 +48,13 @@ signed main() {
 	}
 
 	dfn.assign(n, 0), low.assign(n, 0);
-	for(int i=0; i<n; i++)
-		if(!dfn[i]) DFS(i, -1);
+	for (int i = 0; i < n; i++)
+		if (!dfn[i]) DFS(i, -1);
 
 	cout << bcc.size() << '\n';
-	for(auto i : bcc) {
+	for (auto i : bcc) {
 		cout << i.size();
-		for(int j : i) cout << ' ' << j+1;
+		for (int j : i) cout << ' ' << j + 1;
 		cout << '\n';
 	}
 }

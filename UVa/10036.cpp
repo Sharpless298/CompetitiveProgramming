@@ -6,18 +6,16 @@ void solve() {
 	int n, k;
 	cin >> n >> k;
 	vector<int> a(n);
-	for(int i=0; i<n; i++)
-		cin >> a[i];
-	
-	vector<vector<bool>> dp(n, vector<bool>(k));
-	dp[0][(a[0]%k+k)%k] = true;
-	for(int i=1; i<n; i++) 
-		for(int j=0; j<k; j++)
-			dp[i][j] = (dp[i-1][((j-a[i])%k+k)%k] || dp[i-1][((j+a[i])%k+k)%k]); 
+	for (int i = 0; i < n; i++) cin >> a[i];
 
-	if(dp[n-1][0]) 
+	vector<vector<bool>> dp(n, vector<bool>(k));
+	dp[0][(a[0] % k + k) % k] = true;
+	for (int i = 1; i < n; i++)
+		for (int j = 0; j < k; j++) dp[i][j] = (dp[i - 1][((j - a[i]) % k + k) % k] || dp[i - 1][((j + a[i]) % k + k) % k]);
+
+	if (dp[n - 1][0])
 		cout << "Divisible\n";
-	else 
+	else
 		cout << "Not divisible\n";
 }
 
@@ -27,5 +25,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }

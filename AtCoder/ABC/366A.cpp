@@ -7,8 +7,8 @@ signed main() {
 
 	int n, t, a;
 	cin >> n >> t >> a;
-	
+
 	n = n - t - a;
 
-	cout << (n+min(t, a)>max(t,a) ? "No" : "Yes") << '\n';
+	cout << (n + min(t, a) > max(t, a) ? "No" : "Yes") << '\n';
 }

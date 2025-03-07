@@ -8,11 +8,9 @@ signed main() {
 	int T, n;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n;
-		for(int i=1; i<=n; i++)
-			cout << i << ' ';
+		for (int i = 1; i <= n; i++) cout << i << ' ';
 		cout << '\n';
 	}
 }
-

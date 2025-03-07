@@ -9,31 +9,26 @@ int main() {
 	int n;
 	cin >> n;
 	vector<int> a(n);
-	for(int i = 0; i < n; i++) 
-		cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
 
-	vector<int> lg(n+1);
+	vector<int> lg(n + 1);
 	lg[1] = 0;
-	for(int i=2; i<=n; i++)
-		lg[i] = lg[i/2]+1;
+	for (int i = 2; i <= n; i++) lg[i] = lg[i / 2] + 1;
 
-	int lgN = __lg(n)+1;
+	int lgN = __lg(n) + 1;
 	vector<vector<int>> st(n, vector<int>(lgN));
-	for(int i=0; i<n; i++)
-		st[i][0] = a[i];
+	for (int i = 0; i < n; i++) st[i][0] = a[i];
 
-	for(int j=1; j<lgN; j++)
-		for(int i=0; i+(1<<j)-1<n; i++)
-			st[i][j] = min(st[i][j-1], st[i+(1<<(j-1))][j-1]);
+	for (int j = 1; j < lgN; j++)
+		for (int i = 0; i + (1 << j) - 1 < n; i++) st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
 
 	int q;
 	cin >> q;
-	while(q--) {
+	while (q--) {
 		int l, r;
 		cin >> l >> r;
 
-		int k = lg[r-l+1];
-		cout << min(st[l][k], st[r-(1<<k)+1][k]) << '\n';
+		int k = lg[r - l + 1];
+		cout << min(st[l][k], st[r - (1 << k) + 1][k]) << '\n';
 	}
 }
-

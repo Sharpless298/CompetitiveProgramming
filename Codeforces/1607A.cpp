@@ -9,15 +9,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		ans = 0;
 
 		cin >> s >> k;
 
-		for(int i=0; i<26; i++)
-			a[s[i]-'a'] = i;
-		for(int i=1; i<(int)k.size(); i++)
-			ans += abs(a[k[i]-'a'] - a[k[i-1]-'a']);
+		for (int i = 0; i < 26; i++) a[s[i] - 'a'] = i;
+		for (int i = 1; i < (int)k.size(); i++) ans += abs(a[k[i] - 'a'] - a[k[i - 1] - 'a']);
 
 		cout << ans << '\n';
 	}

@@ -9,16 +9,16 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		vector<int> dp(4, 0);
 		dp[0] = 1;
-		while(n--) {
+		while (n--) {
 			int x;
 			cin >> x;
-			if(x == 2) dp[x] = dp[x]*2%MOD;
-			dp[x] = (dp[x]+dp[x-1])%MOD;
+			if (x == 2) dp[x] = dp[x] * 2 % MOD;
+			dp[x] = (dp[x] + dp[x - 1]) % MOD;
 		}
 		cout << dp[3] << '\n';
 	}

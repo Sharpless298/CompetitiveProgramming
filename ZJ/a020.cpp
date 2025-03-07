@@ -11,21 +11,19 @@ int main() {
 
 	cin >> c >> x;
 
-	for(int i=10; i<id.size(); i++)
-		tbl[id[i]] = i;
+	for (int i = 10; i < id.size(); i++) tbl[id[i]] = i;
 
-	sum += (tbl[c]%10)*9 + (tbl[c]/10);
-	for(int i=0; i<9; i++) {
-		if(!i) sum += x%10;
-		else sum += (x%10)*i;
-		x/=10;
+	sum += (tbl[c] % 10) * 9 + (tbl[c] / 10);
+	for (int i = 0; i < 9; i++) {
+		if (!i)
+			sum += x % 10;
+		else
+			sum += (x % 10) * i;
+		x /= 10;
 	}
 
-	if(sum%10 == 0)
+	if (sum % 10 == 0)
 		cout << "real\n";
 	else
 		cout << "fake\n";
 }
-	
-
-

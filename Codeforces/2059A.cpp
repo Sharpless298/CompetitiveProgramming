@@ -7,21 +7,21 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		set<int> a, b;
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			int x;
 			cin >> x;
 			a.insert(x);
 		}
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			int x;
 			cin >> x;
 			b.insert(x);
 		}
 
-		cout << (a.size()*b.size()>=3 ? "YES\n" : "NO\n");
+		cout << (a.size() * b.size() >= 3 ? "YES\n" : "NO\n");
 	}
 }

@@ -15,19 +15,17 @@ signed main() {
 	ans = 0;
 
 	cin >> n;
-	for(int i=1; i<=n; i++)
-		for(int j=1; j<=n; j++)
-			cin >> ary[i][j];
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= n; j++) cin >> ary[i][j];
 
-	for(int i=1; i<=n; i++)
-		for(int j=1; j<=n; j++)
-			pre[i][j] = pre[i-1][j]+ary[i][j];
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= n; j++) pre[i][j] = pre[i - 1][j] + ary[i][j];
 
-	for(int i=1; i<=n; i++) {
-		for(int j=i; j<=n; j++) {
+	for (int i = 1; i <= n; i++) {
+		for (int j = i; j <= n; j++) {
 			t = 0;
-			for(int k=1; k<=n; k++) {
-				t = max(t+pre[j][k]-pre[i-1][k], pre[j][k]-pre[i-1][k]);
+			for (int k = 1; k <= n; k++) {
+				t = max(t + pre[j][k] - pre[i - 1][k], pre[j][k] - pre[i - 1][k]);
 				ans = max(ans, t);
 			}
 		}

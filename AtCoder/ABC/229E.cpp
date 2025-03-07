@@ -1,8 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <cstring>
-#include <numeric>
 #include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <numeric>
+#include <vector>
 using namespace std;
 
 vector<int> parent, sz;
@@ -21,9 +21,9 @@ int Find(int x) {
 void Union(int a, int b) {
 	a = Find(a), b = Find(b);
 
-	if(a == b) return;
-	
-	if(sz[a] > sz[b]) swap(a, b);
+	if (a == b) return;
+
+	if (sz[a] > sz[b]) swap(a, b);
 	parent[a] = b;
 	sz[b] += sz[a];
 }
@@ -38,28 +38,27 @@ signed main() {
 	cin >> n >> m;
 	G.resize(n);
 	init(n);
-	for(int i=0, u, v; i<m; i++) {
+	for (int i = 0, u, v; i < m; i++) {
 		cin >> u >> v;
-		u--, v--;		
+		u--, v--;
 		G[u].push_back(v);
 	}
-	
+
 	int cnt = 0;
 	vector<int> ans = {0};
-	for(int i=n-1; i>=1; i--) {
+	for (int i = n - 1; i >= 1; i--) {
 		cnt++;
-		
-		for(int j:G[i]) {
-			if(Find(i) != Find(j)) {
+
+		for (int j : G[i]) {
+			if (Find(i) != Find(j)) {
 				cnt--;
 				Union(i, j);
 			}
 		}
-		
+
 		ans.push_back(cnt);
 	}
 
 	reverse(ans.begin(), ans.end());
-	for(int i:ans) cout << i << '\n';
+	for (int i : ans) cout << i << '\n';
 }
-

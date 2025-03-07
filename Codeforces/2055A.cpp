@@ -7,9 +7,9 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, a, b;
 		cin >> n >> a >> b;
-		cout << (abs(a-b)&1 ? "NO\n" : "YES\n");
+		cout << (abs(a - b) & 1 ? "NO\n" : "YES\n");
 	}
 }

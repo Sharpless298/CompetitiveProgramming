@@ -7,7 +7,7 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		string s;
 		cin >> s;
 		s.pop_back();

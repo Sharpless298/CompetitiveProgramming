@@ -9,23 +9,22 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	while(getline(cin, s)) {
+	while (getline(cin, s)) {
 		p = ans1 = ans3 = 0;
 		ans2 = depth = 1;
 
-		for(int i=0; i<(int)s.size(); i++) {
-			if(s[i] == '(') {
+		for (int i = 0; i < (int)s.size(); i++) {
+			if (s[i] == '(') {
 				a[p]++;
 				a[++p] = 0;
 				depth++;
 				ans2 = max(ans2, depth);
-			}
-			else if(s[i] == ')') {
+			} else if (s[i] == ')') {
 				ans3 = max(ans3, a[p--]);
 				depth--;
 			}
 
-			if(s[i] == '*') {
+			if (s[i] == '*') {
 				a[p]++;
 				ans1++;
 			}

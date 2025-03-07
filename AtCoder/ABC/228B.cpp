@@ -11,16 +11,15 @@ signed main() {
 	int n, x, ans = 0;
 
 	cin >> n >> x;
-	for(int i=1; i<=n; i++)
-		cin >> a[i];
+	for (int i = 1; i <= n; i++) cin >> a[i];
 
 	do {
 		b[x] = true;
 		x = a[x];
-	} while(!b[x]);
+	} while (!b[x]);
 
-	for(int i=1; i<=n; i++)
-		if(b[i]) ans++;
+	for (int i = 1; i <= n; i++)
+		if (b[i]) ans++;
 
 	cout << ans << '\n';
 }

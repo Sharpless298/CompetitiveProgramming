@@ -9,12 +9,11 @@ signed main() {
 
 	int n;
 	cin >> n;
-	for(int i=0, x; i<n-1; i++)
-		cin >> x, f[x] = true;
-	
-	for(int i=1; i<=n; i++) {
-		if(!f[i]) {
-			cout << i << '\n'; 
+	for (int i = 0, x; i < n - 1; i++) cin >> x, f[x] = true;
+
+	for (int i = 1; i <= n; i++) {
+		if (!f[i]) {
+			cout << i << '\n';
 			break;
 		}
 	}

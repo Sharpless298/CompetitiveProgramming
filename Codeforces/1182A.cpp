@@ -9,9 +9,10 @@ signed main() {
 
 	cin >> n;
 
-	if(n & 1) cout << 0 << '\n';
+	if (n & 1)
+		cout << 0 << '\n';
 	else {
-		for(int i=0; i<n; i+=2) ans *= 2;
+		for (int i = 0; i < n; i += 2) ans *= 2;
 
 		cout << ans << '\n';
 	}

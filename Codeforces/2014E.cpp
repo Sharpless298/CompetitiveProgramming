@@ -6,14 +6,15 @@ void Dijkstra(int s, vector<vector<long long>> &d, vector<vector<pair<int, int>>
 	d[s][0] = 0;
 	pq.push({0, s, 0});
 
-	while(!pq.empty()) {
-		auto [p, u, h] = pq.top(); pq.pop();
+	while (!pq.empty()) {
+		auto [p, u, h] = pq.top();
+		pq.pop();
 
-		if(d[u][h] != p) continue;
+		if (d[u][h] != p) continue;
 		bool f = (h || horse[u]);
-		for(auto [v, w] : G[u]) {
-			w = f ? w/2 : w;
-			if(d[u][h]+w < d[v][f]) {
+		for (auto [v, w] : G[u]) {
+			w = f ? w / 2 : w;
+			if (d[u][h] + w < d[v][f]) {
 				d[v][f] = d[u][h] + w;
 				pq.push({d[v][f], v, f});
 			}
@@ -27,11 +28,11 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m, h;
 		cin >> n >> m >> h;
 		vector<bool> horse(n);
-		for(int i=0; i<h; i++) {
+		for (int i = 0; i < h; i++) {
 			int u;
 			cin >> u;
 			u--;
@@ -39,7 +40,7 @@ signed main() {
 		}
 
 		vector<vector<pair<int, int>>> G(n);
-		for(int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			int u, v, w;
 			cin >> u >> v >> w;
 			u--, v--;
@@ -51,12 +52,11 @@ signed main() {
 		vector<vector<long long>> d1(n, vector<long long>(2, INF));
 		vector<vector<long long>> d2(n, vector<long long>(2, INF));
 		Dijkstra(0, d1, G, horse);
-		Dijkstra(n-1, d2, G, horse);
+		Dijkstra(n - 1, d2, G, horse);
 
 		long long ans = INF;
-		for(int i=0; i<n; i++) 
-			ans = min(ans, max(min(d1[i][0], d1[i][1]), min(d2[i][0], d2[i][1])));
-		
-		cout << (ans==INF ? -1 : ans) << '\n';
+		for (int i = 0; i < n; i++) ans = min(ans, max(min(d1[i][0], d1[i][1]), min(d2[i][0], d2[i][1])));
+
+		cout << (ans == INF ? -1 : ans) << '\n';
 	}
 }

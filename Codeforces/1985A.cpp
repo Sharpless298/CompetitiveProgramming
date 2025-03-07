@@ -9,9 +9,9 @@ signed main() {
 	string s, t;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> s >> t;
-		
+
 		swap(s[0], t[0]);
 		cout << s << ' ' << t << '\n';
 	}

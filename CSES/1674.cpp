@@ -5,8 +5,7 @@ vector<int> sz;
 vector<vector<int>> G;
 int DFS(int u) {
 	sz[u] = 1;
-	for(int v : G[u]) 
-		sz[u] += DFS(v);
+	for (int v : G[u]) sz[u] += DFS(v);
 	return sz[u];
 }
 
@@ -17,7 +16,7 @@ signed main() {
 	int n;
 	cin >> n;
 	G.resize(n);
-	for(int i=1; i<n; i++) {
+	for (int i = 1; i < n; i++) {
 		int u;
 		cin >> u;
 		u--;
@@ -25,6 +24,6 @@ signed main() {
 	}
 	sz.resize(n);
 	DFS(0);
-	for(int i : sz) cout << i-1 << ' ';
+	for (int i : sz) cout << i - 1 << ' ';
 	cout << '\n';
 }

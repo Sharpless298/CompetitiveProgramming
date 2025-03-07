@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -14,28 +14,26 @@ bool cmp(pair<int, int> a, pair<int, int> b) {
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
+
 	cin >> n;
-	for(int i=0; i<n; i++)
-		cin >> p[i].first >> p[i].second;
+	for (int i = 0; i < n; i++) cin >> p[i].first >> p[i].second;
 	cin >> t;
 
-	sort(p, p+n, cmp);
-	while(t) {
-		while(idx<n && p[idx].second>=t) {
+	sort(p, p + n, cmp);
+	while (t) {
+		while (idx < n && p[idx].second >= t) {
 			pq.push(p[idx].first);
 			idx++;
 		}
-		if(pq.empty()) {
-			ans -= t-p[idx].second;
+		if (pq.empty()) {
+			ans -= t - p[idx].second;
 			t = p[idx].second;
-		}
-		else {
+		} else {
 			ans += pq.top();
 			pq.pop();
 			t--;
 		}
 	}
-	
+
 	cout << ans << '\n';
 }

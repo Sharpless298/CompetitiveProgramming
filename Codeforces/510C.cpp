@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <vector>
 using namespace std;
 
 bool f;
@@ -10,16 +10,16 @@ vector<int> G[32], ans;
 
 void build() {
 	int idx = 0;
-	while(idx < (int)min(s.size(), t.size())) {
-		if(s[idx] != t[idx]) {
-			G[s[idx]-'a'].push_back(t[idx]-'a');
-			in[t[idx]-'a']++;
+	while (idx < (int)min(s.size(), t.size())) {
+		if (s[idx] != t[idx]) {
+			G[s[idx] - 'a'].push_back(t[idx] - 'a');
+			in[t[idx] - 'a']++;
 			return;
 		}
 		idx++;
-	}	
-	
-	if(s.size() > t.size()) f = true;
+	}
+
+	if (s.size() > t.size()) f = true;
 }
 
 signed main() {
@@ -30,31 +30,31 @@ signed main() {
 
 	cin >> n;
 	cin >> s;
-	for(int i=0; i<n-1; i++) {
+	for (int i = 0; i < n - 1; i++) {
 		cin >> t;
 		build();
 		s = t;
 	}
 
-	if(f) 
+	if (f)
 		cout << "Impossible\n";
 	else {
 		queue<int> q;
-		for(int i=0; i<26; i++)
-			if(in[i] == 0) q.push(i);
+		for (int i = 0; i < 26; i++)
+			if (in[i] == 0) q.push(i);
 
-		while(!q.empty()) {
+		while (!q.empty()) {
 			v = q.front(), q.pop();
 			ans.push_back(v);
 
-			for(int i:G[v]) 
-				if(--in[i] == 0) q.push(i);
+			for (int i : G[v])
+				if (--in[i] == 0) q.push(i);
 		}
 
-		if(ans.size() != 26) 
+		if (ans.size() != 26)
 			cout << "Impossible";
-		else 
-			for(int i:ans) cout << (char)(i+'a');
+		else
+			for (int i : ans) cout << (char)(i + 'a');
 		cout << '\n';
 	}
 }

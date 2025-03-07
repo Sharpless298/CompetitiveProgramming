@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int a[100005];
@@ -14,15 +14,14 @@ signed main() {
 	vector<int>::iterator iter;
 
 	cin >> n;
-	for(int i=0; i<n; i++)
-		cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
 
-	for(int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		iter = lower_bound(v.begin(), v.end(), a[i]);
 
-		if(iter == v.end())
+		if (iter == v.end())
 			v.push_back(a[i]);
-		else 
+		else
 			*iter = a[i];
 	}
 

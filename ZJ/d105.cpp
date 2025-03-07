@@ -12,10 +12,9 @@ signed main() {
 	cin >> n >> m;
 
 	dp[0][0] = 1;
-	for(int i=1; i<m; i++)
-		for(int j=0; j<n; j++)
-			dp[i][j] = dp[i-1][(j-1+n)%n] + dp[i-1][(j+1)%n];
-	dp[m][0] = dp[m-1][n-1] + dp[m-1][1];
+	for (int i = 1; i < m; i++)
+		for (int j = 0; j < n; j++) dp[i][j] = dp[i - 1][(j - 1 + n) % n] + dp[i - 1][(j + 1) % n];
+	dp[m][0] = dp[m - 1][n - 1] + dp[m - 1][1];
 
 	cout << dp[m][0] << '\n';
 }

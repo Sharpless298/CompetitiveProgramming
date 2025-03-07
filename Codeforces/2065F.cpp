@@ -7,13 +7,13 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		vector<int> a(n);
-		for(int &i : a) cin >> i, i--;
+		for (int &i : a) cin >> i, i--;
 		vector<vector<int>> G(n);
-		for(int i=0; i<n-1; i++) {
+		for (int i = 0; i < n - 1; i++) {
 			int u, v;
 			cin >> u >> v;
 			u--, v--;
@@ -22,11 +22,11 @@ signed main() {
 		}
 
 		string ans(n, '0');
-		for(int u=0; u<n; u++) {
+		for (int u = 0; u < n; u++) {
 			map<int, int> cnt;
-			for(int v : G[u]) 
-				if(++cnt[a[v]] >= 2) ans[a[v]] = '1';
-			if(++cnt[a[u]] >= 2) ans[a[u]] = '1';
+			for (int v : G[u])
+				if (++cnt[a[v]] >= 2) ans[a[v]] = '1';
+			if (++cnt[a[u]] >= 2) ans[a[u]] = '1';
 		}
 		cout << ans << '\n';
 	}

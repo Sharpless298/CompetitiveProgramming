@@ -4,13 +4,12 @@ using namespace std;
 vector<int> a;
 vector<vector<int>> G;
 int f(int u) {
-	if(G[u].size() == 0) return a[u];
+	if (G[u].size() == 0) return a[u];
 
 	int mn = 0x3f3f3f3f;
-	for(int v : G[u])
-		mn = min(mn, f(v));
+	for (int v : G[u]) mn = min(mn, f(v));
 
-	return mn>=a[u] ? (mn+a[u])/2 : mn;
+	return mn >= a[u] ? (mn + a[u]) / 2 : mn;
 }
 
 signed main() {
@@ -19,15 +18,15 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		a.resize(n);
-		for(int &i : a) cin >> i;
+		for (int &i : a) cin >> i;
 
 		G.clear();
 		G.resize(n);
-		for(int i=1; i<n; i++) {
+		for (int i = 1; i < n; i++) {
 			int u;
 			cin >> u, u--;
 
@@ -35,9 +34,8 @@ signed main() {
 		}
 
 		int mn = 0x3f3f3f3f;
-		for(int u : G[0]) 
-			mn = min(mn, f(u));
+		for (int u : G[0]) mn = min(mn, f(u));
 
-		cout << mn+a[0] << '\n';
+		cout << mn + a[0] << '\n';
 	}
 }

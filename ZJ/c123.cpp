@@ -11,30 +11,31 @@ signed main() {
 
 	int n, t;
 
-	while(cin >> n && n) {
-		while(cin >> t) {
-			while(!stk.empty()) {
+	while (cin >> n && n) {
+		while (cin >> t) {
+			while (!stk.empty()) {
 				stk.pop();
 			}
 
-			if(!t) {
+			if (!t) {
 				cout << '\n';
 				break;
 			}
 
 			ary[0] = t;
-			for(int i=1; i<n; i++)
-				cin >> ary[i];
-			for(int i=1, j=0; i<=n; i++) {
+			for (int i = 1; i < n; i++) cin >> ary[i];
+			for (int i = 1, j = 0; i <= n; i++) {
 				stk.push(i);
-				while(!stk.empty() && ary[j]==stk.top()) {
+				while (!stk.empty() && ary[j] == stk.top()) {
 					stk.pop();
 					j++;
 				}
 			}
 
-			if(!stk.empty()) cout << "No\n";
-			else cout << "Yes\n";
+			if (!stk.empty())
+				cout << "No\n";
+			else
+				cout << "Yes\n";
 		}
 	}
 }

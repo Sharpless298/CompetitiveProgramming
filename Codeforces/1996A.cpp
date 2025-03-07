@@ -7,9 +7,9 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
-		cout << n/4 + (n%4)/2 << '\n';
+		cout << n / 4 + (n % 4) / 2 << '\n';
 	}
 }

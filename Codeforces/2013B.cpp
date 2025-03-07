@@ -5,13 +5,15 @@ void solve() {
 	int n;
 	cin >> n;
 	long long ans = 0;
-	for(int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		int x;
 		cin >> x;
-		if(i != n-2) ans += x;
-		else ans -= x;
+		if (i != n - 2)
+			ans += x;
+		else
+			ans -= x;
 	}
-	
+
 	cout << ans << '\n';
 }
 
@@ -21,5 +23,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }

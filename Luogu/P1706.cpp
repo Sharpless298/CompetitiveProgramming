@@ -7,18 +7,18 @@ vector<bool> vis;
 vector<int> stk;
 
 void DFS(int depth) {
-	if(depth == n) {
-		for(int i:stk) cout << "    " << i;
+	if (depth == n) {
+		for (int i : stk) cout << "    " << i;
 		cout << '\n';
 		return;
 	}
 
-	for(int i=1; i<=n; i++) {
-		if(vis[i]) continue;
+	for (int i = 1; i <= n; i++) {
+		if (vis[i]) continue;
 
 		stk.push_back(i);
 		vis[i] = true;
-		DFS(depth+1);
+		DFS(depth + 1);
 		stk.pop_back();
 		vis[i] = false;
 	}
@@ -29,6 +29,6 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n;
-	vis.resize(n+1);
+	vis.resize(n + 1);
 	DFS(0);
 }

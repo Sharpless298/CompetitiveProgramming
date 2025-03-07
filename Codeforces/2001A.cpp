@@ -8,17 +8,15 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
-		vector<int> cnt(n+1);
-		for(int i=0, x; i<n; i++)
-			cin >> x, cnt[x]++;
+		vector<int> cnt(n + 1);
+		for (int i = 0, x; i < n; i++) cin >> x, cnt[x]++;
 
 		int mx = 0;
-		for(int i=1; i<=n; i++)
-			mx = max(mx, cnt[i]);
+		for (int i = 1; i <= n; i++) mx = max(mx, cnt[i]);
 
-		cout << n-mx << '\n';
+		cout << n - mx << '\n';
 	}
 }

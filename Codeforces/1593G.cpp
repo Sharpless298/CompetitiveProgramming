@@ -7,23 +7,23 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		string s;
 		cin >> s;
 		int n = (int)s.size();
-		vector<int> cnt(n+1);
-		for(int i=0; i<n; i++) {
-			cnt[i+1] = cnt[i];
-			if(s[i]=='[' || s[i]==']') cnt[i+1] += ((i&1) ? 1 : -1);
+		vector<int> cnt(n + 1);
+		for (int i = 0; i < n; i++) {
+			cnt[i + 1] = cnt[i];
+			if (s[i] == '[' || s[i] == ']') cnt[i + 1] += ((i & 1) ? 1 : -1);
 		}
 
 		int q;
 		cin >> q;
-		while(q--) {
+		while (q--) {
 			int l, r;
 			cin >> l >> r;
 			l--;
-			cout << abs(cnt[r]-cnt[l]) << '\n';
+			cout << abs(cnt[r] - cnt[l]) << '\n';
 		}
 	}
 }

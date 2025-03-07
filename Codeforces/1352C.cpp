@@ -11,9 +11,9 @@ signed main() {
 	lli n, k;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n >> k;
-		
-		cout << k + (k-1)/(n-1) << '\n';
+
+		cout << k + (k - 1) / (n - 1) << '\n';
 	}
 }

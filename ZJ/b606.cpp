@@ -13,23 +13,23 @@ signed main() {
 	int n;
 	lli p, q, ans = 0;
 
-	while(cin>>n && n) {
+	while (cin >> n && n) {
 		ans = 0;
-		while(!pq.empty()) pq.pop();
+		while (!pq.empty()) pq.pop();
 
-		for(int i=0, k; i<n; i++) {
+		for (int i = 0, k; i < n; i++) {
 			cin >> k;
 			pq.push(k);
 		}
 
-		for(int i=0; i<n-1; i++) {
+		for (int i = 0; i < n - 1; i++) {
 			p = pq.top();
 			pq.pop();
 			q = pq.top();
 			pq.pop();
-			
-			ans += p+q;
-			pq.push(p+q);
+
+			ans += p + q;
+			pq.push(p + q);
 		}
 
 		cout << ans << '\n';

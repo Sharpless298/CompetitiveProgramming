@@ -6,20 +6,21 @@ void solve() {
 	cin >> s >> t;
 
 	int idx = 0;
-	for(int i=0; i<(int)s.size(); i++) {
-		if(idx<(int)t.size() && s[i]==t[idx]) idx++;
+	for (int i = 0; i < (int)s.size(); i++) {
+		if (idx < (int)t.size() && s[i] == t[idx]) idx++;
 
-		if(s[i] == '?') {
-			if(idx < (int)t.size()) s[i] = t[idx], idx++;
-			else s[i] = 'a';
+		if (s[i] == '?') {
+			if (idx < (int)t.size())
+				s[i] = t[idx], idx++;
+			else
+				s[i] = 'a';
 		}
 	}
 
-	if(idx == (int)t.size()) {
+	if (idx == (int)t.size()) {
 		cout << "YES\n";
 		cout << s << '\n';
-	}
-	else 
+	} else
 		cout << "NO\n";
 }
 
@@ -29,5 +30,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }

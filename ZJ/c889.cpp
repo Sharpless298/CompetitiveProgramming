@@ -9,15 +9,15 @@ int BFS(int u) {
 	array<int, 2> cnt;
 	cnt[0] = cnt[1] = 0;
 	q.push(u);
-	while(!q.empty()) {
-		int v = q.front(); q.pop();
+	while (!q.empty()) {
+		int v = q.front();
+		q.pop();
 		cnt[id[v]]++;
-		for(int w : G[v]) {
-			if(id[w] == -1) {
-				id[w] = id[v] ^ 1; 
+		for (int w : G[v]) {
+			if (id[w] == -1) {
+				id[w] = id[v] ^ 1;
 				q.push(w);
-			}
-			else if(id[w] == id[v]) 
+			} else if (id[w] == id[v])
 				return false;
 		}
 	}
@@ -32,7 +32,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	G.assign(n, vector<int>());
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
 		u--, v--;
@@ -41,10 +41,10 @@ signed main() {
 	}
 
 	id.assign(n, -1);
-	for(int i=0; i<n; i++) {
-		if(id[i] == -1) { 
+	for (int i = 0; i < n; i++) {
+		if (id[i] == -1) {
 			id[i] = 0;
-			if(!BFS(i)) {
+			if (!BFS(i)) {
 				cout << 0 << '\n';
 				return 0;
 			}

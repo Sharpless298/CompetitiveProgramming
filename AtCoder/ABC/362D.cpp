@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <vector>
 using namespace std;
 
 typedef long long int lli;
@@ -17,9 +17,8 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n >> m;
-	for(int i=0; i<n; i++)
-		cin >> a[i];
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < n; i++) cin >> a[i];
+	for (int i = 0; i < m; i++) {
 		int u, v;
 		lli w;
 
@@ -29,18 +28,18 @@ signed main() {
 		G[v].push_back({u, w});
 	}
 
-	fill(dis, dis+n, INF);
+	fill(dis, dis + n, INF);
 	dis[0] = a[0];
 	pq.emplace(dis[0], 0);
-	while(!pq.empty()) {
-		auto [d, u] = pq.top(); pq.pop();
+	while (!pq.empty()) {
+		auto [d, u] = pq.top();
+		pq.pop();
 
-		if(dis[u] != d) continue;
-		for(auto &[v, w]:G[u]) 
-			if(dis[u]+w+a[v] < dis[v]) dis[v] = dis[u]+w+a[v], pq.emplace(dis[v], v);
+		if (dis[u] != d) continue;
+		for (auto &[v, w] : G[u])
+			if (dis[u] + w + a[v] < dis[v]) dis[v] = dis[u] + w + a[v], pq.emplace(dis[v], v);
 	}
 
-	for(int i=1; i<n; i++)
-		cout << dis[i] << ' ';
+	for (int i = 1; i < n; i++) cout << dis[i] << ' ';
 	cout << '\n';
 }

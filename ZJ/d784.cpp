@@ -8,14 +8,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n;
-		for(int i=0; i<n; i++)
-			cin >> ary[i];
-		
+		for (int i = 0; i < n; i++) cin >> ary[i];
+
 		ans = dp[0] = ary[0];
-		for(int i=1; i<n; i++) { 
-			dp[i] = max(dp[i-1]+ary[i], ary[i]);
+		for (int i = 1; i < n; i++) {
+			dp[i] = max(dp[i - 1] + ary[i], ary[i]);
 			ans = max(ans, dp[i]);
 		}
 

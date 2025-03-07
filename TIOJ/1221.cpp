@@ -12,25 +12,26 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	fill(mp, mp+100005, INF);
-	fill(nxt, nxt+500005, INF);
+	fill(mp, mp + 100005, INF);
+	fill(nxt, nxt + 500005, INF);
 
 	cin >> n >> k >> p;
-	for(int i=0; i<p; i++) {
+	for (int i = 0; i < p; i++) {
 		cin >> ary[i];
-		if(mp[ary[i]] != INF) {
+		if (mp[ary[i]] != INF) {
 			nxt[mp[ary[i]]] = i;
 			mp[ary[i]] = i;
-		}
-		else 
-			mp[ary[i]] = i;	
+		} else
+			mp[ary[i]] = i;
 	}
 
-	for(int i=0, j=0; i<p; i++) {
-		if(!in[ary[i]]) {
+	for (int i = 0, j = 0; i < p; i++) {
+		if (!in[ary[i]]) {
 			ans++;
-			if(j < k) j++;
-			else in[pq.top().second] = false, pq.pop();
+			if (j < k)
+				j++;
+			else
+				in[pq.top().second] = false, pq.pop();
 		}
 		in[ary[i]] = true;
 		pq.push(make_pair(nxt[i], ary[i]));

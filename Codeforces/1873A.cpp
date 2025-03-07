@@ -10,10 +10,10 @@ signed main() {
 
 	cin >> t;
 
-	while(t--) {
+	while (t--) {
 		cin >> s;
-		
-		if(s=="abc" || s=="acb" || s=="cba" || s=="bac") 
+
+		if (s == "abc" || s == "acb" || s == "cba" || s == "bac")
 			cout << "YES\n";
 		else
 			cout << "NO\n";

@@ -8,11 +8,10 @@ unordered_set<string> us;
 void check(string &t) {
 	string p, q;
 
-	for(int i=1; i*2<=(int)t.size(); i++) {
+	for (int i = 1; i * 2 <= (int)t.size(); i++) {
 		p = t.substr(0, i);
-		q = t.substr(t.size()-i, i);
-		if(p == q && us.find(t.substr(i, t.size()-i*2))!=us.end())
-			ans++;
+		q = t.substr(t.size() - i, i);
+		if (p == q && us.find(t.substr(i, t.size() - i * 2)) != us.end()) ans++;
 	}
 	return;
 }
@@ -25,13 +24,12 @@ signed main() {
 	string s;
 
 	cin >> m;
-	while(m--) {
+	while (m--) {
 		cin >> s;
 		us.insert(s);
 	}
 
-	for(string t:us) 
-		check(t);
+	for (string t : us) check(t);
 
 	cout << ans << '\n';
 }

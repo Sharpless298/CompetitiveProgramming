@@ -9,16 +9,14 @@ signed main() {
 	int n, q;
 	cin >> n >> q;
 	vector<int> a(n);
-	for(int i=0; i<n; i++)
-		cin >> a[i];
-	vector<long long> pref(n+1);
-	for(int i=0; i<n; i++)
-		pref[i+1] = pref[i] + a[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	vector<long long> pref(n + 1);
+	for (int i = 0; i < n; i++) pref[i + 1] = pref[i] + a[i];
 
-	while(q--) {
+	while (q--) {
 		int l, r;
 		cin >> l >> r;
 
-		cout << pref[r]-pref[l] << '\n';
+		cout << pref[r] - pref[l] << '\n';
 	}
 }

@@ -1,7 +1,7 @@
 #include <iostream>
-#include <vector>
 #include <queue>
 #include <set>
+#include <vector>
 using namespace std;
 
 signed main() {
@@ -11,26 +11,25 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	set<int> st;
-	for(int i=0; i<n; i++)
-		st.insert(i);
+	for (int i = 0; i < n; i++) st.insert(i);
 
 	vector<long long> ans(n);
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		int t, w, s;
 		cin >> t >> w >> s;
 
-		while(!pq.empty() && pq.top().first <= t) {
+		while (!pq.empty() && pq.top().first <= t) {
 			st.insert(pq.top().second);
 			pq.pop();
 		}
-		if(st.empty()) continue;
+		if (st.empty()) continue;
 
-		int j = *st.begin(); 
+		int j = *st.begin();
 		st.erase(st.begin());
 		ans[j] += w;
-		pq.push({t+s, j});
+		pq.push({t + s, j});
 	}
 
-	for(auto i : ans) cout << i << '\n';
+	for (auto i : ans) cout << i << '\n';
 }

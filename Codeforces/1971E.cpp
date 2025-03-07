@@ -1,7 +1,7 @@
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include <algorithm>
 using namespace std;
 
 signed main() {
@@ -10,30 +10,28 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, k, q;
 
 		cin >> n >> k >> q;
-		vector<int> a(k+1);
+		vector<int> a(k + 1);
 		a[0] = 0;
-		for(int i=1; i<=k; i++)
-			cin >> a[i];
-		vector<int> b(k+1);
+		for (int i = 1; i <= k; i++) cin >> a[i];
+		vector<int> b(k + 1);
 		b[0] = 0;
-		for(int i=1; i<=k; i++)
-			cin >> b[i];
-		
-		while(q--) {
+		for (int i = 1; i <= k; i++) cin >> b[i];
+
+		while (q--) {
 			int d;
 			cin >> d;
 
-			if(d == n) {
+			if (d == n) {
 				cout << b[k] << ' ';
 				continue;
 			}
 
 			int idx = (int)(upper_bound(a.begin(), a.end(), d) - a.begin());
-			cout << b[idx-1] + ((1LL*d-a[idx-1])*(b[idx]-b[idx-1])/(a[idx]-a[idx-1])) << ' ';
+			cout << b[idx - 1] + ((1LL * d - a[idx - 1]) * (b[idx] - b[idx - 1]) / (a[idx] - a[idx - 1])) << ' ';
 		}
 		cout << '\n';
 	}

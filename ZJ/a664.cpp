@@ -9,10 +9,10 @@ stack<char> op;
 stack<lli> stk;
 
 lli calc(lli a, lli b, char ope) {
-	if(ope == '+') return a+b;
-	if(ope == '-') return a-b;
-	if(ope == '*') return a*b;
-	if(ope == '/') return a/b;
+	if (ope == '+') return a + b;
+	if (ope == '-') return a - b;
+	if (ope == '*') return a * b;
+	if (ope == '/') return a / b;
 
 	return -1;
 }
@@ -20,7 +20,7 @@ lli calc(lli a, lli b, char ope) {
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
+
 	bool is_num = false;
 	char ope;
 	int t;
@@ -31,28 +31,28 @@ signed main() {
 
 	cin >> t;
 
-	while(t--) {
+	while (t--) {
 		is_num = false;
 		num = 0;
-		while(!stk.empty()) stk.pop();
+		while (!stk.empty()) stk.pop();
 
 		cin >> s;
-		
-		for(auto &c:s) {
-			if(isdigit(c)) {
+
+		for (auto &c : s) {
+			if (isdigit(c)) {
 				is_num = true;
-				num = num*10 + c - '0';
-			}
-			else {
-				if(is_num) {
+				num = num * 10 + c - '0';
+			} else {
+				if (is_num) {
 					stk.push(num);
 					is_num = false;
 					num = 0;
 				}
 
-				if(c == '(') op.push(c);
-				else if(c == ')') {
-					while(op.top() != '(') {
+				if (c == '(')
+					op.push(c);
+				else if (c == ')') {
+					while (op.top() != '(') {
 						b = stk.top();
 						stk.pop();
 						a = stk.top();
@@ -62,9 +62,8 @@ signed main() {
 						stk.push(calc(a, b, ope));
 					}
 					op.pop();
-				}
-				else {
-					while(!op.empty() && op.top()!='(' && pri[(int)op.top()]) {
+				} else {
+					while (!op.empty() && op.top() != '(' && pri[(int)op.top()]) {
 						b = stk.top();
 						stk.pop();
 						a = stk.top();
@@ -77,9 +76,9 @@ signed main() {
 				}
 			}
 		}
-		if(is_num) stk.push(num);
+		if (is_num) stk.push(num);
 
-		while(stk.size() > 1) {
+		while (stk.size() > 1) {
 			b = stk.top();
 			stk.pop();
 			a = stk.top();

@@ -9,21 +9,19 @@ signed main() {
 	int q, cnt = 0;
 	multiset<int> ms;
 	cin >> q;
-	while(q--) {
+	while (q--) {
 		int t, x;
-		
+
 		cin >> t;
-		if(t == 1) {
+		if (t == 1) {
 			cin >> x;
-			if(ms.count(x) == 0) cnt++;
+			if (ms.count(x) == 0) cnt++;
 			ms.insert(x);
-		}
-		else if(t == 2) {
+		} else if (t == 2) {
 			cin >> x;
 			ms.erase(ms.find(x));
-			if(ms.count(x) == 0) cnt--;
-		}
-		else 
+			if (ms.count(x) == 0) cnt--;
+		} else
 			cout << cnt << '\n';
 	}
 }

@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 bool ans;
@@ -13,25 +13,23 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		ans = true;
 		l.clear(), r.clear();
 
 		cin >> n;
-		for(int i=0; i<n; i++)
-			cin >> a[i];
+		for (int i = 0; i < n; i++) cin >> a[i];
 		cin >> c;
 
-		for(int i=0; i<n; i++)
-			(c[i]=='B' ? l : r).push_back(a[i]);
+		for (int i = 0; i < n; i++) (c[i] == 'B' ? l : r).push_back(a[i]);
 
 		sort(l.begin(), l.end());
 		sort(r.begin(), r.end(), greater<int>());
-		
-		for(int i=0; i<(int)l.size(); i++)
-			if(l[i] < i+1) ans = false;
-		for(int i=0; i<(int)r.size(); i++)
-			if(r[i] > n-i) ans = false;
+
+		for (int i = 0; i < (int)l.size(); i++)
+			if (l[i] < i + 1) ans = false;
+		for (int i = 0; i < (int)r.size(); i++)
+			if (r[i] > n - i) ans = false;
 
 		cout << (ans ? "YES" : "NO") << '\n';
 	}

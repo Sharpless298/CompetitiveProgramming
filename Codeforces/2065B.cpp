@@ -4,8 +4,8 @@ using namespace std;
 void solve() {
 	string s;
 	cin >> s;
-	for(int i=0; i<(int)s.size()-1; i++) {
-		if(s[i] == s[i+1]) {
+	for (int i = 0; i < (int)s.size() - 1; i++) {
+		if (s[i] == s[i + 1]) {
 			cout << 1 << '\n';
 			return;
 		}
@@ -19,5 +19,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }

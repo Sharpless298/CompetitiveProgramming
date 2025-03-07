@@ -7,16 +7,16 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m;
 		cin >> n >> m;
 		cin.ignore();
 		int ans = 0, sum = 0;
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			string s;
 			getline(cin, s);
 			sum += (int)s.size();
-			if(sum <= m) ans = i+1;
+			if (sum <= m) ans = i + 1;
 		}
 
 		cout << ans << '\n';

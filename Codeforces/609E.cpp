@@ -1,10 +1,10 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include <utility>
-#include <queue>
 #include <cstring>
+#include <iostream>
 #include <numeric>
+#include <queue>
+#include <utility>
+#include <vector>
 using namespace std;
 
 typedef long long int lli;
@@ -25,7 +25,7 @@ Edge edges[200005];
 vector<pair<int, int>> G[200005];
 
 void init() {
-	iota(parent, parent+200005, 0);
+	iota(parent, parent + 200005, 0);
 	memset(rk, 0, sizeof(rk));
 }
 
@@ -35,24 +35,26 @@ int Find(int x) {
 
 bool Union(int a, int b) {
 	a = Find(a), b = Find(b);
-	
-	if(a == b) return false;
-	if(rk[a] < rk[b]) parent[a] = b;
-	if(rk[a] > rk[b]) parent[b] = a;
-	else parent[a] = b, rk[b]++;
-	
+
+	if (a == b) return false;
+	if (rk[a] < rk[b]) parent[a] = b;
+	if (rk[a] > rk[b])
+		parent[b] = a;
+	else
+		parent[a] = b, rk[b]++;
+
 	return true;
 }
 
 void DFS(int u, int f) {
-	depth[u] = depth[f]+1;
-	for(auto &v:G[u]) {
-		if(v.first == f) continue;
-		ac[v.first][0] = u; 
+	depth[u] = depth[f] + 1;
+	for (auto &v : G[u]) {
+		if (v.first == f) continue;
+		ac[v.first][0] = u;
 		mx[v.first][0] = v.second;
-		for(int i=1; i<=17; i++) {
-			ac[v.first][i] = ac[ac[v.first][i-1]][i-1];
-			mx[v.first][i] = max(mx[v.first][i-1], mx[ac[v.first][i-1]][i-1]);
+		for (int i = 1; i <= 17; i++) {
+			ac[v.first][i] = ac[ac[v.first][i - 1]][i - 1];
+			mx[v.first][i] = max(mx[v.first][i - 1], mx[ac[v.first][i - 1]][i - 1]);
 		}
 		DFS(v.first, u);
 	}
@@ -61,17 +63,17 @@ void DFS(int u, int f) {
 int query(int u, int v) {
 	int res = 0;
 
-	if(depth[u] < depth[v]) swap(u, v);
-	for(int i=17; i>=0; i--) {
-		if(depth[ac[u][i]] >= depth[v]) {
+	if (depth[u] < depth[v]) swap(u, v);
+	for (int i = 17; i >= 0; i--) {
+		if (depth[ac[u][i]] >= depth[v]) {
 			res = max(res, mx[u][i]);
 			u = ac[u][i];
 		}
 	}
-	if(u == v) return res;
+	if (u == v) return res;
 
-	for(int i=17; i>=0; i--) {
-		if(ac[u][i] != ac[v][i]) {
+	for (int i = 17; i >= 0; i--) {
+		if (ac[u][i] != ac[v][i]) {
 			res = max({res, mx[u][i], mx[v][i]});
 			u = ac[u][i];
 			v = ac[v][i];
@@ -86,30 +88,30 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> N >> M;
-	for(int i=0; i<M; i++) {
+	for (int i = 0; i < M; i++) {
 		cin >> edges[i].u >> edges[i].v >> edges[i].w;
 		edges[i].id = i;
 	}
-	
+
 	init();
-	sort(edges, edges+M);
-	for(int i=0; i<M; i++) {
-		if(Union(edges[i].u, edges[i].v)) {
+	sort(edges, edges + M);
+	for (int i = 0; i < M; i++) {
+		if (Union(edges[i].u, edges[i].v)) {
 			G[edges[i].u].push_back(make_pair(edges[i].v, edges[i].w));
 			G[edges[i].v].push_back(make_pair(edges[i].u, edges[i].w));
 			sum += edges[i].w, used[i] = true;
 		}
 	}
-	
+
 	ac[1][0] = 1;
 	DFS(1, 0);
-	
-	for(int i=0; i<M; i++) {
-		if(used[i]) ans[edges[i].id] = sum;
-		else ans[edges[i].id] = sum-query(edges[i].u, edges[i].v)+edges[i].w;
-	}
-	
-	for(int i=0; i<M; i++) 
-		cout << ans[i] << '\n';
-}
 
+	for (int i = 0; i < M; i++) {
+		if (used[i])
+			ans[edges[i].id] = sum;
+		else
+			ans[edges[i].id] = sum - query(edges[i].u, edges[i].v) + edges[i].w;
+	}
+
+	for (int i = 0; i < M; i++) cout << ans[i] << '\n';
+}

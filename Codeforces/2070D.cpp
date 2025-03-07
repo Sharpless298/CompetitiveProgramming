@@ -9,12 +9,12 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		vector<int> depth(n), parent(n);
 		vector<vector<int>> G(n);
-		for(int i=1; i<n; i++) {
+		for (int i = 1; i < n; i++) {
 			int u;
 			cin >> u;
 			u--;
@@ -27,22 +27,23 @@ signed main() {
 		vector<int> dp(n), all(n);
 		dp[0] = 1;
 		all[0] = 1;
-		for(int u : G[0]) {
+		for (int u : G[0]) {
 			dp[u] = 1;
 			all[1]++;
-			for(int v : G[u]) q.push(v);
+			for (int v : G[u]) q.push(v);
 		}
 
-		while(!q.empty()) {
-			int u = q.front(); q.pop();
+		while (!q.empty()) {
+			int u = q.front();
+			q.pop();
 
-			dp[u] = (all[depth[u]-1] - dp[parent[u]]) % MOD;
-			all[depth[u]] = (all[depth[u]] + all[depth[u]-1] - dp[parent[u]]) % MOD;
-			for(int v : G[u]) q.push(v);
+			dp[u] = (all[depth[u] - 1] - dp[parent[u]]) % MOD;
+			all[depth[u]] = (all[depth[u]] + all[depth[u] - 1] - dp[parent[u]]) % MOD;
+			for (int v : G[u]) q.push(v);
 		}
 
 		int ans = 0;
-		for(int i : all) ans = (ans+i) % MOD;
+		for (int i : all) ans = (ans + i) % MOD;
 		ans = ((ans % MOD) + MOD) % MOD;
 		cout << ans << '\n';
 	}

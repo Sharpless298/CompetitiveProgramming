@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 using namespace std;
 
 int n, m;
@@ -13,7 +13,7 @@ signed main() {
 	int T;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		bool f = false;
 		memset(ra, 0, sizeof(ra));
 		memset(rb, 0, sizeof(rb));
@@ -21,42 +21,41 @@ signed main() {
 		memset(cb, 0, sizeof(cb));
 
 		cin >> n >> m;
-		for(int i=0; i<n; i++)
-			for(int j=0; j<m; j++)
-				cin >> a[i][j];
-			
-		for(int i=0; i<n; i++)
-			for(int j=0; j<m; j++)
-				cin >> b[i][j];
-		
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<m; j++) {
-				ra[i] += a[i][j]-'0';
-				rb[i] += b[i][j]-'0';
-			}
-		}
-		
-		for(int i=0; i<m; i++) {
-			for(int j=0; j<n; j++) {
-				ca[i] += a[j][i]-'0';
-				cb[i] += b[j][i]-'0';
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++) cin >> a[i][j];
+
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++) cin >> b[i][j];
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				ra[i] += a[i][j] - '0';
+				rb[i] += b[i][j] - '0';
 			}
 		}
 
-		for(int i=0; i<n; i++) {
-			if((ra[i]%3)!=(rb[i]%3)) {
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				ca[i] += a[j][i] - '0';
+				cb[i] += b[j][i] - '0';
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			if ((ra[i] % 3) != (rb[i] % 3)) {
 				f = true;
 				break;
 			}
 		}
-		for(int i=0; i<m; i++) {
-			if((ca[i]%3)!=(cb[i]%3)) {
+		for (int i = 0; i < m; i++) {
+			if ((ca[i] % 3) != (cb[i] % 3)) {
 				f = true;
 				break;
 			}
 		}
-		if(!f) cout << "YES\n";
-		else cout << "NO\n";
+		if (!f)
+			cout << "YES\n";
+		else
+			cout << "NO\n";
 	}
 }
-

@@ -9,14 +9,14 @@ lli x;
 vector<vector<int>> a;
 
 void DFS(int depth, lli res) {
-	if(depth == n) {
-		ans += (res==x);
+	if (depth == n) {
+		ans += (res == x);
 		return;
 	}
 
-	for(auto &i:a[depth]) {
-		if(res > x/i) continue;
-		DFS(depth+1, res*i);
+	for (auto &i : a[depth]) {
+		if (res > x / i) continue;
+		DFS(depth + 1, res * i);
 	}
 }
 
@@ -26,16 +26,16 @@ signed main() {
 
 	cin >> n >> x;
 	a.resize(n);
-	for(int i=0; i<n; i++) {
+	for (int i = 0; i < n; i++) {
 		int l;
 		cin >> l;
-		for(int j=0; j<l; j++) {
+		for (int j = 0; j < l; j++) {
 			int t;
 			cin >> t;
 			a[i].push_back(t);
 		}
 	}
-	
+
 	DFS(0, 1);
 
 	cout << ans << '\n';

@@ -8,6 +8,6 @@ signed main() {
 	int a, b, c;
 	cin >> a >> b >> c;
 
-	int s = (a+b+c)/2;
-	cout << s*(s-a)*(s-b)*(s-c) << '\n';
+	int s = (a + b + c) / 2;
+	cout << s * (s - a) * (s - b) * (s - c) << '\n';
 }

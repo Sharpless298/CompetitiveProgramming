@@ -9,7 +9,7 @@ void push(string name) {
 }
 
 void pop() {
-	if(top==-1) return;
+	if (top == -1) return;
 	top--;
 }
 
@@ -21,22 +21,21 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie();
 	cout.tie();
-	
+
 	int n;
 
-	while(cin >> n && n) {
+	while (cin >> n && n) {
 		id++;
-		for(int i=0; i<n; i++)
-			cin >> name[i];
-		
+		for (int i = 0; i < n; i++) cin >> name[i];
+
 		cout << "SET " << id << '\n';
-		for(int i=0; i<n; i++) {
-			if(i&1) 
+		for (int i = 0; i < n; i++) {
+			if (i & 1)
 				push(name[i]);
-			else 
+			else
 				cout << name[i] << '\n';
 		}
-		while(top!=-1) {
+		while (top != -1) {
 			cout << query() << '\n';
 			pop();
 		}

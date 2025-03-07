@@ -11,14 +11,16 @@ signed main() {
 	int n, id;
 	string s;
 
-	while(cin >> n) {
+	while (cin >> n) {
 		id = 0;
 		mp.clear();
 
-		for(int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			cin >> s;
-			if(!mp[s]) cout << "New! ", mp[s] = ++id;
-			else cout << "Old! ";
+			if (!mp[s])
+				cout << "New! ", mp[s] = ++id;
+			else
+				cout << "Old! ";
 			cout << mp[s] << '\n';
 		}
 	}

@@ -7,18 +7,21 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int l = 1, r = 999;
-		while(r-l > 1) {
-			int ml = (2*l+r)/3, mr = (l+2*r)/3;
-			
+		while (r - l > 1) {
+			int ml = (2 * l + r) / 3, mr = (l + 2 * r) / 3;
+
 			cout << "? " << ml << ' ' << mr << endl;
 			int t;
 			cin >> t;
 
-			if(t == ml*mr) l = mr;
-			else if(t == ml*(mr+1)) l = ml, r = mr;
-			else r = ml;
+			if (t == ml * mr)
+				l = mr;
+			else if (t == ml * (mr + 1))
+				l = ml, r = mr;
+			else
+				r = ml;
 		}
 
 		cout << "! " << r << '\n';

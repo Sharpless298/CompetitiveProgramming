@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
+#include <iostream>
 #include <numeric>
+#include <vector>
 using namespace std;
 
 struct Edge {
@@ -22,9 +22,9 @@ int Find(int x) {
 void Union(int a, int b) {
 	a = Find(a), b = Find(b);
 
-	if(a == b) return;
-	
-	if(sz[a] > sz[b]) swap(a, b);
+	if (a == b) return;
+
+	if (sz[a] > sz[b]) swap(a, b);
 	parent[a] = b;
 	sz[b] += sz[a];
 }
@@ -35,20 +35,20 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	vector<Edge> E(m);
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		cin >> E[i].u >> E[i].v >> E[i].c;
 		E[i].id = i;
 	}
-	
+
 	init();
-	sort(E.begin(), E.end(), [](Edge &a, Edge &b) {return a.c < b.c;});
+	sort(E.begin(), E.end(), [](Edge &a, Edge &b) { return a.c < b.c; });
 	int cnt = 0;
 	long long ans1 = 0;
 	vector<int> ans2;
-	for(int i=0; i<m; i++) {
-		if(cnt == n-1) break;
+	for (int i = 0; i < m; i++) {
+		if (cnt == n - 1) break;
 
-		if(Find(E[i].u) != Find(E[i].v)) {
+		if (Find(E[i].u) != Find(E[i].v)) {
 			Union(E[i].u, E[i].v);
 			ans1 += E[i].c;
 			ans2.push_back(E[i].id);
@@ -57,6 +57,6 @@ signed main() {
 	}
 
 	cout << ans1 << '\n';
-	for(int i:ans2) cout << i << ' ';
+	for (int i : ans2) cout << i << ' ';
 	cout << '\n';
 }

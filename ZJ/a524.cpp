@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 signed main() {
@@ -9,13 +9,11 @@ signed main() {
 	int n;
 	string s;
 
-	while(cin >> n) {
+	while (cin >> n) {
 		s = "";
-		for(int i=n; i>=1; i--)
-			s += '0'+i;
-		
+		for (int i = n; i >= 1; i--) s += '0' + i;
+
 		cout << s << '\n';
-		while(prev_permutation(s.begin(), s.end())) 
-			cout << s << '\n';
+		while (prev_permutation(s.begin(), s.end())) cout << s << '\n';
 	}
 }

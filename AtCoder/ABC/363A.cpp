@@ -9,8 +9,12 @@ signed main() {
 
 	cin >> r;
 
-	if(100-r > 0) cout << 100 - r << '\n';
-	else if(200-r > 0) cout << 200 - r << '\n';
-	else if(300-r > 0) cout << 300 - r << '\n';
-	else cout << 400 - r << '\n';
+	if (100 - r > 0)
+		cout << 100 - r << '\n';
+	else if (200 - r > 0)
+		cout << 200 - r << '\n';
+	else if (300 - r > 0)
+		cout << 300 - r << '\n';
+	else
+		cout << 400 - r << '\n';
 }

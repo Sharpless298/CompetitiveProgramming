@@ -7,38 +7,42 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, x;
 		long long k;
 		cin >> n >> x >> k;
 		string s;
 		cin >> s;
-		int t = 0x3f3f3f3f, p = (x==0);
-		for(int i=0; i<n; i++) {
-			if(s[i] == 'L') x--;
-			else x++;
+		int t = 0x3f3f3f3f, p = (x == 0);
+		for (int i = 0; i < n; i++) {
+			if (s[i] == 'L')
+				x--;
+			else
+				x++;
 
-			if(x == 0) {
-				t = i+1;
+			if (x == 0) {
+				t = i + 1;
 				break;
 			}
 		}
 
-		if(t==0x3f3f3f3f || t>k) {
+		if (t == 0x3f3f3f3f || t > k) {
 			cout << p << '\n';
 			continue;
 		}
 		k -= t;
-		x = 0; 
+		x = 0;
 		long long d = 0x3fffffffffffffff;
-		for(int i=0; i<n; i++) {
-			if(s[i] == 'L') x++;
-			else x--;
-			if(x == 0) {
-				d = i+1;
+		for (int i = 0; i < n; i++) {
+			if (s[i] == 'L')
+				x++;
+			else
+				x--;
+			if (x == 0) {
+				d = i + 1;
 				break;
 			}
 		}
-		cout << k/d+1+p << '\n';
+		cout << k / d + 1 + p << '\n';
 	}
 }

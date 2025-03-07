@@ -13,25 +13,22 @@ signed main() {
 
 	cin >> k >> q >> r;
 	cin >> t;
-	for(int i=0; i<q; i++) {
-		for(int j=0; j<k; j++)
-			cin >> ary[i][j];
+	for (int i = 0; i < q; i++) {
+		for (int j = 0; j < k; j++) cin >> ary[i][j];
 	}
 
-	for(int i=0; i<q; i++) {
-		for(int j=0; j<k; j++) {
-			if(i==0)
-				temp[ary[i][j]-1] = t[j];
+	for (int i = 0; i < q; i++) {
+		for (int j = 0; j < k; j++) {
+			if (i == 0)
+				temp[ary[i][j] - 1] = t[j];
 			else
-				temp[ary[i][j]-1] = c[i-1][j];
+				temp[ary[i][j] - 1] = c[i - 1][j];
 		}
-		for(int p=0; p<k; p++) 
-			c[i][p] = temp[p];
+		for (int p = 0; p < k; p++) c[i][p] = temp[p];
 	}
-	
-	for(int i=0; i<r; i++) {
-		for(int j=0; j<q; j++)
-			cout << c[j][i];
+
+	for (int i = 0; i < r; i++) {
+		for (int j = 0; j < q; j++) cout << c[j][i];
 		cout << '\n';
 	}
 }

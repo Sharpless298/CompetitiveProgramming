@@ -8,21 +8,23 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m;
 		cin >> n >> m;
 		vector<int> a(n), b(m);
-		for(int &i : a) cin >> i;
-		for(int &i : b) cin >> i;
+		for (int &i : a) cin >> i;
+		for (int &i : b) cin >> i;
 		sort(b.begin(), b.end());
-		a[0] = min(a[0], b[0]-a[0]);
+		a[0] = min(a[0], b[0] - a[0]);
 		bool ok = true;
-		for(int i=1; i<n; i++) {
-			auto it = lower_bound(b.begin(), b.end(), a[i]+a[i-1]);
-			int p = a[i], q = (it==b.end() ? -0x3f3f3f3f : *it)-a[i];
-			if(p > q) swap(p, q);
-			if(p >= a[i-1]) a[i] = p;
-			else if(q >= a[i-1]) a[i] = q;
+		for (int i = 1; i < n; i++) {
+			auto it = lower_bound(b.begin(), b.end(), a[i] + a[i - 1]);
+			int p = a[i], q = (it == b.end() ? -0x3f3f3f3f : *it) - a[i];
+			if (p > q) swap(p, q);
+			if (p >= a[i - 1])
+				a[i] = p;
+			else if (q >= a[i - 1])
+				a[i] = q;
 			else {
 				ok = false;
 				break;

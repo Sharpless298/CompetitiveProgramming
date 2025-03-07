@@ -8,10 +8,9 @@ signed main() {
 	int T, n, k;
 
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		cin >> n >> k;
-		
-		cout << (n-1)*k+1 << '\n';
+
+		cout << (n - 1) * k + 1 << '\n';
 	}
 }
-

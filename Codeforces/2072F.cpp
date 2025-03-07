@@ -7,11 +7,10 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, k;
 		cin >> n >> k;
 		n--;
-		for(int i=0; i<=n; i++) 
-			cout << ((n&i)==i ? k : 0) << " \n"[i==n];
+		for (int i = 0; i <= n; i++) cout << ((n & i) == i ? k : 0) << " \n"[i == n];
 	}
 }

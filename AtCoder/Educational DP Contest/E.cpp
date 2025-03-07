@@ -12,18 +12,16 @@ signed main() {
 
 	cin >> n >> W;
 	vector<int> w(n), v(n);
-	for(int i=0; i<n; i++)
-		cin >> w[i] >> v[i], V += v[i];
+	for (int i = 0; i < n; i++) cin >> w[i] >> v[i], V += v[i];
 
-	vector<int> dp(V+1, INF);
+	vector<int> dp(V + 1, INF);
 	dp[0] = 0;
-	for(int i=0; i<n; i++)
-		for(int j=V; j>=v[i]; j--)
-			dp[j] = min(dp[j], dp[j-v[i]]+w[i]);
+	for (int i = 0; i < n; i++)
+		for (int j = V; j >= v[i]; j--) dp[j] = min(dp[j], dp[j - v[i]] + w[i]);
 
 	int ans = 0;
-	for(int i=0; i<=V; i++)
-		if(dp[i] <= W) ans = max(ans, i);
+	for (int i = 0; i <= V; i++)
+		if (dp[i] <= W) ans = max(ans, i);
 
 	cout << ans << '\n';
 }

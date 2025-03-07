@@ -7,10 +7,10 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n, m, k;
 		cin >> n >> m >> k;
 
-		cout << min(n, k)*min(m, k) << '\n';
+		cout << min(n, k) * min(m, k) << '\n';
 	}
 }

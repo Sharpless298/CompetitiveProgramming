@@ -1,9 +1,9 @@
-#include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <iostream>
 using namespace std;
 
-const int MAXN = 2e5+5;
+const int MAXN = 2e5 + 5;
 
 bool f;
 int n, x;
@@ -14,31 +14,29 @@ signed main() {
 	cin.tie(nullptr);
 
 	cin >> n >> x;
-	for(int i=0; i<n; i++)
-		cin >> ary[i];
+	for (int i = 0; i < n; i++) cin >> ary[i];
 
-	memcpy(sorted_ary, ary, sizeof(int)*n);
-	sort(sorted_ary, sorted_ary+n);
-	for(int i=0; !f && i<n; i++) {
-		if(x == ary[i]*2) {
-			auto iter = lower_bound(sorted_ary, sorted_ary+n, ary[i]);
-			if(*iter == *next(iter)) {
-				cout << i+1 << ' ';
-				for(int j=i+1; j<n; j++) {
-					if(ary[j] == ary[i]) {
-						cout << j+1 << '\n';
+	memcpy(sorted_ary, ary, sizeof(int) * n);
+	sort(sorted_ary, sorted_ary + n);
+	for (int i = 0; !f && i < n; i++) {
+		if (x == ary[i] * 2) {
+			auto iter = lower_bound(sorted_ary, sorted_ary + n, ary[i]);
+			if (*iter == *next(iter)) {
+				cout << i + 1 << ' ';
+				for (int j = i + 1; j < n; j++) {
+					if (ary[j] == ary[i]) {
+						cout << j + 1 << '\n';
 						break;
 					}
 				}
 				f = true;
 			}
-		}
-		else {
-			if(binary_search(sorted_ary, sorted_ary+n, x-ary[i])) {
-				cout << i+1 << ' ';
-				for(int j=i+1; j<n; j++) {
-					if(ary[j] == (x-ary[i])) {
-						cout << j+1 << '\n';
+		} else {
+			if (binary_search(sorted_ary, sorted_ary + n, x - ary[i])) {
+				cout << i + 1 << ' ';
+				for (int j = i + 1; j < n; j++) {
+					if (ary[j] == (x - ary[i])) {
+						cout << j + 1 << '\n';
 						break;
 					}
 				}
@@ -47,10 +45,5 @@ signed main() {
 		}
 	}
 
-	if(!f)
-		cout << "IMPOSSIBLE\n";
+	if (!f) cout << "IMPOSSIBLE\n";
 }
-					
-			
-			
-

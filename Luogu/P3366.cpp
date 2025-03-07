@@ -1,7 +1,7 @@
-#include <iostream>
-#include <cstring>
-#include <numeric>
 #include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <numeric>
 using namespace std;
 
 struct Edge {
@@ -16,8 +16,8 @@ bool cmp(Edge &a, Edge &b) {
 }
 
 void init(int n) {
-	iota(parent, parent+n, 0);
-	fill(sz, sz+n, 1);
+	iota(parent, parent + n, 0);
+	fill(sz, sz + n, 1);
 }
 
 int Find(int x) {
@@ -27,9 +27,9 @@ int Find(int x) {
 bool Union(int a, int b) {
 	a = Find(a), b = Find(b);
 
-	if(a == b) return false;
-	
-	if(sz[a] > sz[b]) swap(a, b);
+	if (a == b) return false;
+
+	if (sz[a] > sz[b]) swap(a, b);
 	parent[a] = b;
 	sz[b] += sz[a];
 	return true;
@@ -43,18 +43,18 @@ signed main() {
 
 	cin >> n >> m;
 	init(n);
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		cin >> edge[i].u >> edge[i].v >> edge[i].w;
 		edge[i].u--, edge[i].v--;
 	}
-	
-	sort(edge, edge+m, cmp);
+
+	sort(edge, edge + m, cmp);
 	int cnt = 0;
-	for(int i=0; i<m; i++) 
-		if(Union(edge[i].u, edge[i].v)) cnt++, ans += edge[i].w;
-	
-	if(cnt == n-1)
+	for (int i = 0; i < m; i++)
+		if (Union(edge[i].u, edge[i].v)) cnt++, ans += edge[i].w;
+
+	if (cnt == n - 1)
 		cout << ans << '\n';
-	else 
+	else
 		cout << "orz\n";
 }

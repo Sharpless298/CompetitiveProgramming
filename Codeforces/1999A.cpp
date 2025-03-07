@@ -7,13 +7,13 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) {
+	while (T--) {
 		int n;
 		cin >> n;
 		int ans = 0;
-		while(n) {
-			ans += n%10;
-			n/=10;
+		while (n) {
+			ans += n % 10;
+			n /= 10;
 		}
 
 		cout << ans << '\n';

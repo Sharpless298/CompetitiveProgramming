@@ -10,17 +10,17 @@ void DFS(int u, int p) {
 	dfn[u] = low[u] = timestamp++;
 
 	bool f = false;
-	for(int v : G[u]) {
-		if(v == p) continue;
-		if(!dfn[v]) {
+	for (int v : G[u]) {
+		if (v == p) continue;
+		if (!dfn[v]) {
 			DFS(v, u), cnt++;
-			if(dfn[u] <= low[v]) f = true;
+			if (dfn[u] <= low[v]) f = true;
 			low[u] = min(low[u], low[v]);
 		}
 		low[u] = min(low[u], dfn[v]);
 	}
-	if(u==p && cnt<2) f = false;
-	if(f) ans++;
+	if (u == p && cnt < 2) f = false;
+	if (f) ans++;
 }
 
 signed main() {
@@ -28,18 +28,18 @@ signed main() {
 	cin.tie(nullptr);
 
 	int n;
-	while(cin>>n && n) {
+	while (cin >> n && n) {
 		G.assign(n, vector<int>());
 
 		string s;
-		while(getline(cin, s)) {
-			if(s == "0") break;
+		while (getline(cin, s)) {
+			if (s == "0") break;
 			stringstream ss(s);
 			int u;
 			ss >> u;
 			u--;
 			int v;
-			while(ss >> v) {
+			while (ss >> v) {
 				v--;
 				G[u].push_back(v);
 				G[v].push_back(u);
@@ -48,7 +48,7 @@ signed main() {
 		ans = 0;
 		dfn.assign(n, 0), low.assign(n, 0);
 		DFS(0, 0);
-		
+
 		cout << ans << '\n';
 	}
 }

@@ -4,26 +4,25 @@ using namespace std;
 void solve() {
 	int n, k;
 	cin >> n >> k;
-	vector<int> a(n), d(2*k+1);
-	for(int &i : a) cin >> i;
+	vector<int> a(n), d(2 * k + 1);
+	for (int &i : a) cin >> i;
 	int mx = *max_element(a.begin(), a.end());
-	for(int i=0; i<n; i++) {
-		int t = a[i] % (2*k);
+	for (int i = 0; i < n; i++) {
+		int t = a[i] % (2 * k);
 		d[t]++;
-		if(t+k <= 2*k) 
-			d[t+k]--;
+		if (t + k <= 2 * k)
+			d[t + k]--;
 		else {
-			d[2*k]--;
+			d[2 * k]--;
 			d[0]++;
-			d[(t+k)%(2*k)]--;
+			d[(t + k) % (2 * k)]--;
 		}
 	}
-	for(int i=0; i<2*k; i++)
-		d[i+1] += d[i];
+	for (int i = 0; i < 2 * k; i++) d[i + 1] += d[i];
 
-	for(int i=0; i<2*k; i++) {
-		if(d[(mx+i)%(2*k)] == n) {
-			cout << mx+i << '\n';
+	for (int i = 0; i < 2 * k; i++) {
+		if (d[(mx + i) % (2 * k)] == n) {
+			cout << mx + i << '\n';
 			return;
 		}
 	}
@@ -36,5 +35,5 @@ signed main() {
 
 	int T;
 	cin >> T;
-	while(T--) solve();
+	while (T--) solve();
 }
