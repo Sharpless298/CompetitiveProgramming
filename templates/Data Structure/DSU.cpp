@@ -6,6 +6,7 @@ struct DSU {
 		iota(parent.begin(), parent.end(), 0);
 		sz.assign(_n, 1);
 	}
+
 	int find(int x) {
 		return parent[x] == x ? x : parent[x] = find(parent[x]);
 	}

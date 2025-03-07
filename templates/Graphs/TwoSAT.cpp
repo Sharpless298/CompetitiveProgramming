@@ -10,6 +10,7 @@ struct TwoSAT {
 		val.assign(n, false);
 		tin.assign(2 * n, -1), low.assign(2 * n, -1), comp.assign(2 * n, -1);
 	}
+
 	void add_clause(int x, int y) {
 		G[x < n ? x + n : x - n].push_back(y);
 		G[y < n ? y + n : y - n].push_back(x);

@@ -8,23 +8,18 @@ struct Point {
 	friend Point operator+(const Point &p, const Point &q) {
 		return Point(p.x + q.x, p.y + q.y);
 	}
-
 	friend Point operator-(const Point &p, const Point &q) {
 		return Point(p.x - q.x, p.y - q.y);
 	}
-
 	friend Point operator*(const Point &p, const T &k) {
 		return Point(p.x * k, p.y * k);
 	}
-
 	friend Point operator/(const Point &p, const T &k) {
 		return Point(p.x / k, p.y / k);
 	}
-
 	friend T dot(const Point &p, const Point &q) {
 		return p.x * q.x + p.y * q.y;
 	}
-
 	friend T cross(const Point &p, const Point &q) {
 		return p.x * q.y - p.y * q.x;
 	}
