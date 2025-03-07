@@ -2,7 +2,8 @@
 using namespace std;
 
 void Dijkstra(int s, vector<vector<long long>> &d, vector<vector<pair<int, int>>> &G, vector<bool> horse) {
-	priority_queue<tuple<long long, int, int>, vector<tuple<long long, int, int>>, greater<tuple<long long, int, int>>> pq;
+	priority_queue<tuple<long long, int, int>, vector<tuple<long long, int, int>>, greater<tuple<long long, int, int>>>
+		pq;
 	d[s][0] = 0;
 	pq.push({0, s, 0});
 

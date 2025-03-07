@@ -79,7 +79,8 @@ pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> 
 template <typename T>
 bool cmp1(pair<T, T> &a, pair<T, T> &b) {
 	// a = a-c, b = b-c;
-	if (atan2(a.second, a.first) - atan2(b.second, b.first) != 0) return atan2(a.second, a.first) < atan2(b.second, b.first);
+	if (atan2(a.second, a.first) - atan2(b.second, b.first) != 0)
+		return atan2(a.second, a.first) < atan2(b.second, b.first);
 	return abs(a) < abs(b);
 }
 
@@ -107,7 +108,8 @@ vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 
 	vector<pair<T, T>> hull;
 	for (pair<T, T> pnt : pnts) {
-		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) hull.pop_back();
+		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();
@@ -115,7 +117,8 @@ vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 	reverse(pnts.begin(), pnts.end());
 	int t = (int)hull.size();
 	for (pair<T, T> pnt : pnts) {
-		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) hull.pop_back();
+		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();

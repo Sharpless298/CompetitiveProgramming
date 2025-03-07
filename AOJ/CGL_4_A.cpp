@@ -1,120 +1,63 @@
-#include <algorithm>
-#include <cassert>
-#include <cmath>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-// const double EPS = 1e-8;
+template <typename T>
+struct TPoint {
+	T x, y;
+	int id;
 
-template <typename T>
-pair<T, T> operator+(pair<T, T> a, pair<T, T> b) {
-	return make_pair(a.first + b.first, a.second + b.second);
-}
-template <typename T>
-pair<T, T> operator-(pair<T, T> a, pair<T, T> b) {
-	return make_pair(a.first - b.first, a.second - b.second);
-}
-template <typename T>
-pair<T, T> operator*(pair<T, T> a, const T b) {
-	return make_pair(a.first * b, a.second * b);
-}
-template <typename T>
-pair<T, T> operator*(const T b, pair<T, T> a) {
-	return make_pair(a.first * b, a.second * b);
-}
-template <typename T>
-pair<T, T> operator/(pair<T, T> a, const T b) {
-	return make_pair(a.first / b, a.second / b);
-}
-template <typename T>
-T dot(pair<T, T> a, pair<T, T> b) {
-	return a.first * b.first + a.second * b.second;
-}
-template <typename T>
-T cross(pair<T, T> a, pair<T, T> b) {
-	return a.first * b.second - a.second * b.first;
-}
-template <typename T>
-T abs2(pair<T, T> a) {
-	return dot(a, a);
-}
-template <typename T>
-T abs(pair<T, T> a) {
-	return sqrt(dot(a, a));
-}
+	TPoint() : x(0), y(0), id(-1) {}
+	TPoint(T _x, T _y) : x(_x), y(_y), id(-1) {}
+	TPoint(T _x, T _y, int _id) : x(_x), y(_y), id(_id) {}
 
-template <typename T>
-int ori(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
-	T res = cross(a - p, b - p);
-	// if(fabs(res) < EPS) return 0;
-	if (res == 0) return 0;
-	return res > 0 ? 1 : -1;
-}
-
-template <typename T>
-bool collinear(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
-	// return fabs(cross(a-p, b-p)) < EPS;
-	return cross(a - p, b - p) == 0;
-}
-
-template <typename T>
-bool on_segment(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
-	return collinear(a, b, p) && dot(a - p, b - p) <= 0;
-}
-
-template <typename T>
-bool intersect(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> &d) {
-	if (onSegment(a, b, c) || onSegment(a, b, d)) return true;
-	if (onSegment(c, d, a) || onSegment(c, d, b)) return true;
-	return ori(b, c, a) * ori(b, d, a) < 0 && ori(d, a, c) * ori(d, b, c) < 0;
-}
-
-template <typename T>
-pair<T, T> intersection(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> &d) {
-	assert(intersect(a, b, c, d));
-	return a + (b - a) * cross(a - c, d - c) / cross(d - c, b - a);
-}
-
-template <typename T>
-bool cmp1(pair<T, T> &a, pair<T, T> &b) {
-	// a = a-c, b = b-c;
-	if (atan2(a.second, a.first) - atan2(b.second, b.first) != 0) return atan2(a.second, a.first) < atan2(b.seoncd, b.first);
-	return abs(a) < abs(b);
-}
-
-template <typename T>
-int quadrant(pair<T, T> &a) {
-	if (a.first > 0 && a.second >= 0) return 1;
-	if (a.first <= 0 && a.second > 0) return 2;
-	if (a.first < 0 && a.second <= 0) return 3;
-	if (a.first >= 0 && a.second < 0) return 4;
-	return -1;
-}
-
-template <typename T>
-bool cmp2(pair<T, T> &a, pair<T, T> &b) {
-	if (quadrant(a) != quadrant(b)) return quadrant(a) < quadrant(b);
-	if (cross(a, b) == 0) return abs2(a) < abs2(b);
-	return cross(a, b) > 0;
-}
-
-template <typename T>
-vector<pair<T, T>> ConvexHull(vector<pair<T, T>> &pnts) {
-	sort(pnts.begin(), pnts.end());
-	// pnts.resize(unique(pnts.begin(), pnts.end()-pnts.begin()));
-	// if(pnts < 3) return pnts;
-
-	vector<pair<T, T>> hull;
-	for (int i = 0; i < 2; i++) {
-		int t = (int)hull.size();
-		for (pair<T, T> pnt : pnts) {
-			while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) < 0) hull.pop_back();
-			hull.push_back(pnt);
-		}
-		hull.pop_back();
-		reverse(pnts.begin(), pnts.end());
+	inline TPoint operator+(const TPoint &p) {
+		return TPoint(x + p.x, y + p.y);
 	}
+	inline TPoint operator-(const TPoint &p) {
+		return TPoint(x - p.x, y - p.y);
+	}
+	inline TPoint operator*(const T &k) {
+		return TPoint(x * k, y * k);
+	}
+	inline TPoint operator/(const T &k) {
+		return TPoint(x / k, y / k);
+	}
+	friend T dot(const TPoint &p, const TPoint &q) {
+		return p.x * q.x + p.y * q.y;
+	}
+	friend T cross(const TPoint &p, const TPoint &q) {
+		return p.x * q.y - p.y * q.x;
+	}
+	inline bool operator<(const TPoint &p) {
+		return (x < p.x || (x == p.x && y < p.y));
+	}
+	inline bool operator==(const TPoint &p) {
+		return x == p.x && y == p.y;
+	}
+};
+using Point = TPoint<long long>;
+
+vector<Point> convex_hull(vector<Point> &pnts) {
+	sort(pnts.begin(), pnts.end());
+	// pnts.resize(unique(pnts.begin(), pnts.end()) - pnts.begin());
+	// if(pnts.size() < 3) return pnts;
+
+	vector<Point> hull;
+	for (Point pnt : pnts) {
+		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) < 0)
+			hull.pop_back();
+		hull.push_back(pnt);
+	}
+	hull.pop_back();
+
+	reverse(pnts.begin(), pnts.end());
+	int t = (int)hull.size();
+	for (Point pnt : pnts) {
+		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) < 0)
+			hull.pop_back();
+		hull.push_back(pnt);
+	}
+	hull.pop_back();
 
 	return hull;
 }
@@ -125,15 +68,16 @@ signed main() {
 
 	int n;
 	cin >> n;
-	vector<pair<int, int>> v(n);
-	for (int i = 0; i < n; i++) cin >> v[i].first >> v[i].second;
-	v = ConvexHull(v);
+	vector<Point> v(n);
+	for (int i = 0; i < n; i++) cin >> v[i].x >> v[i].y;
 
-	int tmp = 2e9, idx;
-	for (int i = 0; i < (int)v.size(); i++)
-		if (v[i].second < tmp) tmp = v[i].second, idx = i;
+	v = convex_hull(v);
 
-	n = (int)v.size();
 	cout << v.size() << '\n';
-	for (int i = idx, j = 0; j < n; j++) cout << v[(i + j) % n].first << ' ' << v[(i + j) % n].second << '\n';
+	long long tmp = 0x3fffffffffffffff;
+	int idx;
+	for (int i = 0; i < (int)v.size(); i++)
+		if (v[i].y < tmp) tmp = v[i].y, idx = i;
+	for (int i = idx, j = 0; j < (int)v.size(); j++)
+		cout << v[(i + j) % (int)v.size()].x << ' ' << v[(i + j) % (int)v.size()].y << '\n';
 }

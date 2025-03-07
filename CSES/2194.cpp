@@ -20,7 +20,9 @@ signed main() {
 	vector<pair<long long, long long>> v(n);
 	for (int i = 0; i < n; i++) cin >> v[i].first >> v[i].second;
 
-	sort(v.begin(), v.end(), [&](pair<long long, long long> &a, pair<long long, long long> &b) { return a.second ^ b.second ? a.second < b.second : a.first < b.first; });
+	sort(v.begin(), v.end(), [&](pair<long long, long long> &a, pair<long long, long long> &b) {
+		return a.second ^ b.second ? a.second < b.second : a.first < b.first;
+	});
 	long long ans = INF;
 	set<pair<long long, long long>> s;
 	for (int i = 0, j = 0; i < n; i++) {

@@ -45,7 +45,8 @@ void update(int l, int r, lli k, int L = 0, int R = n, int id = 0) {
 	int M = (L + R) / 2;
 	update(l, r, k, L, M, id * 2 + 1);
 	update(l, r, k, M, R, id * 2 + 2);
-	seg[id].data = seg[id * 2 + 1].data + seg[id * 2 + 1].tag * seg[id * 2 + 1].sz + seg[id * 2 + 2].data + seg[id * 2 + 2].tag * seg[id * 2 + 2].sz;
+	seg[id].data = seg[id * 2 + 1].data + seg[id * 2 + 1].tag * seg[id * 2 + 1].sz + seg[id * 2 + 2].data +
+				   seg[id * 2 + 2].tag * seg[id * 2 + 2].sz;
 }
 
 lli query(int l, int r, int L = 0, int R = n, int id = 0) {

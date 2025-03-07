@@ -35,7 +35,8 @@ int BFS() {
 			if (ny < 0 || ny >= R || nx < 0 || nx >= C || G[ny][nx] == '#') continue;
 			if (G[ny][nx] == 'R' || G[ny][nx] == 'G' || G[ny][nx] == 'B' || G[ny][nx] == 'Y')
 				if ((key & (1 << key_id[G[ny][nx] - 'A'])) == 0) continue;
-			if (G[ny][nx] == 'r' || G[ny][nx] == 'g' || G[ny][nx] == 'b' || G[ny][nx] == 'y') nkey = (key | (1 << (key_id[G[ny][nx] - 'a'])));
+			if (G[ny][nx] == 'r' || G[ny][nx] == 'g' || G[ny][nx] == 'b' || G[ny][nx] == 'y')
+				nkey = (key | (1 << (key_id[G[ny][nx] - 'a'])));
 
 			if (!vis[ny][nx][nkey]) {
 				vis[ny][nx][nkey] = true;

@@ -37,7 +37,8 @@ void update(int l, int r, int x, int id = 0, int L = 0, int R = 100000) {
 	int M = (L + R) / 2;
 	update(l, r, x, id * 2 + 1, L, M);
 	update(l, r, x, id * 2 + 2, M, R);
-	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].lazy * segtree[id * 2 + 1].sz + segtree[id * 2 + 2].data + segtree[id * 2 + 2].lazy * segtree[id * 2 + 2].sz;
+	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].lazy * segtree[id * 2 + 1].sz +
+					   segtree[id * 2 + 2].data + segtree[id * 2 + 2].lazy * segtree[id * 2 + 2].sz;
 }
 
 int query(int l, int r, int id = 0, int L = 0, int R = 100000) {

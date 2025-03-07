@@ -29,7 +29,8 @@ void update(int l, int r, int x, int id = 0, int L = 0, int R = 1000001) {
 	update(l, r, x, id * 2 + 1, L, M);
 	update(l, r, x, id * 2 + 2, M, R);
 
-	seg[id].data = (seg[id * 2 + 1].tag ? M - L : seg[id * 2 + 1].data) + (seg[id * 2 + 2].tag ? R - M : seg[id * 2 + 2].data);
+	seg[id].data =
+		(seg[id * 2 + 1].tag ? M - L : seg[id * 2 + 1].data) + (seg[id * 2 + 2].tag ? R - M : seg[id * 2 + 2].data);
 }
 
 signed main() {

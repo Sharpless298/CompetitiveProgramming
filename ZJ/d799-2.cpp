@@ -61,7 +61,9 @@ signed main() {
 		} else {
 			cin >> l >> r;
 			// cout << ((r+1)*query(0, r)-query(1, r)) - (l*query(0, l-1)-query(1, l-1)) << '\n';
-			cout << (pref[r] - pref[l - 1]) + ((r + 1) * query(0, r) - query(1, r)) - (l * query(0, l - 1) - query(1, l - 1)) << '\n';
+			cout << (pref[r] - pref[l - 1]) + ((r + 1) * query(0, r) - query(1, r)) -
+						(l * query(0, l - 1) - query(1, l - 1))
+				 << '\n';
 		}
 	}
 }

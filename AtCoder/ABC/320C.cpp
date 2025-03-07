@@ -19,7 +19,8 @@ signed main() {
 		for (int j = 0; j < 3 * M; j++) {
 			for (int k = 0; k < 3 * M; k++) {
 				if (i == j || j == k || k == i) continue;
-				if (s[0][i % M] == s[1][j % M] && s[1][j % M] == s[2][k % M] && s[2][k % M] == s[0][i % M]) ans = min(ans, max({i, j, k}));
+				if (s[0][i % M] == s[1][j % M] && s[1][j % M] == s[2][k % M] && s[2][k % M] == s[0][i % M])
+					ans = min(ans, max({i, j, k}));
 			}
 		}
 	}

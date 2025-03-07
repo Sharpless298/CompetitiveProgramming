@@ -20,7 +20,8 @@ void push(int id) {
 }
 
 void pull(int id) {
-	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].sz * segtree[id * 2 + 1].lazy + segtree[id * 2 + 2].data + segtree[id * 2 + 2].sz * segtree[id * 2 + 2].lazy;
+	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].sz * segtree[id * 2 + 1].lazy +
+					   segtree[id * 2 + 2].data + segtree[id * 2 + 2].sz * segtree[id * 2 + 2].lazy;
 }
 
 void build(int id = 0, int L = 0, int R = n) {

@@ -45,13 +45,17 @@ double abs(pair<T, T> a) {
 }
 
 vector<Point> convex_hull(vector<Point> &pnts) {
-	sort(pnts.begin(), pnts.end(), [&](Point &a, Point &b) { return a.first.first ^ b.first.first ? a.first.first < b.first.first : a.first.second < b.first.second; });
+	sort(pnts.begin(), pnts.end(), [&](Point &a, Point &b) {
+		return a.first.first ^ b.first.first ? a.first.first < b.first.first : a.first.second < b.first.second;
+	});
 	// pnts.resize(unique(pnts.begin(), pnts.end()-pnts.begin()));
 	// if(pnts < 3) return pnts;
 
 	vector<Point> hull;
 	for (Point pnt : pnts) {
-		while (hull.size() >= 2 && cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) <= 0) hull.pop_back();
+		while (hull.size() >= 2 &&
+			   cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();
@@ -59,7 +63,9 @@ vector<Point> convex_hull(vector<Point> &pnts) {
 	reverse(pnts.begin(), pnts.end());
 	int t = (int)hull.size();
 	for (Point pnt : pnts) {
-		while (hull.size() - t >= 2 && cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) <= 0) hull.pop_back();
+		while (hull.size() - t >= 2 &&
+			   cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();
@@ -100,7 +106,8 @@ signed main() {
 			int ni = (i + 1) % n;
 			while (true) {
 				int nj = (j + 1) % n;
-				if (cross(p[j].first - p[i].first, p[j].first - p[ni].first) < cross(p[nj].first - p[i].first, p[nj].first - p[ni].first))
+				if (cross(p[j].first - p[i].first, p[j].first - p[ni].first) <
+					cross(p[nj].first - p[i].first, p[nj].first - p[ni].first))
 					j = nj;
 				else
 					break;

@@ -32,7 +32,8 @@ signed main() {
 	}
 	for (int i = 1; i < N; i++)
 		for (int j = i; j < M - N + i + 1; j++)
-			for (int k = i; k < M - N + i + 1; k++) dp[i][j][k] = max({dp[i][j - 1][k], dp[i][j][k - 1], dp[i - 1][j - 1][k - 1] + f(i, j, k)});
+			for (int k = i; k < M - N + i + 1; k++)
+				dp[i][j][k] = max({dp[i][j - 1][k], dp[i][j][k - 1], dp[i - 1][j - 1][k - 1] + f(i, j, k)});
 
 	cout << dp[N - 1][M - 1][M - 1] << '\n';
 }

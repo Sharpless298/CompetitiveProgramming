@@ -11,7 +11,8 @@ vector<int> a;
 vector<Node> segtree;
 
 void pull(int id) {
-	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].sz * segtree[id * 2 + 1].lazy + segtree[id * 2 + 2].data + segtree[id * 2 + 2].sz * segtree[id * 2 + 2].lazy;
+	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].sz * segtree[id * 2 + 1].lazy +
+					   segtree[id * 2 + 2].data + segtree[id * 2 + 2].sz * segtree[id * 2 + 2].lazy;
 }
 
 void push(int id) {

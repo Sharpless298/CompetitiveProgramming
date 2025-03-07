@@ -29,7 +29,8 @@ signed main() {
 		for (int i = 0; i < 3 * n; i++) {
 			for (int j = 0; j < 3 * n; j++) {
 				if (i == j) continue;
-				if ((a[i].x < a[j].x && a[i].y < a[j].y) || (a[i].x < a[j].y && a[i].y < a[j].x)) G[i].push_back(j), deg[j]++;
+				if ((a[i].x < a[j].x && a[i].y < a[j].y) || (a[i].x < a[j].y && a[i].y < a[j].x))
+					G[i].push_back(j), deg[j]++;
 			}
 		}
 

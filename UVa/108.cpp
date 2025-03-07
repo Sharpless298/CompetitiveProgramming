@@ -21,7 +21,8 @@ signed main() {
 	int ans = -128;
 	for (int j = 1; j <= n - 1; j++)
 		for (int k = j + 1; k <= n; k++)
-			for (int i = 1; i <= n; i++) dp[i][j][k] = max(0, dp[i - 1][j][k]) + pref[i][k] - pref[i][j - 1], ans = max(ans, dp[i][j][k]);
+			for (int i = 1; i <= n; i++)
+				dp[i][j][k] = max(0, dp[i - 1][j][k]) + pref[i][k] - pref[i][j - 1], ans = max(ans, dp[i][j][k]);
 
 	cout << ans << '\n';
 }

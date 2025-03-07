@@ -12,7 +12,9 @@ signed main() {
 
 	for (int i = 0; i < 3; i++) cin >> x[i] >> y[i];
 
-	for (int i = 0; i < 3; i++) v.push_back((x[(i + 1) % 3] - x[i]) * (x[(i + 1) % 3] - x[i]) + (y[(i + 1) % 3] - y[i]) * (y[(i + 1) % 3] - y[i]));
+	for (int i = 0; i < 3; i++)
+		v.push_back((x[(i + 1) % 3] - x[i]) * (x[(i + 1) % 3] - x[i]) +
+					(y[(i + 1) % 3] - y[i]) * (y[(i + 1) % 3] - y[i]));
 
 	sort(v.begin(), v.end());
 

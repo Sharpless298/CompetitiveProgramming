@@ -20,7 +20,8 @@ signed main() {
 		for (int i = 2; i < n + 2; i++) {
 			for (int l = 0, r = i; r <= n + 1; l++, r++) {
 				dp[a[l]][a[r]] = INF;
-				for (int k = l + 1; k < r; k++) dp[a[l]][a[r]] = min(dp[a[l]][a[r]], dp[a[l]][a[k]] + dp[a[k]][a[r]] + a[r] - a[l]);
+				for (int k = l + 1; k < r; k++)
+					dp[a[l]][a[r]] = min(dp[a[l]][a[r]], dp[a[l]][a[k]] + dp[a[k]][a[r]] + a[r] - a[l]);
 			}
 		}
 

@@ -34,7 +34,8 @@ signed main() {
 
 		long long g = 0;
 		for (int i = k; i <= n; i++)
-			for (int j = k; j <= m; j++) g = __gcd(g, 1LL * pref[i][j] - pref[i][j - k] - pref[i - k][j] + pref[i - k][j - k]);
+			for (int j = k; j <= m; j++)
+				g = __gcd(g, 1LL * pref[i][j] - pref[i][j - k] - pref[i - k][j] + pref[i - k][j - k]);
 
 		if ((g == 0 && D == 0) || (g != 0 && D % g == 0))
 			cout << "YES\n";

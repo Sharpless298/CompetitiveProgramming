@@ -56,7 +56,9 @@ vector<Point> ConvexHull(vector<Point> &pnts) {
 	for (int i = 0; i < 2; i++) {
 		int t = (int)hull.size();
 		for (Point pnt : pnts) {
-			while (hull.size() - t >= 2 && cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) < 0) hull.pop_back();
+			while (hull.size() - t >= 2 &&
+				   cross(hull.back().first - hull[hull.size() - 2].first, pnt.first - hull[hull.size() - 2].first) < 0)
+				hull.pop_back();
 			hull.push_back(pnt);
 		}
 		hull.pop_back();

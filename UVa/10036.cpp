@@ -11,7 +11,8 @@ void solve() {
 	vector<vector<bool>> dp(n, vector<bool>(k));
 	dp[0][(a[0] % k + k) % k] = true;
 	for (int i = 1; i < n; i++)
-		for (int j = 0; j < k; j++) dp[i][j] = (dp[i - 1][((j - a[i]) % k + k) % k] || dp[i - 1][((j + a[i]) % k + k) % k]);
+		for (int j = 0; j < k; j++)
+			dp[i][j] = (dp[i - 1][((j - a[i]) % k + k) % k] || dp[i - 1][((j + a[i]) % k + k) % k]);
 
 	if (dp[n - 1][0])
 		cout << "Divisible\n";

@@ -63,7 +63,8 @@ bool onSegment(pair<T, T> &a, pair<T, T> &b, pair<T, T> &p) {
 
 template <typename T>
 bool intersect(pair<T, T> &a, pair<T, T> &b, pair<T, T> &c, pair<T, T> &d) {
-	return (cross(b - a, c - a) * cross(b - a, d - a) < 0 && cross(d - c, a - c) * cross(d - c, b - c) < 0) || (onSegment(a, b, c) || onSegment(a, b, d) || onSegment(c, d, a) || onSegment(c, d, b));
+	return (cross(b - a, c - a) * cross(b - a, d - a) < 0 && cross(d - c, a - c) * cross(d - c, b - c) < 0) ||
+		   (onSegment(a, b, c) || onSegment(a, b, d) || onSegment(c, d, a) || onSegment(c, d, b));
 }
 
 template <typename T>
@@ -95,7 +96,8 @@ vector<pair<T, T>> getConvexHull(vector<pair<T, T>> &pnts) {
 	for (int i = 0; i < 2; i++) {
 		int t = (int)hull.size();
 		for (pair<T, T> pnt : pnts) {
-			while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) hull.pop_back();
+			while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+				hull.pop_back();
 			hull.push_back(pnt);
 		}
 		hull.pop_back();

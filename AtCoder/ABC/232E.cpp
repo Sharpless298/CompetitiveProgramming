@@ -20,7 +20,9 @@ signed main() {
 		ndp[1][1] = ((h - 1) * dp[0][1] % MOD + (w - 1) * dp[1][0] % MOD + (h - 2 + w - 2) * dp[1][1]) % MOD;
 		dp = ndp;
 	}
-	function<long long(long long)> inv = [&](long long x) { return x <= 1LL ? x : (MOD - MOD / x) * inv(MOD % x) % MOD; };
+	function<long long(long long)> inv = [&](long long x) {
+		return x <= 1LL ? x : (MOD - MOD / x) * inv(MOD % x) % MOD;
+	};
 	int x1, y1, x2, y2;
 	cin >> x1 >> y1 >> x2 >> y2;
 

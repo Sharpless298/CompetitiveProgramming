@@ -97,7 +97,8 @@ signed main() {
 
 		set<pair<long long, long long>> s;
 		for (int j = 0; j < i; j++) {
-			if (intersect(a[i], b[i], a[j], b[j]) && check(a[i], b[i], a[j], b[j])) s.insert(intersection(a[i], b[i], a[j], b[j]));
+			if (intersect(a[i], b[i], a[j], b[j]) && check(a[i], b[i], a[j], b[j]))
+				s.insert(intersection(a[i], b[i], a[j], b[j]));
 		}
 		ans -= (int)s.size();
 	}

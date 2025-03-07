@@ -19,7 +19,8 @@ signed main() {
 		vector<pair<long double, long double>> v(n);
 		for (int i = 0; i < n; i++) cin >> v[i].first >> v[i].second;
 
-		sort(v.begin(), v.end(), [&](pair<long double, long double> &a, pair<long double, long double> &b) { return a.second < b.second; });
+		sort(v.begin(), v.end(),
+			 [&](pair<long double, long double> &a, pair<long double, long double> &b) { return a.second < b.second; });
 
 		long double ans = 1e19;
 		set<pair<double, double>> s;

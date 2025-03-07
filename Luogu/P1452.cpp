@@ -49,7 +49,8 @@ vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 
 	vector<pair<int, int>> hull;
 	for (auto pnt : pnts) {
-		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) hull.pop_back();
+		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();
@@ -57,7 +58,8 @@ vector<pair<T, T>> convex_hull(vector<pair<T, T>> &pnts) {
 	reverse(pnts.begin(), pnts.end());
 	int t = (int)hull.size();
 	for (pair<int, int> pnt : pnts) {
-		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) hull.pop_back();
+		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+			hull.pop_back();
 		hull.push_back(pnt);
 	}
 	hull.pop_back();

@@ -12,7 +12,8 @@ signed main() {
 		for (auto &j : i) cin >> j;
 
 	vector<long long> dist1(n, 0x3fffffffffffffff), dist2(n, 0x3fffffffffffffff);
-	priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<pair<long long, long long>>> pq;
+	priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<pair<long long, long long>>>
+		pq;
 	dist1[0] = 0;
 	pq.push({0, 0});
 	while (!pq.empty()) {
