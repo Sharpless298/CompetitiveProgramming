@@ -29,7 +29,7 @@ struct TPoint {
 		return p.x * q.y - p.y * q.x;
 	}
 	inline bool operator<(const TPoint &p) {
-		return (y < p.y || (y == p.y && x < p.x));
+		return (x < p.x || (x == p.x && y < p.y));
 	}
 };
 using Point = TPoint<long long>;
