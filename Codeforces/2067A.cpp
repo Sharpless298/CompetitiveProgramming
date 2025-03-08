@@ -12,7 +12,8 @@ signed main() {
 		cin >> x >> y;
 		if (x + 1 == y || (x > y && (x - (y - 1)) % 9 == 0)) {
 			cout << "YES\n";
-		} else
+		}
+		else
 			cout << "NO\n";
 	}
 }

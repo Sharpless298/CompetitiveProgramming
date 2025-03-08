@@ -83,7 +83,8 @@ signed main() {
 			int l, r, u;
 			cin >> l >> r >> u;
 			update(l - 1, r, u);
-		} else {
+		}
+		else {
 			int k;
 			cin >> k;
 			cout << query(k - 1) << '\n';

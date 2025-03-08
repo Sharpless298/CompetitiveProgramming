@@ -31,7 +31,8 @@ signed main() {
 			v1.push_back(1);
 			v1.push_back(2);
 			v2.push_back(3);
-		} else {
+		}
+		else {
 			v1.push_back(1);
 			v1.push_back(4);
 			v2.push_back(2);

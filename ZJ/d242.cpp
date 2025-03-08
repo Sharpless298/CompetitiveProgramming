@@ -19,7 +19,8 @@ signed main() {
 		if (v[i] > LIS[LIS.size() - 1]) {
 			LIS.push_back(v[i]);
 			a[i] = (int)LIS.size();
-		} else {
+		}
+		else {
 			k = lower_bound(LIS.begin(), LIS.end(), v[i]);
 			*k = v[i];
 			a[i] = (int)(k - LIS.begin() + 1);

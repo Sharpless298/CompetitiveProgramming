@@ -51,7 +51,8 @@ signed main() {
 				if (G[i][j] != 0) {
 					if (r[i][G[i][j]] || c[j][G[i][j]] || block[check(i, j)][G[i][j]]) res = -1;
 					r[i][G[i][j]] = c[j][G[i][j]] = block[check(i, j)][G[i][j]] = true;
-				} else {
+				}
+				else {
 					ary[n].x = i;
 					ary[n].y = j;
 					n++;

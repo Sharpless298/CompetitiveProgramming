@@ -80,7 +80,8 @@ signed main() {
 		if (t == 1) {
 			cin >> k;
 			update(l - 1, r, k);
-		} else
+		}
+		else
 			cout << query(l - 1, r) << '\n';
 	}
 }

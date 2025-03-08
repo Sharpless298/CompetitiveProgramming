@@ -32,7 +32,8 @@ signed main() {
 
 			a[k] = x;
 			s.erase(k);
-		} else
+		}
+		else
 			cout << a[x % N] << '\n';
 	}
 }

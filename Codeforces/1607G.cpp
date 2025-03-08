@@ -26,7 +26,8 @@ signed main() {
 		if (bal < 0) {
 			eat_a = min_a;
 			if (bal - min_delta >= 0) eat_a = min(max_a, (tot + bal + 1) / 2);
-		} else {
+		}
+		else {
 			eat_a = max_a;
 			if (bal - max_delta <= 0) eat_a = min(max_a, (tot + bal + 1) / 2);
 		}

@@ -33,7 +33,8 @@ int main() {
 				que.pop();
 				temp -= stu[i];
 				f = true;
-			} else {
+			}
+			else {
 				stu[i] -= temp;
 				if (stu[i] == 0)
 					cout << setw(3) << i;

@@ -17,7 +17,8 @@ signed main() {
 		if (a[0] == a[n - 1]) {
 			cout << "NO\n";
 			continue;
-		} else {
+		}
+		else {
 			cout << "YES\n";
 			string s(n, 'B');
 			s[1] = 'R';

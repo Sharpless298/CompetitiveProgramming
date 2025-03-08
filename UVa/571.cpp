@@ -69,7 +69,8 @@ int BFS() {
 					q[j].prev = i;
 					j++;
 				}
-			} else {
+			}
+			else {
 				if (!vis[q[i].a - Cb + q[i].b][Cb]) {
 					vis[q[i].a - Cb + q[i].b][Cb] = true;
 					q[j].a = q[i].a - Cb + q[i].b;
@@ -90,7 +91,8 @@ int BFS() {
 					q[j].prev = i;
 					j++;
 				}
-			} else {
+			}
+			else {
 				if (!vis[Ca][q[i].b - Ca + q[i].a]) {
 					vis[Ca][q[i].b - Ca + q[i].a] = true;
 					q[j].a = Ca;

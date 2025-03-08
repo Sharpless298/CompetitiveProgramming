@@ -14,7 +14,8 @@ void DFS(int u, int p) {
 		if (!dfn[v]) {
 			DFS(v, idx ^ 1);
 			low[u] = min(low[u], low[v]);
-		} else if (idx != p)
+		}
+		else if (idx != p)
 			low[u] = min(low[u], dfn[v]);
 	}
 

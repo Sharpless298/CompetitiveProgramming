@@ -30,6 +30,7 @@ signed main() {
 
 		for (int i = 0; i < n; i++) cout << l[i] << ' ';
 		cout << '\n';
-	} else
+	}
+	else
 		cout << "No\n";
 }

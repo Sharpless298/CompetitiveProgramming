@@ -28,7 +28,8 @@ signed main() {
 		if (pq.empty()) {
 			ans -= t - p[idx].second;
 			t = p[idx].second;
-		} else {
+		}
+		else {
 			ans += pq.top();
 			pq.pop();
 			t--;

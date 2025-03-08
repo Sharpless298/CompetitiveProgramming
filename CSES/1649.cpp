@@ -59,7 +59,8 @@ signed main() {
 			int k, u;
 			cin >> k >> u;
 			update(k - 1, u);
-		} else {
+		}
+		else {
 			int l, r;
 			cin >> l >> r;
 			cout << query(l - 1, r) << '\n';

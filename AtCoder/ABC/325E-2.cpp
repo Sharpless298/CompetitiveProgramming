@@ -26,7 +26,8 @@ signed main() {
 		if (t == 0) {
 			for (int j = 0; j < n; j++) dist[0][j] = min(dist[0][j], dist[0][v] + d[j][v] * a);
 			dist[1][v] = min(dist[1][v], dist[0][v]);
-		} else {
+		}
+		else {
 			for (int j = 0; j < n; j++) dist[1][j] = min(dist[1][j], dist[1][v] + d[j][v] * b + c);
 		}
 	}

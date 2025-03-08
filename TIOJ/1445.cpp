@@ -92,7 +92,8 @@ signed main() {
 			G[edges[i].u].push_back(make_pair(edges[i].v, edges[i].w));
 			G[edges[i].v].push_back(make_pair(edges[i].u, edges[i].w));
 			ans1 += edges[i].w, cnt++;
-		} else
+		}
+		else
 			q.push(i);
 	}
 

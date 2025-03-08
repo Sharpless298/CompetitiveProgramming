@@ -35,6 +35,7 @@ signed main() {
 	if ((int)ans.size() == n) {
 		for (int i : ans) cout << i + 1 << ' ';
 		cout << '\n';
-	} else
+	}
+	else
 		cout << -1 << '\n';
 }

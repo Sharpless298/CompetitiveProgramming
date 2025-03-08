@@ -20,7 +20,8 @@ signed main() {
 		if (p[i].first > r) {
 			ans += (r - l);
 			l = p[i].first, r = p[i].second;
-		} else if (p[i].first <= r && p[i].second > r)
+		}
+		else if (p[i].first <= r && p[i].second > r)
 			r = p[i].second;
 		else
 			continue;

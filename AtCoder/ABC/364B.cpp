@@ -24,13 +24,16 @@ signed main() {
 		if (s[i] == 'R') {
 			ny = y + dy[0];
 			nx = x + dx[0];
-		} else if (s[i] == 'D') {
+		}
+		else if (s[i] == 'D') {
 			ny = y + dy[1];
 			nx = x + dx[1];
-		} else if (s[i] == 'L') {
+		}
+		else if (s[i] == 'L') {
 			ny = y + dy[2];
 			nx = x + dx[2];
-		} else {
+		}
+		else {
 			ny = y + dy[3];
 			nx = x + dx[3];
 		}

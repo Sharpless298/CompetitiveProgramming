@@ -25,7 +25,8 @@ signed main() {
 										  dp[(i - 1) & 1][j - 1][p - 1][1]) %
 										 MOD;
 					dp[i & 1][j][p][0] = (dp[(i - 1) & 1][j][p][1] + dp[(i - 1) & 1][j][p][0]) % MOD;
-				} else {
+				}
+				else {
 					dp[i & 1][j][p][1] = 0;
 					dp[i & 1][j][p][0] = (dp[(i - 1) & 1][j][p][1] + dp[(i - 1) & 1][j][p][0]) % MOD;
 				}

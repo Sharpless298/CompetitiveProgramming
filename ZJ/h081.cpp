@@ -22,10 +22,12 @@ signed main() {
 			f = false;
 			ans += x - y;
 			y = x;
-		} else if (!f && x <= y - D) {
+		}
+		else if (!f && x <= y - D) {
 			f = true;
 			y = x;
-		} else
+		}
+		else
 			continue;
 	}
 

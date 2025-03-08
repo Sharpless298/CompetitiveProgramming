@@ -79,7 +79,8 @@ signed main() {
 		if (t == 1) {
 			cin >> i >> v;
 			update(i, v);
-		} else {
+		}
+		else {
 			cin >> l >> r;
 			Node ans = query(l, r);
 			cout << ans.mn << ' ' << ans.cnt << '\n';

@@ -46,7 +46,8 @@ signed main() {
 				nxt[i] = f(i + 1);
 				Union(i, b);
 			}
-		} else {
+		}
+		else {
 			if (Find(a) == Find(b))
 				cout << "YES\n";
 			else

@@ -31,7 +31,8 @@ signed main() {
 				}
 				f = true;
 			}
-		} else {
+		}
+		else {
 			if (binary_search(sorted_ary, sorted_ary + n, x - ary[i])) {
 				cout << i + 1 << ' ';
 				for (int j = i + 1; j < n; j++) {

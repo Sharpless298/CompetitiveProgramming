@@ -17,11 +17,13 @@ signed main() {
 			cin >> x;
 			if (ms.count(x) == 0) cnt++;
 			ms.insert(x);
-		} else if (t == 2) {
+		}
+		else if (t == 2) {
 			cin >> x;
 			ms.erase(ms.find(x));
 			if (ms.count(x) == 0) cnt--;
-		} else
+		}
+		else
 			cout << cnt << '\n';
 	}
 }

@@ -14,7 +14,8 @@ int f(lli a) {
 		if (cur + ary[i] > a) {
 			res++;
 			cur = ary[i];
-		} else
+		}
+		else
 			cur += ary[i];
 	}
 	if (cur) res++;

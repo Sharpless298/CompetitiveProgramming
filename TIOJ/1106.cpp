@@ -19,7 +19,8 @@ signed main() {
 				a[++p] = 0;
 				depth++;
 				ans2 = max(ans2, depth);
-			} else if (s[i] == ')') {
+			}
+			else if (s[i] == ')') {
 				ans3 = max(ans3, a[p--]);
 				depth--;
 			}

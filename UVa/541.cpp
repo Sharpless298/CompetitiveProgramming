@@ -50,7 +50,8 @@ signed main() {
 				}
 			}
 			cout << ")\n";
-		} else
+		}
+		else
 			cout << "Corrupt\n";
 	}
 }

@@ -17,7 +17,8 @@ int BFS(int u) {
 			if (id[w] == -1) {
 				id[w] = id[v] ^ 1;
 				q.push(w);
-			} else if (id[w] == id[v])
+			}
+			else if (id[w] == id[v])
 				return false;
 		}
 	}
