@@ -33,6 +33,7 @@ struct TPoint {
 	}
 };
 using Point = TPoint<long long>;
+using Point = TPoint<double>;
 
 vector<Point> convex_hull(vector<Point> &pnts) {
 	sort(pnts.begin(), pnts.end());
