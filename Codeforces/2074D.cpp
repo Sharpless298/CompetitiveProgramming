@@ -16,22 +16,9 @@ signed main() {
 		for (long long &i : r) cin >> i;
 
 		map<long long, long long> mp;
-		for (int i = 0; i < n; i++) {
-			for (long long p = x[i] - r[i]; p <= x[i] + r[i]; p++) {
-				long long k = r[i] * r[i] - (p - x[i]) * (p - x[i]);
-
-				long long low = 0, high = 200001;
-				while (low < high) {
-					long long mid = (low + high) / 2;
-
-					if (mid * mid <= k)
-						low = mid + 1;
-					else
-						high = mid;
-				}
-				mp[p] = max(mp[p], low - 1);
-			}
-		}
+		for (int i = 0; i < n; i++)
+			for (long long p = x[i] - r[i]; p <= x[i] + r[i]; p++)
+				mp[p] = max(mp[p], (long long)sqrt(r[i] * r[i] - (p - x[i]) * (p - x[i])));
 
 		long long ans = 0;
 		for (pair<long long, long long> p : mp) ans += 1 + p.second * 2;
