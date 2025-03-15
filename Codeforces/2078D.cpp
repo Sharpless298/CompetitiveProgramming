@@ -17,7 +17,7 @@ signed main() {
 		for (int i = n - 1, now = 0; i >= 0; i--) {
 			auto [a, b, c, d] = v[i];
 
-			if (a != c) 
+			if (a != c)
 				now = (a == 'x' ? 0 : 1);
 			else if (a == 'x' && c == 'x')
 				now = (b == d ? now : (b > d ? 0 : 1));
