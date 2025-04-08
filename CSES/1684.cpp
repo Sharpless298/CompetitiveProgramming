@@ -67,7 +67,6 @@ signed main() {
 
 	if (solver.solve()) {
 		for (int i = 0; i < m; i++) cout << (solver.val[i] ? '+' : '-') << " \n"[i + 1 == m];
-	}
-	else
+	} else
 		cout << "IMPOSSIBLE\n";
 }

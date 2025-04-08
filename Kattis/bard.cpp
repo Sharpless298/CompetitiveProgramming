@@ -27,8 +27,7 @@ signed main() {
 			t = (1 << k);
 			for (int j = 0; j < K; j++) villager[ary[j]] |= t;
 			k++;
-		}
-		else {
+		} else {
 			for (int j = 0; j < K; j++) t |= villager[ary[j]];
 			for (int j = 0; j < K; j++) villager[ary[j]] |= t;
 		}

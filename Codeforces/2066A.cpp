@@ -32,8 +32,7 @@ signed main() {
 				cout << "! A" << endl;
 			else
 				cout << "! B" << endl;
-		}
-		else {
+		} else {
 			if (query(pos[1], pos[n]) >= n - 1 && query(pos[n], pos[1]) >= n - 1)
 				cout << "! B" << endl;
 			else

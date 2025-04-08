@@ -31,15 +31,13 @@ void solve() {
 				nxt[pre[B]] = A;
 				pre[A] = pre[B];
 				pre[B] = A;
-			}
-			else {
+			} else {
 				nxt[A] = nxt[B];
 				nxt[B] = A;
 				pre[A] = B;
 				pre[nxt[A]] = A;
 			}
-		}
-		else if (K == 2) {
+		} else if (K == 2) {
 			nxt[pre[A]] = nxt[B];
 			pre[nxt[B]] = pre[A];
 
@@ -47,8 +45,7 @@ void solve() {
 			pre[A] = pre[C];
 			nxt[pre[C]] = A;
 			pre[C] = B;
-		}
-		else {
+		} else {
 			cur = A;
 			if (C == 1) {
 				while (B) {
@@ -60,8 +57,7 @@ void solve() {
 				}
 				nxt[cur] = nxt[A];
 				pre[nxt[A]] = cur;
-			}
-			else {
+			} else {
 				while (B) {
 					if (cur == N + 1) break;
 

@@ -34,8 +34,7 @@ signed main() {
 				q.erase(q.begin());
 				q.insert(t);
 			}
-		}
-		else {
+		} else {
 			if (t >= *p.rbegin())
 				q.insert(t);
 			else {

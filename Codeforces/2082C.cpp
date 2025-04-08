@@ -21,8 +21,7 @@ signed main() {
 		cin >> s;
 
 		long long dp = 0;
-		for (int i = n - 1; i > 0; i--)
-			dp = (dp + (s[i] == '1')) * inv2 % MOD;
+		for (int i = n - 1; i > 0; i--) dp = (dp + (s[i] == '1')) * inv2 % MOD;
 
 		cout << (dp + n - 1) % MOD << '\n';
 	}

@@ -52,13 +52,11 @@ signed main() {
 					}
 					cur[team[t]].push(t);
 				}
-			}
-			else {
+			} else {
 				if (q.front() >= 10000) {
 					cout << q.front() - 10000 << '\n';
 					q.pop();
-				}
-				else {
+				} else {
 					cout << cur[q.front()].front() << '\n';
 					cur[q.front()].pop();
 					if (cur[q.front()].empty()) {

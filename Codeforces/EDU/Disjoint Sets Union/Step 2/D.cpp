@@ -29,8 +29,7 @@ signed main() {
 			cin >> a >> b;
 			parent[a] = b;
 			depth[a]++;
-		}
-		else {
+		} else {
 			cin >> a;
 			Find(a);
 			cout << depth[a] << '\n';

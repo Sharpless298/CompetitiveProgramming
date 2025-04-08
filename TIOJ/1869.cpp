@@ -37,8 +37,7 @@ signed main() {
 			int x, y, z;
 			cin >> x >> y >> z;
 			update(x + 1, y + 1, z);
-		}
-		else {
+		} else {
 			int x1, y1, x2, y2;
 			cin >> x1 >> y1 >> x2 >> y2;
 			cout << query(x2 + 1, y2 + 1) - query(x2 + 1, y1) - query(x1, y2 + 1) + query(x1, y1) << '\n';

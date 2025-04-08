@@ -77,8 +77,7 @@ signed main() {
 		if (t == 1) {
 			cin >> l >> r >> k;
 			update(l - 1, r, k);
-		}
-		else {
+		} else {
 			cin >> l >> r;
 			cout << query(l - 1, r) << '\n';
 		}

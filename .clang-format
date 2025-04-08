@@ -5,16 +5,3 @@ UseTab: Always
 IndentWidth: 4
 TabWidth: 4
 AllowShortFunctionsOnASingleLine: Empty
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterClass:      false
-  AfterControlStatement: false
-  AfterEnum:       false
-  AfterFunction:   false
-  AfterNamespace:  false
-  AfterObjCDeclaration: false
-  AfterStruct:     false
-  AfterUnion:      false
-  BeforeCatch:     false
-  BeforeElse:      true
-  IndentBraces:    false

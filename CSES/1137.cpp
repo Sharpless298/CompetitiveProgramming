@@ -66,8 +66,7 @@ signed main() {
 
 			update(in[s] + 1, x - a[s]);
 			a[s] = x;
-		}
-		else {
+		} else {
 			int s;
 			cin >> s;
 			s--;

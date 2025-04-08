@@ -59,8 +59,7 @@ signed main() {
 			int i, v;
 			cin >> i >> v;
 			update(i, v);
-		}
-		else {
+		} else {
 			int x;
 			cin >> x;
 			if (seg[0] < x)

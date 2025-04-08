@@ -22,12 +22,10 @@ signed main() {
 				o++;
 				ans += w;
 				ans %= MOD;
-			}
-			else if (c == 'w') {
+			} else if (c == 'w') {
 				w += o;
 				w %= MOD;
-			}
-			else if (c == '\n')
+			} else if (c == '\n')
 				break;
 		}
 

@@ -14,8 +14,7 @@ signed main() {
 		vector<bitset<10001>> dp(n + 1);
 		dp[0][0] = true;
 		for (int i = 0; i < N; i++) {
-			for (int j = n; j >= 1; j--)
-				dp[j] |= dp[j - 1] << (a[i] + 50);
+			for (int j = n; j >= 1; j--) dp[j] |= dp[j - 1] << (a[i] + 50);
 		}
 
 		auto b = dp.back();

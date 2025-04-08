@@ -51,8 +51,7 @@ signed main() {
 				n = stoi(s);
 				cout << "Size " << n << '\n';
 				DFS(0, 0);
-			}
-			else {
+			} else {
 				for (int i = 0; i < k; i++) {
 					if (i) cout << '\n';
 					n = i + 1;
@@ -60,8 +59,7 @@ signed main() {
 					DFS(0, 0);
 				}
 			}
-		}
-		else {
+		} else {
 			int space = s.find(" ");
 
 			a = stoi(s.substr(0, space));

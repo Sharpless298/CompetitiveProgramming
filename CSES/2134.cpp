@@ -120,8 +120,7 @@ signed main() {
 			readint(s), readint(x);
 			s--;
 			update(id[s], x);
-		}
-		else {
+		} else {
 			int u, v;
 			readint(u), readint(v);
 			u--, v--;

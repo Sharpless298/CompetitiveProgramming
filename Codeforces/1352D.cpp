@@ -24,8 +24,7 @@ signed main() {
 			if (f) {
 				while (l <= r && sum <= k) sum += a[l++];
 				alice += sum;
-			}
-			else {
+			} else {
 				while (l <= r && sum <= k) sum += a[r--];
 				bob += sum;
 			}

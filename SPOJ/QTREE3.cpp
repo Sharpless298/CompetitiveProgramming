@@ -112,8 +112,7 @@ signed main() {
 			cin >> i;
 			i--;
 			update(id[i]);
-		}
-		else {
+		} else {
 			int v;
 			cin >> v;
 			v--;

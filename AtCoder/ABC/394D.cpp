@@ -9,8 +9,7 @@ signed main() {
 	cin >> s;
 	if (s.size() & 1) {
 		cout << "No\n";
-	}
-	else {
+	} else {
 		stack<char> stk;
 		for (char c : s) {
 			if (!stk.empty() && stk.top() == '(' && c == ')') {

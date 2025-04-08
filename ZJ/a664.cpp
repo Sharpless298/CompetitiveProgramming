@@ -42,8 +42,7 @@ signed main() {
 			if (isdigit(c)) {
 				is_num = true;
 				num = num * 10 + c - '0';
-			}
-			else {
+			} else {
 				if (is_num) {
 					stk.push(num);
 					is_num = false;
@@ -63,8 +62,7 @@ signed main() {
 						stk.push(calc(a, b, ope));
 					}
 					op.pop();
-				}
-				else {
+				} else {
 					while (!op.empty() && op.top() != '(' && pri[(int)op.top()]) {
 						b = stk.top();
 						stk.pop();

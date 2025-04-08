@@ -29,8 +29,7 @@ signed main() {
 		if (sum < t) {
 			for (int i = 0; i < n; i++) cout << t / k[i] << ' ';
 			cout << '\n';
-		}
-		else
+		} else
 			cout << -1 << '\n';
 	}
 }

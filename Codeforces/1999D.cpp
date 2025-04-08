@@ -20,8 +20,7 @@ void solve() {
 	if (idx == (int)t.size()) {
 		cout << "YES\n";
 		cout << s << '\n';
-	}
-	else
+	} else
 		cout << "NO\n";
 }
 

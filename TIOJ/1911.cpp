@@ -13,8 +13,7 @@ signed main() {
 	while (cin >> t && t) {
 		if (t > 0) {
 			s.insert(t);
-		}
-		else {
+		} else {
 			if (s.empty()) continue;
 
 			if (t == -2) {
@@ -22,8 +21,7 @@ signed main() {
 				iter--;
 				cout << *iter;
 				s.erase(iter);
-			}
-			else {
+			} else {
 				cout << *s.begin();
 				s.erase(s.begin());
 			}

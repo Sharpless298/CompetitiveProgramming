@@ -59,8 +59,7 @@ signed main() {
 			cin >> l >> r;
 			qry.push_back({l - 1, r, tid, (l - 1) / k, r / k, qid});
 			qid++;
-		}
-		else {
+		} else {
 			int x, y;
 			cin >> x >> y;
 			tid++;

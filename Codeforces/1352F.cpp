@@ -20,8 +20,7 @@ signed main() {
 			else
 				for (int i = 0; i < n2 + 1; i++) cout << 1;
 			cout << '\n';
-		}
-		else {
+		} else {
 			for (int i = 0; i < n1 + 1; i++) {
 				if (i & 1)
 					ans += '0';

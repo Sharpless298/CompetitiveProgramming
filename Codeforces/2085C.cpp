@@ -13,8 +13,7 @@ signed main() {
 
 		if (x == y) {
 			cout << -1 << '\n';
-		}
-		else {
+		} else {
 			cout << (1LL << 32) - max(x, y) << '\n';
 		}
 	}

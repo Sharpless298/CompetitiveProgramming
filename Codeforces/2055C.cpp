@@ -33,8 +33,7 @@ signed main() {
 			if (s[i] == 'D') {
 				G[cur.first][cur.second] = -r[cur.first];
 				c[cur.second] += -r[cur.first];
-			}
-			else {
+			} else {
 				G[cur.first][cur.second] = -c[cur.second];
 				r[cur.first] += -c[cur.second];
 			}

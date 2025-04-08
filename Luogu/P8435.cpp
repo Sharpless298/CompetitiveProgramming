@@ -20,8 +20,7 @@ void DFS(int u, int p) {
 				for (int w = -1; w != v; stk.pop()) w = stk.top(), bcc.back().push_back(w);
 				bcc.back().push_back(u);
 			}
-		}
-		else if (idx != p)
+		} else if (idx != p)
 			low[u] = min(low[u], dfn[v]);
 	}
 	if (p == -1 && cnt == 0) bcc.push_back({u});

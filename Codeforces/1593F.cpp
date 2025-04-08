@@ -48,8 +48,7 @@ signed main() {
 
 		if (best == -1) {
 			cout << -1 << '\n';
-		}
-		else {
+		} else {
 			string ans = "";
 			auto t = p[n][best][0][0];
 			while (t[0] != -1) {

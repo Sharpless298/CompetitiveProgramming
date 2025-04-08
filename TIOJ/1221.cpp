@@ -21,8 +21,7 @@ signed main() {
 		if (mp[ary[i]] != INF) {
 			nxt[mp[ary[i]]] = i;
 			mp[ary[i]] = i;
-		}
-		else
+		} else
 			mp[ary[i]] = i;
 	}
 

@@ -32,8 +32,7 @@ signed main() {
 				if (!stk.empty()) ans++;
 				ans += temp.second;
 				stk.emplace(temp.first, temp.second + 1);
-			}
-			else {
+			} else {
 				if (!stk.empty()) ans++;
 				stk.emplace(ary[i], 1);
 			}

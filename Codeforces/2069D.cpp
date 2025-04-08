@@ -30,8 +30,7 @@ signed main() {
 					if (i < m) {
 						ok &= (cnt[c - 'a'] > 0);
 						cnt[c - 'a']--;
-					}
-					else {
+					} else {
 						ok &= (c == s[i]);
 					}
 				}
