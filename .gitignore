@@ -1,0 +1,26 @@
+# Ignore all, unignore all with extensions, unignore all dirs.
+*
+!*.*
+!*/
+!list
+
+# Executables
+*.out
+*.exe
+*.app
+*.sh
+
+/Codeforces/contest
+/AtCoder/contest
+/AtCoder/ABC/contest
+/AtCoder/ARC/contest
+# Temp Runner
+temp.c
+temp.cpp
+temp2.cpp
+temp.exe
+temp.py
+
+# Vim
+*.swo
+*.swp

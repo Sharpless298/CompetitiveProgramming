@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int n;
+vector<int> a, segtree;
+
+void build(int id = 0, int L = 0, int R = n) {
+	if (R - L == 1) {
+		segtree[id] = a[L];
+		return;
+	}
+
+	int M = (L + R) / 2;
+	build(id * 2 + 1, L, M);
+	build(id * 2 + 2, M, R);
+
+	segtree[id] = max(segtree[id * 2 + 1], segtree[id * 2 + 2]);
+}
+
+int query(int l, int r, int id = 0, int L = 0, int R = n) {
+	if (l >= R || r <= L)
+		return 0;
+	if (l <= L && R <= r)
+		return segtree[id];
+
+	int M = (L + R) / 2;
+	return max(query(l, r, id * 2 + 1, L, M), query(l, r, id * 2 + 2, M, R));
+}
+
+signed main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	cin >> n;
+	a.resize(n);
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+
+	segtree.resize(4 * n);
+	build();
+
+	int m;
+	cin >> m;
+	while (m--) {
+		int l, r;
+		cin >> l >> r;
+		if (l > r)
+			swap(l, r);
+		l--;
+
+		cout << query(l, r) << '\n';
+	}
+}
