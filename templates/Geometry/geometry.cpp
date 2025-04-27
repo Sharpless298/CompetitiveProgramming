@@ -19,17 +19,17 @@ struct TPoint {
 	inline TPoint operator/(const T &k) {
 		return TPoint(x / k, y / k);
 	}
-	friend T dot(const TPoint &p, const TPoint &q) {
-		return p.x * q.x + p.y * q.y;
-	}
-	friend T cross(const TPoint &p, const TPoint &q) {
-		return p.x * q.y - p.y * q.x;
-	}
 	inline bool operator<(const TPoint &p) {
 		return (x < p.x || (x == p.x && y < p.y));
 	}
 	inline bool operator==(const TPoint &p) {
 		return x == p.x && y == p.y;
+	}
+	friend T dot(const TPoint &p, const TPoint &q) {
+		return p.x * q.x + p.y * q.y;
+	}
+	friend T cross(const TPoint &p, const TPoint &q) {
+		return p.x * q.y - p.y * q.x;
 	}
 };
 using Point = TPoint<long long>;
