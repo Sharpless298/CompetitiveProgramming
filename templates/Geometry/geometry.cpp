@@ -7,11 +7,11 @@ struct TPoint {
 	TPoint(T _x, T _y) : x(_x), y(_y), id(-1) {}
 	TPoint(T _x, T _y, int _id) : x(_x), y(_y), id(_id) {}
 
-	inline TPoint operator+(const TPoint &p) {
-		return TPoint(x + p.x, y + p.y);
+	inline TPoint operator+(const TPoint &rhs) {
+		return TPoint(x + rhs.x, y + rhs.y);
 	}
-	inline TPoint operator-(const TPoint &p) {
-		return TPoint(x - p.x, y - p.y);
+	inline TPoint operator-(const TPoint &rhs) {
+		return TPoint(x - rhs.x, y - rhs.y);
 	}
 	inline TPoint operator*(const T &k) {
 		return TPoint(x * k, y * k);
