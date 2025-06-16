@@ -7,17 +7,14 @@ bool check(vector<int> &b) {
 	vector<int> suf(n);
 	vector<bool> used(n + 1, false);
 	for (int i = n - 1; i >= 1; i--) {
-		if (b[i] <= n)
-			used[b[i]] = true;
-		while (used[mex])
-			mex++;
+		if (b[i] <= n) used[b[i]] = true;
+		while (used[mex]) mex++;
 		suf[i] = mex;
 	}
 	int mn = b[0];
 	for (int i = 0; i < n - 1; i++) {
 		mn = min(mn, b[i]);
-		if (mn < suf[i + 1])
-			return false;
+		if (mn < suf[i + 1]) return false;
 	}
 	return true;
 }
@@ -32,8 +29,7 @@ signed main() {
 		int n;
 		cin >> n;
 		vector<int> a(n);
-		for (int &i : a)
-			cin >> i;
+		for (int &i : a) cin >> i;
 
 		int cnt0 = 0;
 		vector<int> b;
