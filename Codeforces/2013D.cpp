@@ -11,7 +11,8 @@ signed main() {
 		int n;
 		cin >> n;
 		vector<long long> a(n);
-		for (long long &i : a) cin >> i;
+		for (long long &i : a)
+			cin >> i;
 
 		stack<pair<long long, int>> stk;
 		for (int i = 0; i < n; i++) {
@@ -23,12 +24,14 @@ signed main() {
 			}
 			stk.push({sum / cnt, cnt - sum % cnt});
 			if (sum % cnt != 0) {
-				stk.push({sum / cnt + 1, sum % cnt});;
+				stk.push({sum / cnt + 1, sum % cnt});
+				;
 			}
 		}
 
 		long long mx = stk.top().first;
-		while (stk.size() > 1) stk.pop();
+		while (stk.size() > 1)
+			stk.pop();
 		cout << mx - stk.top().first << '\n';
 	}
 }

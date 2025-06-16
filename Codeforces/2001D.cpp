@@ -6,12 +6,13 @@ signed main() {
 	cin.tie(nullptr);
 
 	int T;
-	cin >> T;	
+	cin >> T;
 	while (T--) {
 		int n;
 		cin >> n;
 		vector<int> a(n);
-		for (int &i : a) cin >> i, i--;
+		for (int &i : a)
+			cin >> i, i--;
 
 		vector<int> l(n + 1, INT_MAX);
 		for (int i = 0; i < n; i++)
@@ -37,25 +38,29 @@ signed main() {
 				mx_cand.pop();
 				x *= -1;
 			}
-			
+
 			ans.push_back(x);
 			cur = pos + 1;
 			used[x] = true;
 
 			while (ls.top() != INT_MAX && used[a[ls.top()]]) {
-				int t = ls.top(); ls.pop();
+				int t = ls.top();
+				ls.pop();
 				for (int i = t + 1; i <= min(ls.top(), n - 1); i++) {
 					mx_cand.push({-a[i], i});
 					mn_cand.push({a[i], i});
 				}
 			}
 
-			while (!mx_cand.empty() && (used[-mx_cand.top()[0]] || mx_cand.top()[1] < cur)) mx_cand.pop();
-			while (!mn_cand.empty() && (used[mn_cand.top()[0]] || mn_cand.top()[1] < cur)) mn_cand.pop();
+			while (!mx_cand.empty() && (used[-mx_cand.top()[0]] || mx_cand.top()[1] < cur))
+				mx_cand.pop();
+			while (!mn_cand.empty() && (used[mn_cand.top()[0]] || mn_cand.top()[1] < cur))
+				mn_cand.pop();
 		}
 
 		cout << ans.size() << '\n';
-		for (int i : ans) cout << i + 1 << ' ';
+		for (int i : ans)
+			cout << i + 1 << ' ';
 		cout << '\n';
 	}
 }
