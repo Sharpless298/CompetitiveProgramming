@@ -11,7 +11,8 @@ signed main() {
 		int n;
 		cin >> n;
 		vector<long long> a(n);
-		for (long long &i : a) cin >> i;
+		for (long long &i : a)
+			cin >> i;
 
 		stack<pair<long long, int>> stk;
 		for (int i = 0; i < n; i++) {
@@ -28,7 +29,8 @@ signed main() {
 		}
 
 		long long mx = stk.top().first;
-		while (stk.size() > 1) stk.pop();
+		while (stk.size() > 1)
+			stk.pop();
 		cout << mx - stk.top().first << '\n';
 	}
 }
