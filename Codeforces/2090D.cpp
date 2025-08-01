@@ -30,17 +30,19 @@ signed main() {
 		vector<bool> used(n + 1);
 		ans.push_back(p);
 		used[p] = true;
-		for (int i = 1; ; i++) {
+		for (int i = 1;; i++) {
 			if (p - i < 1 || p + i > n) break;
 
 			for (int j = 0; j < 2; j++) {
-				if (j & 1) ans.push_back(p - i);
-				else ans.push_back(p + i);
+				if (j & 1)
+					ans.push_back(p - i);
+				else
+					ans.push_back(p + i);
 			}
 			used[p - i] = used[p + i] = true;
 		}
 
-		for (int i = 1; i <= n; i++) 
+		for (int i = 1; i <= n; i++)
 			if (!used[i]) ans.push_back(i);
 
 		for (int i = 0; i < n; i++)

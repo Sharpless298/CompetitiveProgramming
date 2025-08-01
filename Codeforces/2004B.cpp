@@ -21,5 +21,5 @@ signed main() {
 		} else {
 			cout << (a.second - b.first) + (a.first != b.first) + (a.second != b.second) << '\n';
 		}
-	 }
+	}
 }
