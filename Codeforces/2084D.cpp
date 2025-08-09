@@ -7,7 +7,7 @@ int main() {
 	while (T--) {
 		int n, m, k;
 		cin >> n >> m >> k;
-		for (int i = 0; i < n; ++i) 
+		for (int i = 0; i < n; ++i)
 			cout << i % (n < (m + 1) * k ? k : n / (m + 1)) << " \n"[i == n - 1];
 	}
 }
