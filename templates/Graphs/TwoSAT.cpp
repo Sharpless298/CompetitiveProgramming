@@ -20,24 +20,29 @@ struct TwoSAT {
 		stk.push(u);
 		for (int v : G[u]) {
 			if (comp[v] == -1) {
-				if (tin[v] == -1)
+				if (tin[v] == -1) {
 					DFS(v);
+				}
 				low[u] = min(low[u], low[v]);
 			}
 		}
 		if (tin[u] == low[u]) {
-			for (int v = -1; v != u; stk.pop())
+			for (int v = -1; v != u; stk.pop()) {
 				v = stk.top(), comp[v] = id;
+			}
 			id++;
 		}
 	}
 	bool solve() {
-		for (int i = 0; i < 2 * n; i++)
-			if (tin[i] == -1)
+		for (int i = 0; i < 2 * n; i++) {
+			if (tin[i] == -1) {
 				DFS(i);
+			}
+		}
 		for (int i = 0; i < n; i++) {
-			if (comp[i] == comp[i + n])
+			if (comp[i] == comp[i + n]) {
 				return false;
+			}
 			val[i] = comp[i] < comp[i + n];
 		}
 		return true;

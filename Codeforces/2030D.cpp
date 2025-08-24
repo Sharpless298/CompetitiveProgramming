@@ -20,7 +20,7 @@ signed main() {
 
 		vector<int> mx = p;
 		for (int i = 1; i < n; i++) {
-			mx[i]  = max(mx[i], mx[i - 1]);
+			mx[i] = max(mx[i], mx[i - 1]);
 		}
 
 		int cnt = 0;
@@ -32,7 +32,8 @@ signed main() {
 
 		while (q--) {
 			int pos;
-			cin >> pos; pos--;
+			cin >> pos;
+			pos--;
 
 			for (int i : {pos - 1, pos}) {
 				if (0 < i && i < n - 1 && s[i] == 'L' && s[i + 1] == 'R' && mx[i] != i) {

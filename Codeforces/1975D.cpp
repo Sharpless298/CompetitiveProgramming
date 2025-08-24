@@ -48,7 +48,7 @@ signed main() {
 			root = stk[(stk.size() - 1) / 2];
 			ans += (int)stk.size() / 2;
 		}
-		
+
 		vector<int> d(n);
 		function<void(int, int)> DFS = [&](int u, int p) {
 			for (int v : G[u]) {

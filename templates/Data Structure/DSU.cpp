@@ -12,11 +12,12 @@ struct DSU {
 	}
 	bool unite(int x, int y) {
 		x = find(x), y = find(y);
-		if (x == y)
+		if (x == y) {
 			return false;
-
-		if (sz[x] > sz[y])
+		}
+		if (sz[x] > sz[y]) {
 			swap(x, y);
+		}
 		parent[x] = y;
 		sz[y] += sz[x];
 		return true;

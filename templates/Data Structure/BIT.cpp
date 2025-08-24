@@ -8,13 +8,15 @@ struct BIT {
 	}
 
 	void update(int i, T x) {
-		for (; i <= n; i += (i & -i))
+		for (; i <= n; i += (i & -i)) {
 			bit[i] += x;
+		}
 	}
 	T query(int i) {
 		T sum = 0;
-		for (; i; i -= (i & -i))
+		for (; i; i -= (i & -i)) {
 			sum += bit[i];
+		}
 		return sum;
 	}
 };

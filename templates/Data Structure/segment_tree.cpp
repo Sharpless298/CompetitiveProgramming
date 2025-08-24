@@ -16,8 +16,9 @@ void pull(int id) {
 }
 
 void push(int id) {
-	if (!segtree[id].lazy)
+	if (!segtree[id].lazy) {
 		return;
+	}
 
 	segtree[id].data += segtree[id].sz * segtree[id].lazy;
 	segtree[id * 2 + 1].lazy += segtree[id].lazy;
@@ -39,8 +40,9 @@ void build(int id = 0, int L = 0, int R = n) {
 }
 
 void update(int l, int r, long long k, int id = 0, int L = 0, int R = n) {
-	if (l >= R || r <= L)
+	if (l >= R || r <= L) {
 		return;
+	}
 	if (l <= L && R <= r) {
 		segtree[id].lazy += k;
 		return;
@@ -53,11 +55,12 @@ void update(int l, int r, long long k, int id = 0, int L = 0, int R = n) {
 }
 
 long long query(int l, int r, int id = 0, int L = 0, int R = n) {
-	if (l >= R || r <= L)
+	if (l >= R || r <= L) {
 		return 0LL;
-	if (l <= L && R <= r)
+	}
+	if (l <= L && R <= r) {
 		return segtree[id].data + segtree[id].sz * segtree[id].lazy;
-
+	}
 	push(id);
 	int M = (L + R) / 2;
 	return query(l, r, id * 2 + 1, L, M) + query(l, r, id * 2 + 2, M, R);
@@ -69,9 +72,9 @@ signed main() {
 
 	cin >> n;
 	a.resize(n);
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) {
 		cin >> a[i];
-
+	}
 	segtree.resize(4 * n);
 	build();
 
@@ -85,7 +88,8 @@ signed main() {
 		if (t == 1) {
 			cin >> k;
 			update(l - 1, r, k);
-		} else
+		} else {
 			cout << query(l - 1, r) << '\n';
+		}
 	}
 }

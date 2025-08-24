@@ -42,8 +42,9 @@ vector<Point> convex_hull(vector<Point> &pnts) {
 
 	vector<Point> hull;
 	for (Point pnt : pnts) {
-		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+		while (hull.size() >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) {
 			hull.pop_back();
+		}
 		hull.push_back(pnt);
 	}
 	hull.pop_back();
@@ -51,8 +52,9 @@ vector<Point> convex_hull(vector<Point> &pnts) {
 	reverse(pnts.begin(), pnts.end());
 	int t = (int)hull.size();
 	for (Point pnt : pnts) {
-		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0)
+		while (hull.size() - t >= 2 && cross(hull.back() - hull[hull.size() - 2], pnt - hull[hull.size() - 2]) <= 0) {
 			hull.pop_back();
+		}
 		hull.push_back(pnt);
 	}
 	hull.pop_back();

@@ -8,9 +8,13 @@ void sieve(int n) {
 			primes.push_back(i);
 		}
 		for (int p : primes) {
-			if (i * p > n) break;
+			if (i * p > n) {
+				break;
+			}
 			lpf[i * p] = p;
-			if (p == lpf[i]) break;
+			if (p == lpf[i]) {
+				break;
+			}
 		}
 	}
 }
