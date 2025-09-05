@@ -6,7 +6,7 @@ const int MOD = 998244353;
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	
+
 	int t;
 	cin >> t;
 	while (t--) {
@@ -32,7 +32,7 @@ signed main() {
 			if (f) {
 				ans = 1LL * ans * k % MOD;
 			}
-			
+
 			if ((int)X.size() == n || (int)Y.size() == m) {
 				break;
 			}

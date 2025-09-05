@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long 
+#define int long long
 
 const int MOD = 998244353;
 
@@ -16,7 +16,7 @@ signed main() {
 		for (int i = 0; i < 26; i++) {
 			cin >> c[i];
 		}
-		
+
 		int sum = accumulate(c.begin(), c.end(), 0);
 		vector<int> dp(sum + 1);
 		dp[0] = 1;
