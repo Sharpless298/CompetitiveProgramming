@@ -1,4 +1,4 @@
-vector<int> primes;
+vector<int> primes, lpf;
 void sieve(int n) {
 	lpf.assign(n + 1, 1);
 	fill(lpf.begin(), lpf.end(), 1);
