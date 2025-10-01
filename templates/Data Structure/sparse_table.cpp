@@ -1,47 +1,40 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+struct SparseTable {
+	int n, K;
+	vector<vector<int>> mn, mx;
+	vector<int> lg;
 
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	SparseTable(const vector<int> &a) {
+		n = (int)arr.size();
+		lg.resize(n + 1);
 
-	int n;
-	cin >> n;
-	vector<int> a(n);
-	for (int i = 0; i < n; i++) {
-		cin >> a[i];
-	}
+		lg[1] = 0;
+		for (int i = 2; i <= n; i++) {
+			lg[i] = lg[i / 2] + 1;
+		}
 
-	vector<int> lg(n + 1);
-	lg[1] = 0;
-	for (int i = 2; i <= n; i++) {
-		lg[i] = lg[i / 2] + 1;
-	}
+		mn.assign(n, vector<int>(lg[n] + 1));
+		mx.assign(n, vector<int>(lg[n] + 1));
+		for (int i = 0; i < n; i++) {
+			mn[i][0] = a[i];
+			mx[i][0] = a[i];
+		}
 
-	int lgN = __lg(n) + 1;
-	vector<vector<int>> st(n, vector<int>(lgN));
-	for (int i = 0; i < n; i++) {
-		st[i][0] = a[i];
-	}
-
-	for (int j = 1; j < lgN; j++) {
-		for (int i = 0; i + (1 << j) - 1 < n; i++) {
-			st[i][j] = max(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
+		for (int k = 1; k <= lg[n]; k++) {
+			for (int i = 0; i + (1 << k) <= n; i++) {
+				mn[i][k] = min(mn[i][k - 1], mn[i + (1 << (k - 1))][k - 1]);
+				mx[i][k] = max(mx[i][k - 1], mx[i + (1 << (k - 1))][k - 1]);
+			}
 		}
 	}
 
-	int q;
-	cin >> q;
-	while (q--) {
-		int l, r;
-		cin >> l >> r;
-
-		if (l > r) {
-			swap(l, r);
-		}
-		l--, r--;
-		int k = lg[r - l + 1];
-		cout << max(st[l][k], st[r - (1 << k) + 1][k]) << '\n';
+	int query_min(int l, int r) {
+		int len = r - l;
+		int k = lg[len];
+		return min(mn[l][k], mn[r - (1 << k)][k]);
 	}
-}
+	int query_max(int l, int r) {
+		int len = r - l;
+		int k = lg[len];
+		return max(mx[l][k], mx[r - (1 << k)][k]);
+	}
+};
