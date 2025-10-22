@@ -1,40 +1,32 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-
-vector<string> words;
-
-bool cmp(string a, string b) {
-	if (a.size() != b.size())
-		return a.size() < b.size();
-	return a < b;
-}
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int start = 0, end = 26;
-	string s;
+	int cnt = 0;
+	string t;
+	map<string, int> mp;
+	function<void(int, int)> DFS = [&](int depth, int n) {
+		if (depth == n) {
+			mp[t] = ++cnt;
+			return;
+		}
 
-	for (string i = "a"; i <= "z"; i[0]++)
-		words.push_back(i);
+		for (char i = (depth == 0 ? 'a' : t.back() + 1); i <= 'z'; i++) {
+			t.push_back(i);
+			DFS(depth + 1, n);
+			t.pop_back();
+		}
+	};
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = start; j < end; j++)
-			for (char k = words[j][i] + 1; k <= 'z'; k++)
-				words.push_back(words[j] + k);
-		start = end;
-		end = (int)words.size();
+	for (int i = 1; i <= 5; i++) {
+		DFS(0, i);
 	}
 
+	string s;
 	while (cin >> s) {
-		auto iter = lower_bound(words.begin(), words.end(), s, cmp);
-
-		if (*iter != s)
-			cout << '0' << '\n';
-		else
-			cout << iter - words.begin() + 1 << '\n';
+		cout << mp[s] << '\n';
 	}
 }
