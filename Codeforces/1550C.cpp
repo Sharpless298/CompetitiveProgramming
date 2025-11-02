@@ -29,7 +29,7 @@ signed main() {
 			ans += f(a[i], a[i + 1], a[i + 2]);
 		}
 		for (int i = 0; i < n - 3; i++) {
-			ans += (f(a[i], a[i + 1], a[i + 2]) && f(a[i], a[i + 1], a[i + 3]) && 
+			ans += (f(a[i], a[i + 1], a[i + 2]) && f(a[i], a[i + 1], a[i + 3]) &&
 					f(a[i], a[i + 2], a[i + 3]) && f(a[i + 1], a[i + 2], a[i + 3]));
 		}
 		cout << ans << '\n';

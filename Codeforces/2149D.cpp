@@ -13,40 +13,40 @@ int a[maxn];
 int n, k;
 
 int get(vector<int> a) {
-    if(a.empty()) return 0;
+	if (a.empty()) return 0;
 
-    int pos = (int)a.size() / 2, val = 0;
-    for(int i = 0; i < a.size(); i++) {
-        val += abs(a[pos] - a[i]) - abs(pos - i);
-    }
+	int pos = (int)a.size() / 2, val = 0;
+	for (int i = 0; i < a.size(); i++) {
+		val += abs(a[pos] - a[i]) - abs(pos - i);
+	}
 
-    return val;
+	return val;
 }
 
 void solve() {
-    cin >> n;
-    vector<int> a, b;
-    for(int i = 1; i <= n; i++) {
-        char c;
-        cin >> c;
+	cin >> n;
+	vector<int> a, b;
+	for (int i = 1; i <= n; i++) {
+		char c;
+		cin >> c;
 
-        if(c == 'a') {
-            a.push_back(i);
-        }
-        else b.push_back(i);
-    }
+		if (c == 'a') {
+			a.push_back(i);
+		} else
+			b.push_back(i);
+	}
 
-    cout << min(get(a), get(b)) << ent;
+	cout << min(get(a), get(b)) << ent;
 }
 
 int32_t main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
 
 	int t;
 	cin >> t;
-    while(t--) {
-        solve();
-    }
+	while (t--) {
+		solve();
+	}
 }

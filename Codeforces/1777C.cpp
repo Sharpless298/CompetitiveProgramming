@@ -28,7 +28,7 @@ signed main() {
 		a.resize(unique(a.begin(), a.end()) - a.begin());
 		n = (int)a.size();
 		int ans = 0x3f3f3f3f;
-		vector<int> b((m + 1)/ 2);
+		vector<int> b((m + 1) / 2);
 		for (int i = 0, j = 0, cnt = 0; i < n; i++) {
 			while (j < n && cnt < (m + 1) / 2) {
 				for (int x = a[j], k = m / 2 + 1; x >= k && k <= m; k++) {

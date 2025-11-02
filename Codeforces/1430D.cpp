@@ -15,7 +15,7 @@ signed main() {
 
 		int ans = 0;
 		vector<bool> b(n);
-		for (int i = 0, j = 1; i < n; ) {
+		for (int i = 0, j = 1; i < n;) {
 			ans++;
 
 			while (j < n && s[j] != s[j - 1]) {

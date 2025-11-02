@@ -26,15 +26,14 @@ signed main() {
 			cur += (n - c) * 2;
 			c++;
 		}
-		
+
 		vector<int> ans;
 		int j = c + 1;
 		for (long long i = cur + 1; i <= r; i++) {
 			if (i >= l) {
 				if (i == 1LL * n * (n - 1) + 1) {
 					ans.push_back(1);
-				}
-				else if (i & 1) {
+				} else if (i & 1) {
 					ans.push_back(c);
 				} else {
 					ans.push_back(j);
