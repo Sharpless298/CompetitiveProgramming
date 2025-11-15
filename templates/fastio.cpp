@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 template <typename T>
 inline void readint(T &x) {
 	char c;
@@ -18,9 +15,4 @@ inline void readint(T &x) {
 		c = (char)getchar();
 	}
 	x *= f;
-}
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
 }

@@ -43,11 +43,11 @@ signed main() {
 	cin >> n >> q;
 	G.resize(n);
 	for (int i = 1; i < n; i++) {
-		int u;
-		cin >> u;
-		u--;
-		G[i].push_back(u);
-		G[u].push_back(i);
+		int u, v;
+		cin >> u >> v;
+		u--, v--;
+		G[v].push_back(u);
+		G[u].push_back(v);
 	}
 
 	lgN = __lg(n);
