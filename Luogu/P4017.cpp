@@ -35,7 +35,8 @@ int main() {
 
 		for (int v : G[u]) {
 			in[v]--;
-			dp[v] = (dp[v] + dp[u]) % MOD;;
+			dp[v] = (dp[v] + dp[u]) % MOD;
+			;
 			if (in[v] == 0) {
 				q.push(v);
 			}

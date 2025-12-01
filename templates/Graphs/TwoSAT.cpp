@@ -15,6 +15,7 @@ struct TwoSAT {
 		G[x < n ? x + n : x - n].push_back(y);
 		G[y < n ? y + n : y - n].push_back(x);
 	}
+
 	void DFS(int u) {
 		tin[u] = low[u] = time++;
 		stk.push(u);
@@ -33,6 +34,7 @@ struct TwoSAT {
 			id++;
 		}
 	}
+
 	bool solve() {
 		for (int i = 0; i < 2 * n; i++) {
 			if (tin[i] == -1) {

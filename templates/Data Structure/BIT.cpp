@@ -12,6 +12,7 @@ struct BIT {
 			bit[i] += x;
 		}
 	}
+
 	T query(int i) {
 		T sum = 0;
 		for (; i; i -= (i & -i)) {

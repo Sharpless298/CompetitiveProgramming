@@ -7,7 +7,7 @@ int main() {
 
 	string A, B;
 	cin >> A >> B;
-	
+
 	int n = (int)A.size(), m = (int)B.size();
 	vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0x3f3f3f3f));
 	for (int i = 0; i <= n; i++) {

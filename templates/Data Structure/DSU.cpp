@@ -10,6 +10,7 @@ struct DSU {
 	int find(int x) {
 		return parent[x] == x ? x : parent[x] = find(parent[x]);
 	}
+
 	bool unite(int x, int y) {
 		x = find(x), y = find(y);
 		if (x == y) {
