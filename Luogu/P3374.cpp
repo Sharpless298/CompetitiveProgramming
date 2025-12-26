@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 template <typename T>
@@ -12,7 +11,6 @@ struct BIT {
 	}
 
 	void update(int i, T x) {
-		i++;
 		for (; i <= n; i += (i & -i)) {
 			bit[i] += x;
 		}
@@ -27,22 +25,30 @@ struct BIT {
 	}
 };
 
-signed main() {
+int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n, q;
-	cin >> n >> q;
-	vector<int> a(n);
+	int n, m;
+	cin >> n >> m;
 	BIT<long long> bit(n);
 	for (int i = 0; i < n; i++) {
-		cin >> a[i];
-		bit.update(i, a[i]);
+		int x;
+		cin >> x;
+		bit.update(i + 1, x);
 	}
 
-	while (q--) {
-		int l, r;
-		cin >> l >> r;
-		cout << bit.query(r) - bit.query(l) << '\n';
+	while (m--) {
+		int t;
+		cin >> t;
+		if (t == 1) {
+			int x, k;
+			cin >> x >> k;
+			bit.update(x, k);
+		} else {
+			int x, y;
+			cin >> x >> y;
+			cout << bit.query(y) - bit.query(x - 1) << '\n';
+		}
 	}
 }

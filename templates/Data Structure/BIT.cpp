@@ -8,6 +8,8 @@ struct BIT {
 	}
 
 	void update(int i, T x) {
+		// 0 <= i < n
+		i++;
 		for (; i <= n; i += (i & -i)) {
 			bit[i] += x;
 		}
