@@ -1,95 +1,72 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+template <typename T>
+struct SegmentTree {
+	int n;
+	vector<T> st, tag;
 
-struct Node {
-	long long data, sz, lazy;
-};
-
-int n;
-vector<int> a;
-vector<Node> segtree;
-
-void pull(int id) {
-	segtree[id].data = segtree[id * 2 + 1].data + segtree[id * 2 + 1].sz * segtree[id * 2 + 1].lazy +
-					   segtree[id * 2 + 2].data + segtree[id * 2 + 2].sz * segtree[id * 2 + 2].lazy;
-}
-
-void push(int id) {
-	if (!segtree[id].lazy) {
-		return;
+	SegmentTree(int _n) : n(_n) {
+		st.resize(n << 1);
+		tag.resize(n);
 	}
 
-	segtree[id].data += segtree[id].sz * segtree[id].lazy;
-	segtree[id * 2 + 1].lazy += segtree[id].lazy;
-	segtree[id * 2 + 2].lazy += segtree[id].lazy;
-	segtree[id].lazy = 0;
-}
-
-void build(int id = 0, int L = 0, int R = n) {
-	segtree[id].sz = R - L;
-	if (R - L == 1) {
-		segtree[id].data = a[L];
-		return;
-	}
-
-	int M = (L + R) / 2;
-	build(id * 2 + 1, L, M);
-	build(id * 2 + 2, M, R);
-	pull(id);
-}
-
-void update(int l, int r, long long k, int id = 0, int L = 0, int R = n) {
-	if (l >= R || r <= L) {
-		return;
-	}
-	if (l <= L && R <= r) {
-		segtree[id].lazy += k;
-		return;
-	}
-
-	int M = (L + R) / 2;
-	update(l, r, k, id * 2 + 1, L, M);
-	update(l, r, k, id * 2 + 2, M, R);
-	pull(id);
-}
-
-long long query(int l, int r, int id = 0, int L = 0, int R = n) {
-	if (l >= R || r <= L) {
-		return 0LL;
-	}
-	if (l <= L && R <= r) {
-		return segtree[id].data + segtree[id].sz * segtree[id].lazy;
-	}
-	push(id);
-	int M = (L + R) / 2;
-	return query(l, r, id * 2 + 1, L, M) + query(l, r, id * 2 + 2, M, R);
-}
-
-signed main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-
-	cin >> n;
-	a.resize(n);
-	for (int i = 0; i < n; i++) {
-		cin >> a[i];
-	}
-	segtree.resize(4 * n);
-	build();
-
-	int q;
-	cin >> q;
-	while (q--) {
-		int t, l, r;
-		long long k;
-		cin >> t >> l >> r;
-
-		if (t == 1) {
-			cin >> k;
-			update(l - 1, r, k);
-		} else {
-			cout << query(l - 1, r) << '\n';
+	SegmentTree(const auto &a) : n((int)a.size()) {
+		st.resize(n << 1);
+		tag.resize(n);
+		for (int i = 0; i < n; i++) {
+			st[i + n] = a[i];
+		}
+		for (int i = n - 1; i > 0; i--) {
+			st[i] = st[i << 1] + st[i << 1 | 1];
 		}
 	}
-}
+
+	void add(int u, T d, int h) {
+		st[u] += d << h;
+		if (u < n) {
+			tag[u] += d;
+		}
+	}
+
+	void push(int u) {
+		for (int h = __lg(n); h >= 0; h--) {
+			int v = u >> h;
+			add(v, tag[v >> 1], h);
+			add(v ^ 1, tag[v >> 1], h);
+			tag[v >> 1] = 0;
+		}
+	}
+
+	void pull(int u) {
+		for (int h = 1; u > 1; h++, u >>= 1) {
+			st[u >> 1] = st[u] + st[u ^ 1] + (tag[u >> 1] << h);
+		}
+	}
+
+	void update(int l, int r, T k) {
+		l++, r++;
+		int tl = l, tr = r, h = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
+			if (l & 1) {
+				upd(l++, k, h);
+			}
+			if (r & 1) {
+				upd(--r, k, h);
+			}
+		}
+		pull(tl + n), pull(tr - 1 + n);
+	}
+
+	T query(int l, int r) {
+		T sum = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+			if (l & 1) {
+				sum += st[l++];
+			}
+			if (r & 1) {
+				sum += st[--r];
+			}
+		}
+		return sum;
+	}
+};
