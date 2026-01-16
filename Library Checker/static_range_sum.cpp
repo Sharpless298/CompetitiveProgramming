@@ -50,10 +50,10 @@ struct SegmentTree {
 		push(l + n), push(r - 1 + n);
 		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
 			if (l & 1) {
-				upd(l++, k, h);
+				add(l++, k, h);
 			}
 			if (r & 1) {
-				upd(--r, k, h);
+				add(--r, k, h);
 			}
 		}
 		pull(tl + n), pull(tr - 1 + n);

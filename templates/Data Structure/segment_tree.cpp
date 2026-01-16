@@ -19,7 +19,7 @@ struct SegmentTree {
 		}
 	}
 
-	void add(int u, T d, int h) {
+	void apply(int u, T d, int h) {
 		st[u] += d << h;
 		if (u < n) {
 			tag[u] += d;
@@ -29,8 +29,8 @@ struct SegmentTree {
 	void push(int u) {
 		for (int h = __lg(n); h >= 0; h--) {
 			int v = u >> h;
-			add(v, tag[v >> 1], h);
-			add(v ^ 1, tag[v >> 1], h);
+			apply(v, tag[v >> 1], h);
+			apply(v ^ 1, tag[v >> 1], h);
 			tag[v >> 1] = 0;
 		}
 	}
@@ -42,15 +42,14 @@ struct SegmentTree {
 	}
 
 	void update(int l, int r, T k) {
-		l++, r++;
 		int tl = l, tr = r, h = 0;
 		push(l + n), push(r - 1 + n);
 		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
 			if (l & 1) {
-				upd(l++, k, h);
+				apply(l++, k, h);
 			}
 			if (r & 1) {
-				upd(--r, k, h);
+				apply(--r, k, h);
 			}
 		}
 		pull(tl + n), pull(tr - 1 + n);

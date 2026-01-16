@@ -1,73 +1,103 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-int n;
-vector<int> a;
-vector<long long> segtree;
+template <typename T>
+struct SegmentTree {
+	int n;
+	vector<T> st, tag;
 
-void build(int id = 0, int L = 0, int R = n) {
-	if (R - L == 1) {
-		segtree[id] = a[L];
-		return;
+	SegmentTree(int _n) : n(_n) {
+		st.resize(n << 1);
+		tag.resize(n);
 	}
 
-	int M = (L + R) / 2;
-	build(id * 2 + 1, L, M);
-	build(id * 2 + 2, M, R);
-	segtree[id] = segtree[id * 2 + 1] + segtree[id * 2 + 2];
-}
-
-void update(int p, int x, int id = 0, int L = 0, int R = n) {
-	if (R - L == 1) {
-		segtree[id] += x;
-		return;
+	SegmentTree(const auto &a) : n((int)a.size()) {
+		st.resize(n << 1);
+		tag.resize(n);
+		for (int i = 0; i < n; i++) {
+			st[i + n] = a[i];
+		}
+		for (int i = n - 1; i > 0; i--) {
+			st[i] = st[i << 1] + st[i << 1 | 1];
+		}
 	}
 
-	int M = (L + R) / 2;
-	if (p < M)
-		update(p, x, id * 2 + 1, L, M);
-	else
-		update(p, x, id * 2 + 2, M, R);
+	void add(int u, T d, int h) {
+		st[u] += d << h;
+		if (u < n) {
+			tag[u] += d;
+		}
+	}
 
-	segtree[id] = segtree[id * 2 + 1] + segtree[id * 2 + 2];
-}
+	void push(int u) {
+		for (int h = __lg(n); h >= 0; h--) {
+			int v = u >> h;
+			if (!tag[v >> 1]) {
+				continue;
+			}
+			add(v, tag[v >> 1], h);
+			add(v ^ 1, tag[v >> 1], h);
+			tag[v >> 1] = 0;
+		}
+	}
 
-long long query(int l, int r, int id = 0, int L = 0, int R = n) {
-	if (l >= R || r <= L)
-		return 0;
-	if (l <= L && R <= r)
-		return segtree[id];
+	void pull(int u) {
+		for (int h = 1; u > 1; h++, u >>= 1) {
+			st[u >> 1] = st[u] + st[u ^ 1] + (tag[u >> 1] << h);
+		}
+	}
 
-	int M = (L + R) / 2;
-	return query(l, r, id * 2 + 1, L, M) + query(l, r, id * 2 + 2, M, R);
-}
+	void update(int l, int r, T k) {
+		int tl = l, tr = r, h = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
+			if (l & 1) {
+				add(l++, k, h);
+			}
+			if (r & 1) {
+				add(--r, k, h);
+			}
+		}
+		pull(tl + n), pull(tr - 1 + n);
+	}
+
+	T query(int l, int r) {
+		T sum = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+			if (l & 1) {
+				sum += st[l++];
+			}
+			if (r & 1) {
+				sum += st[--r];
+			}
+		}
+		return sum;
+	}
+};
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int q;
+	int n, q;
 	cin >> n >> q;
-	a.resize(n);
-	for (int i = 0; i < n; i++)
+	vector<int> a(n);
+	for (int i = 0; i < n; i++) {
 		cin >> a[i];
-
-	segtree.resize(4 * n);
-	build();
-
+	}
+	SegmentTree<long long> st(a);
 	while (q--) {
 		int t;
 		cin >> t;
-
 		if (t == 0) {
 			int p, x;
 			cin >> p >> x;
-			update(p, x);
+			st.update(p, p + 1, x);
 		} else {
 			int l, r;
 			cin >> l >> r;
-			cout << query(l, r) << '\n';
+			cout << st.query(l, r) << '\n';
 		}
 	}
 }
