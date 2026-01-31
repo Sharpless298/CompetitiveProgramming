@@ -21,14 +21,14 @@ signed main() {
 				cin >> a[i][j];
 			}
 		}
-		
+
 		vector<priority_queue<pair<int, int>>> pq(m);
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < (int)a[i].size(); j++) {
 				pq[j].push(make_pair(-a[i][j], i));
 			}
 		}
-		
+
 		priority_queue<pair<int, int>> cur;
 		vector<int> ans(m);
 		for (int i = 0; i < m; i++) {

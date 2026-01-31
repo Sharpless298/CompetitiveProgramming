@@ -47,7 +47,7 @@ signed main() {
 	}
 
 	SparseTable<int> st(a, [](int x, int y) {
-			return min(x, y);
+		return min(x, y);
 	});
 
 	while (q--) {

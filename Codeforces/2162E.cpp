@@ -21,7 +21,6 @@ signed main() {
 			s1.erase(a[i]);
 		}
 
-
 		for (int i = 0; i < k; i++) {
 			if (!s1.empty()) {
 				a.push_back(*s1.begin());
