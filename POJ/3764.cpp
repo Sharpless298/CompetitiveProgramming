@@ -5,10 +5,35 @@
 #include <cstring>
 using namespace std;
 
+struct ForwardStar {
+	int cnt;
+	vector<int> head, nxt, to, weight;
+
+	ForwardStar(int _n) {
+		head.assign(_n, -1);
+		nxt.resize(_n << 1);
+		to.resize(_n << 1);
+		weight.resize(_n << 1);
+		cnt = -1;
+	}
+
+	void add_edge(int u, int v) {
+		nxt[++cnt] = head[u];
+		head[u] = cnt;
+		to[cnt] = v;
+	}
+
+	void add_edge(int u, int v, int w) {
+		nxt[++cnt] = head[u];
+		head[u] = cnt;
+		to[cnt] = v;
+		weight[cnt] = w;
+	}
+};
+
 const int N = 200000;
-int cnt = 0, ans = 0, c = 0;
+int cnt = 0, ans = 0;
 int trie[N << 5][2];
-int head[N], nxt[N], weight[N], to[N];
 int d[N];
 
 void insert(int x) {
@@ -37,22 +62,15 @@ int find(int x) {
     return res;
 }
 
-void add(int u, int v, int w) {
-	nxt[++c] = head[u];
-	head[u] = c;
-	to[c] = v;
-	weight[c] = w;
-}
-
-void DFS(int u, int p) {
+void DFS(int u, int p, ForwardStar &G) {
     insert(d[u]);
     ans = max(ans, find(d[u]));
 
-    for (int i = head[u]; ~i; i = nxt[i]) {
-		int v = to[i];
+    for (int i = G.head[u]; ~i; i = G.nxt[i]) {
+		int v = G.to[i];
         if (v != p) {
-            d[v] = d[u] ^ weight[i];
-            DFS(v, u);
+            d[v] = d[u] ^ G.weight[i];
+            DFS(v, u, G);
         }
     }
 }
@@ -64,18 +82,18 @@ signed main() {
     int n;
 	while (scanf("%d", &n) != EOF) {
 		ans = cnt = 0;
-		c = -1;
 		memset(trie, 0, sizeof(int) * (n << 5) * 2);
-		memset(head, -1, sizeof(int) * n);
+
+		ForwardStar G(n);
 		for (int i = 0; i < n - 1; ++i) {
 			int u, v, w;
 			scanf("%d %d %d", &u, &v, &w);
-			add(u, v, w);
-			add(v, u, w);
+			G.add_edge(u, v, w);
+			G.add_edge(v, u, w);
 		}
 
 		memset(d, 0, sizeof(d));
-		DFS(0, -1);
+		DFS(0, -1, G);
 		printf("%d\n", ans);
 	}
 
