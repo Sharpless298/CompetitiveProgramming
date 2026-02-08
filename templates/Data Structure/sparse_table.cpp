@@ -5,7 +5,10 @@ struct SparseTable {
 	vector<int> lg;
 	function<T(T, T)> f;
 
-	SparseTable(const auto &a, auto _f) : n((int)a.size()), f(_f) {
+	SparseTable(const auto &a, auto _f) {
+		n = (int)a.size();
+		f = _f;
+
 		lg.resize(n + 1);
 		lg[1] = 0;
 		for (int i = 2; i <= n; i++) {
