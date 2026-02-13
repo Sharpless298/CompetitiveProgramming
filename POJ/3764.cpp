@@ -1,8 +1,8 @@
-#include <vector>
-#include <utility>
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <utility>
+#include <vector>
 using namespace std;
 
 struct ForwardStar {
@@ -37,49 +37,49 @@ int trie[N << 5][2];
 int d[N];
 
 void insert(int x) {
-    int u = 0;
-    for (int i = 30; i >= 0; --i) {
-        int y = ((x >> i) & 1);
-        if (!trie[u][y]) {
-            trie[u][y] = ++cnt;
-        }
-        u = trie[u][y];
-    }
+	int u = 0;
+	for (int i = 30; i >= 0; --i) {
+		int y = ((x >> i) & 1);
+		if (!trie[u][y]) {
+			trie[u][y] = ++cnt;
+		}
+		u = trie[u][y];
+	}
 }
 
 int find(int x) {
-    int u = 0;
-    int res = 0;
-    for (int i = 30; i >= 0; --i) {
-        int y = ((x >> i) & 1);
-        if (trie[u][y ^ 1]) {
-            u = trie[u][y ^ 1];
-            res |= (1 << i);
-        } else {
-            u = trie[u][y];
-        }
-    }
-    return res;
+	int u = 0;
+	int res = 0;
+	for (int i = 30; i >= 0; --i) {
+		int y = ((x >> i) & 1);
+		if (trie[u][y ^ 1]) {
+			u = trie[u][y ^ 1];
+			res |= (1 << i);
+		} else {
+			u = trie[u][y];
+		}
+	}
+	return res;
 }
 
 void DFS(int u, int p, ForwardStar &G) {
-    insert(d[u]);
-    ans = max(ans, find(d[u]));
+	insert(d[u]);
+	ans = max(ans, find(d[u]));
 
-    for (int i = G.head[u]; ~i; i = G.nxt[i]) {
+	for (int i = G.head[u]; ~i; i = G.nxt[i]) {
 		int v = G.to[i];
-        if (v != p) {
-            d[v] = d[u] ^ G.weight[i];
-            DFS(v, u, G);
-        }
-    }
+		if (v != p) {
+			d[v] = d[u] ^ G.weight[i];
+			DFS(v, u, G);
+		}
+	}
 }
 
 signed main() {
-    //ios::sync_with_stdio(false);
-    //cin.tie(NULL);
+	// ios::sync_with_stdio(false);
+	// cin.tie(NULL);
 
-    int n;
+	int n;
 	while (scanf("%d", &n) != EOF) {
 		ans = cnt = 0;
 		memset(trie, 0, sizeof(int) * (n << 5) * 2);
@@ -97,5 +97,5 @@ signed main() {
 		printf("%d\n", ans);
 	}
 
-    return 0;
+	return 0;
 }
