@@ -1,22 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
 struct LCA {
-	int n, LOG, timer;
-	vector<int> depth, tin, tout;
+	int n, LOG;
+	vector<int> depth;
 	vector<vector<int>> G, ancestor;
 
 	LCA(const vector<vector<int>> &graph, int root = 0) {
 		G = graph;
 		n = (int)G.size();
 		LOG = __lg(n) + 1;
-		timer = 0;
-		tin.assign(n, 0);
-		tout.assign(n, 0);
 		depth.assign(n, 0);
 		ancestor.assign(n, vector<int>(LOG, 0));
 		DFS(root, root);
 	}
 
 	void DFS(int u, int p) {
-		tin[u] = timer++;
 		ancestor[u][0] = p;
 		for (int i = 1; i < LOG; i++) {
 			ancestor[u][i] = ancestor[ancestor[u][i - 1]][i - 1];
@@ -27,11 +25,6 @@ struct LCA {
 				DFS(v, u);
 			}
 		}
-		tout[u] = timer;
-	}
-
-	bool is_ancestor(int u, int v) {
-		return tin[u] <= tin[v] && tout[u] >= tout[v];
 	}
 
 	int query(int u, int v) {
@@ -55,3 +48,24 @@ struct LCA {
 		return ancestor[u][0];
 	}
 };
+
+signed main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int n, q;
+	cin >> n >> q;
+	vector<vector<int>> G(n);
+	for (int i = 1; i < n; i++) {
+		int p;
+		cin >> p;
+		G[p].push_back(i);
+		G[i].push_back(p);
+	}
+	LCA lca(G);
+	while (q--) {
+		int u, v;
+		cin >> u >> v;
+		cout << lca.query(u, v) << '\n';
+	}
+}
