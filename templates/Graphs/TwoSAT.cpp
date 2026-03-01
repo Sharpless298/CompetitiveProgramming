@@ -1,14 +1,17 @@
 struct TwoSAT {
-	int n, time = 0, id = 0;
+	int n, timer, id;
 	vector<vector<int>> G;
 	vector<bool> val;
 	vector<int> tin, low, comp;
 	stack<int> stk;
 
 	TwoSAT(int _n) : n(_n) {
+		timer = id = 0;
 		G.assign(2 * n, vector<int>());
 		val.assign(n, false);
-		tin.assign(2 * n, -1), low.assign(2 * n, -1), comp.assign(2 * n, -1);
+		tin.assign(2 * n, -1);
+		low.assign(2 * n, -1);
+		comp.assign(2 * n, -1);
 	}
 
 	void add_clause(int x, int y) {
@@ -17,7 +20,7 @@ struct TwoSAT {
 	}
 
 	void DFS(int u) {
-		tin[u] = low[u] = time++;
+		tin[u] = low[u] = timer++;
 		stk.push(u);
 		for (int v : G[u]) {
 			if (comp[v] == -1) {
