@@ -13,8 +13,12 @@ struct SegmentTree {
 	SegmentTree(vector<T> &a) {
 		n = (int)a.size();
 		st.resize(4 * n);
-		lazy.resize(4 * n);
+		lazy.assign(4 * n, T());
 		build(a, 0, 0, n);
+	}
+
+	void pull(int u) {
+		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
 	}
 
 	void build(vector<T> &a, int u, int l, int r) {
@@ -25,7 +29,8 @@ struct SegmentTree {
 		int m = (l + r) / 2;
 		build(a, u * 2 + 1, l, m);
 		build(a, u * 2 + 2, m, r);
-		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
+		//st[u] = st[u * 2 + 1] + st[u * 2 + 2];
+		pull(u);
 	}
 
 	void push(int u, int l, int r) {
@@ -52,7 +57,8 @@ struct SegmentTree {
 		int m = (l + r) / 2;
 		update(ql, qr, x, u * 2 + 1, l, m);
 		update(ql, qr, x, u * 2 + 2, m, r);
-		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
+		//st[u] = st[u * 2 + 1] + st[u * 2 + 2];
+		pull(u);
 	}
 
 	T query(int ql, int qr, int u, int l, int r) {

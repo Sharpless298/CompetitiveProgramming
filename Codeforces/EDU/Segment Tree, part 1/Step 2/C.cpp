@@ -1,74 +1,96 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
-vector<int> a, seg;
+template <typename T>
+struct SegmentTree {
+	int n;
+	vector<T> st;
 
-void build(int id = 0, int L = 0, int R = n) {
-	if (R - L == 1) {
-		seg[id] = a[L];
-		return;
+	SegmentTree(int _n) {
+		n = _n;
+		st.assign(4 * n, T());
 	}
 
-	int M = (L + R) / 2;
-	build(id * 2 + 1, L, M);
-	build(id * 2 + 2, M, R);
-	seg[id] = max(seg[id * 2 + 1], seg[id * 2 + 2]);
-}
-
-void update(int x, int v, int id = 0, int L = 0, int R = n) {
-	if (x < L || x >= R)
-		return;
-	if (R - L == 1) {
-		seg[id] = v;
-		return;
+	SegmentTree(vector<T> &a) {
+		n = (int)a.size();
+		st.resize(4 * n);
+		build(a, 0, 0, n);
+	}
+	
+	void pull(int u) {
+		st[u] = max(st[u * 2 + 1], st[u * 2 + 2]);
 	}
 
-	int M = (L + R) / 2;
-	update(x, v, id * 2 + 1, L, M);
-	update(x, v, id * 2 + 2, M, R);
-	seg[id] = max(seg[id * 2 + 1], seg[id * 2 + 2]);
-}
+	void build(vector<T> &a, int u, int l, int r) {
+		if (r - l == 1) {
+			st[u] = a[l];
+			return;
+		}
+		int m = (l + r) / 2;
+		build(a, u * 2 + 1, l, m);
+		build(a, u * 2 + 2, m, r);
+		pull(u);
+	}
 
-int query(int x, int id = 0, int L = 0, int R = n) {
-	if (R - L == 1)
-		return L;
+	void update(int ql, int qr, T x, int u, int l, int r) {
+		if (qr <= l || r <= ql) {
+			return;
+		}
+		if (ql <= l && r <= qr) {
+			st[u] = x;
+			return;
+		}
+		int m = (l + r) / 2;
+		update(ql, qr, x, u * 2 + 1, l, m);
+		update(ql, qr, x, u * 2 + 2, m, r);
+		pull(u);
+	}
 
-	int M = (L + R) / 2;
-	if (seg[id * 2 + 1] >= x)
-		return query(x, id * 2 + 1, L, M);
-	else
-		return query(x, id * 2 + 2, M, R);
-}
+	T query(int x, int u, int l, int r) {
+		if (r - l == 1) {
+			return l;
+		}
+		int m = (l + r) / 2;
+		if (x <= st[u * 2 + 1]) {
+			return query(x, u * 2 + 1, l, m);
+		} else {
+			return query(x, u * 2 + 2, m, r);
+		}
+	}
+
+	void update(int l, int r, T x) {
+		update(l, r, x, 0, 0, n);
+	}
+
+	T query(int x) {
+		return query(x, 0, 0, n);
+	}
+};
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
+	int n, m;
 	cin >> n >> m;
-	a.resize(n);
-	for (int i = 0; i < n; i++)
+	vector<int> a(n + 1);
+	for (int i = 0; i < n; i++) {
 		cin >> a[i];
-
-	seg.resize(4 * n);
-	build();
-
+	}
+	a[n] = 1 << 30;
+	SegmentTree<int> st(a);
 	while (m--) {
-		int t;
-		cin >> t;
-
-		if (t == 1) {
-			int i, v;
-			cin >> i >> v;
-			update(i, v);
+		int op;
+		cin >> op;
+		if (op == 1) {
+			int i, x;
+			cin >> i >> x;
+			st.update(i, i + 1, x);
 		} else {
 			int x;
 			cin >> x;
-			if (seg[0] < x)
-				cout << -1 << '\n';
-			else
-				cout << query(x) << '\n';
+			int ret = st.query(x);
+			cout << (ret == n ? -1 : ret) << '\n';
 		}
 	}
 }
