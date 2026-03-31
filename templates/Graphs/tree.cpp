@@ -1,13 +1,14 @@
-struct LCA {
+struct Tree {
 	int n, LOG, timer;
-	vector<int> depth, tin, tout;
+	vector<int> depth, euler_tour, tin, tout;
 	vector<vector<int>> G, ancestor;
 
-	LCA(const vector<vector<int>> &graph, int root = 0) {
+	Tree(const vector<vector<int>> &graph, int root = 0) {
 		G = graph;
 		n = (int)G.size();
 		LOG = __lg(n) + 1;
 		timer = 0;
+		euler_tour.assign(n, 0);
 		tin.assign(n, 0);
 		tout.assign(n, 0);
 		depth.assign(n, 0);
@@ -16,6 +17,7 @@ struct LCA {
 	}
 
 	void DFS(int u, int p) {
+		euler_tour[timer] = u;
 		tin[u] = timer++;
 		ancestor[u][0] = p;
 		for (int i = 1; i < LOG; i++) {

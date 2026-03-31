@@ -1,70 +1,81 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-typedef long long int lli;
-
 struct Node {
-	lli sum, pref, suf, mx;
+	int64_t sum, lsum, rsum, mx;
+	Node operator+(const Node &rhs) const {
+		return {sum + rhs.sum,
+				max(lsum, sum + rhs.lsum),
+				max(rhs.rsum, rsum + rhs.sum),
+				max({mx, rhs.mx, rsum + rhs.lsum})};
+	}
 };
 
-int n, q;
-vector<int> a;
-vector<Node> seg;
+template <typename T>
+struct SegmentTree {
+	int n;
+	vector<T> segtree;
 
-void merge(Node &cur, Node &l, Node &r) {
-	cur.sum = l.sum + r.sum;
-	cur.pref = max(l.pref, l.sum + r.pref);
-	cur.suf = max(r.suf, l.suf + r.sum);
-	cur.mx = max({l.mx, r.mx, l.suf + r.pref});
-}
-
-void build(int id = 0, int L = 0, int R = n) {
-	if (R - L == 1) {
-		seg[id] = {a[L], a[L], a[L], a[L]};
-		return;
+	SegmentTree(int _n) {
+		n = _n;
+		segtree.assign(4 * n, T());
 	}
 
-	int M = (L + R) / 2;
-	build(id * 2 + 1, L, M);
-	build(id * 2 + 2, M, R);
-	merge(seg[id], seg[id * 2 + 1], seg[id * 2 + 2]);
-}
-
-void update(int x, int v, int id = 0, int L = 0, int R = n) {
-	if (R - L == 1) {
-		seg[id] = {v, v, v, v};
-		return;
+	SegmentTree(vector<T> &a) {
+		n = (int)a.size();
+		segtree.resize(4 * n);
+		build(a, 0, 0, n);
 	}
 
-	int M = (L + R) / 2;
-	if (x < M)
-		update(x, v, id * 2 + 1, L, M);
-	else
-		update(x, v, id * 2 + 2, M, R);
+	void build(vector<T> &a, int u, int l, int r) {
+		if (r - l == 1) {
+			segtree[u] = a[l];
+			return;
+		}
+		int m = (l + r) / 2;
+		build(a, u * 2 + 1, l, m);
+		build(a, u * 2 + 2, m, r);
+		segtree[u] = segtree[u * 2 + 1] + segtree[u * 2 + 2];
+	}
 
-	merge(seg[id], seg[id * 2 + 1], seg[id * 2 + 2]);
-}
+	void update(int ql, int qr, T val, int u, int l, int r) {
+		if (qr <= l || r <= ql) {
+			return;
+		}
+		if (ql <= l && r <= qr) {
+			segtree[u] = val;
+			return;
+		}
+		int m = (l + r) / 2;
+		update(ql, qr, val, u * 2 + 1, l, m);
+		update(ql, qr, val, u * 2 + 2, m, r);
+		segtree[u] = segtree[u * 2 + 1] + segtree[u * 2 + 2];
+	}
+
+	void update(int l, int r, T val) {
+		update(l, r, val, 0, 0, n);
+	}
+};
 
 signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	cin >> n >> q;
-	a.resize(n);
-	for (int i = 0; i < n; i++)
-		cin >> a[i];
+	int n, m;
+	cin >> n >> m;
+	vector<Node> a(n);
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		a[i] = {x, x, x, x};
+	}
 
-	seg.resize(4 * n);
-	build();
-
-	cout << max(seg[0].mx, 0LL) << '\n';
-	while (q--) {
-		int x, v;
-		cin >> x >> v;
-
-		update(x, v);
-		cout << max(seg[0].mx, 0LL) << '\n';
+	SegmentTree st(a);
+	cout << max(int64_t(0), st.segtree[0].mx) << '\n';
+	for (int i = 0; i < m; i++) {
+		int x, y;
+		cin >> x >> y;
+		st.update(x, x + 1, (Node){y, y, y, y});
+		cout << max(int64_t(0), st.segtree[0].mx) << '\n';
 	}
 }

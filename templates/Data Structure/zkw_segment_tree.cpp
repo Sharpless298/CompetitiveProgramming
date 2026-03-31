@@ -1,0 +1,73 @@
+template <typename T>
+struct zkwSegmentTree {
+	int n;
+	vector<T> st, lazy;
+
+	SegmentTree(int _n) {
+		n = _n;
+		st.resize(n << 1);
+		lazy.resize(n);
+	}
+
+	SegmentTree(const auto &a) {
+		n = (int)a.size();
+		st.resize(n << 1);
+		lazy.resize(n);
+		for (int i = 0; i < n; i++) {
+			st[i + n] = a[i];
+		}
+		for (int i = n - 1; i > 0; i--) {
+			st[i] = st[i << 1] + st[i << 1 | 1];
+		}
+	}
+
+	void apply(int u, T d, int h) {
+		st[u] += d << h;
+		if (u < n) {
+			lazy[u] += d;
+		}
+	}
+
+	void push(int u) {
+		for (int h = __lg(n); h >= 0; h--) {
+			int v = u >> h;
+			apply(v, lazy[v >> 1], h);
+			apply(v ^ 1, lazy[v >> 1], h);
+			lazy[v >> 1] = 0;
+		}
+	}
+
+	void pull(int u) {
+		for (int h = 1; u > 1; h++, u >>= 1) {
+			st[u >> 1] = st[u] + st[u ^ 1] + (lazy[u >> 1] << h);
+		}
+	}
+
+	void update(int l, int r, T k) {
+		int tl = l, tr = r, h = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
+			if (l & 1) {
+				apply(l++, k, h);
+			}
+			if (r & 1) {
+				apply(--r, k, h);
+			}
+		}
+		pull(tl + n), pull(tr - 1 + n);
+	}
+
+	T query(int l, int r) {
+		T sum = 0;
+		push(l + n), push(r - 1 + n);
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+			if (l & 1) {
+				sum += st[l++];
+			}
+			if (r & 1) {
+				sum += st[--r];
+			}
+		}
+		return sum;
+	}
+};

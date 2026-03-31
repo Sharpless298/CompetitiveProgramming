@@ -3,7 +3,8 @@ struct BIT {
 	int n;
 	vector<T> bit;
 
-	BIT(int _n) : n(_n) {
+	BIT(int _n) {
+		n = _n;
 		bit.assign(n + 1, 0);
 	}
 
@@ -14,6 +15,7 @@ struct BIT {
 		}
 	}
 
+	// query(0, i]
 	T query(int i) {
 		T sum = 0;
 		for (; i; i -= (i & -i)) {

@@ -1,71 +1,77 @@
 template <typename T>
 struct SegmentTree {
 	int n;
-	vector<T> st, tag;
+	vector<T> st;
+	vector<T> lazy;
 
-	SegmentTree(int _n) : n(_n) {
-		st.resize(n << 1);
-		tag.resize(n);
+	SegmentTree(int _n) {
+		n = _n;
+		st.assign(4 * n, T());
+		lazy.assign(4 * n, T());
 	}
 
-	SegmentTree(const auto &a) : n((int)a.size()) {
-		st.resize(n << 1);
-		tag.resize(n);
-		for (int i = 0; i < n; i++) {
-			st[i + n] = a[i];
-		}
-		for (int i = n - 1; i > 0; i--) {
-			st[i] = st[i << 1] + st[i << 1 | 1];
-		}
+	SegmentTree(vector<T> &a) {
+		n = (int)a.size();
+		st.resize(4 * n);
+		lazy.resize(4 * n);
+		build(a, 0, 0, n);
 	}
 
-	void apply(int u, T d, int h) {
-		st[u] += d << h;
-		if (u < n) {
-			tag[u] += d;
+	void build(vector<T> &a, int u, int l, int r) {
+		if (r - l == 1) {
+			st[u] = a[l];
+			return;
 		}
+		int m = (l + r) / 2;
+		build(a, u * 2 + 1, l, m);
+		build(a, u * 2 + 2, m, r);
+		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
 	}
 
-	void push(int u) {
-		for (int h = __lg(n); h >= 0; h--) {
-			int v = u >> h;
-			apply(v, tag[v >> 1], h);
-			apply(v ^ 1, tag[v >> 1], h);
-			tag[v >> 1] = 0;
-		}
-	}
-
-	void pull(int u) {
-		for (int h = 1; u > 1; h++, u >>= 1) {
-			st[u >> 1] = st[u] + st[u ^ 1] + (tag[u >> 1] << h);
-		}
-	}
-
-	void update(int l, int r, T k) {
-		int tl = l, tr = r, h = 0;
-		push(l + n), push(r - 1 + n);
-		for (l += n, r += n; l < r; l >>= 1, r >>= 1, h++) {
-			if (l & 1) {
-				apply(l++, k, h);
+	void push(int u, int l, int r) {
+		if (lazy[u] != 0) {
+			st[u] += (r - l) * lazy[u];
+			if (r - l > 1) {
+				lazy[u * 2 + 1] += lazy[u];
+				lazy[u * 2 + 2] += lazy[u];
 			}
-			if (r & 1) {
-				apply(--r, k, h);
-			}
+			lazy[u] = 0;
 		}
-		pull(tl + n), pull(tr - 1 + n);
+	}
+
+	void update(int ql, int qr, T x, int u, int l, int r) {
+		push(u, l, r);
+		if (qr <= l || r <= ql) {
+			return;
+		}
+		if (ql <= l && r <= qr) {
+			lazy[u] += x;
+			push(u, l, r);
+			return;
+		}
+		int m = (l + r) / 2;
+		update(ql, qr, x, u * 2 + 1, l, m);
+		update(ql, qr, x, u * 2 + 2, m, r);
+		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
+	}
+
+	T query(int ql, int qr, int u, int l, int r) {
+		push(u, l, r);
+		if (qr <= l || r <= ql) {
+			return 0;
+		}
+		if (ql <= l && r <= qr) {
+			return st[u];
+		}
+		int m = (l + r) / 2;
+		return query(ql, qr, u * 2 + 1, l, m) + query(ql, qr, u * 2 + 2, m, r);
+	}
+
+	void update(int l, int r, T x) {
+		update(l, r, x, 0, 0, n);
 	}
 
 	T query(int l, int r) {
-		T sum = 0;
-		push(l + n), push(r - 1 + n);
-		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-			if (l & 1) {
-				sum += st[l++];
-			}
-			if (r & 1) {
-				sum += st[--r];
-			}
-		}
-		return sum;
+		return query(l, r, 0, 0, n);
 	}
 };
