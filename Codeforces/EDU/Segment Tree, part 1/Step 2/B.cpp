@@ -8,12 +8,12 @@ struct SegmentTree {
 
 	SegmentTree(int _n) {
 		n = _n;
-		st.assign(4 * n, T());
+		st.assign(4 << __lg(n), T());
 	}
 
 	SegmentTree(vector<T> &a) {
 		n = (int)a.size();
-		st.resize(4 * n);
+		st.resize(4 << __lg(n));
 		build(a, 0, 0, n);
 	}
 

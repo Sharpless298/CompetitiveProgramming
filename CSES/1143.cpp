@@ -5,18 +5,21 @@ template <typename T>
 struct SegmentTree {
 	int n;
 	vector<T> st;
+	vector<T> lazy;
 
 	SegmentTree(int _n) {
 		n = _n;
-		st.assign(4 << __lg(n), T());
+		st.assign(4 * n, T());
+		lazy.assign(4 * n, T());
 	}
 
 	SegmentTree(vector<T> &a) {
 		n = (int)a.size();
-		st.resize(4 << __lg(n));
+		st.resize(4 * n);
+		lazy.assign(4 * n, T());
 		build(a, 0, 0, n);
 	}
-	
+
 	void pull(int u) {
 		st[u] = max(st[u * 2 + 1], st[u * 2 + 2]);
 	}
@@ -32,12 +35,25 @@ struct SegmentTree {
 		pull(u);
 	}
 
+	void push(int u, int l, int r) {
+		if (lazy[u] != 0) {
+			st[u] += (r - l) * lazy[u];
+			if (r - l > 1) {
+				lazy[u * 2 + 1] += lazy[u];
+				lazy[u * 2 + 2] += lazy[u];
+			}
+			lazy[u] = 0;
+		}
+	}
+
 	void update(int ql, int qr, T x, int u, int l, int r) {
+		push(u, l, r);
 		if (qr <= l || r <= ql) {
 			return;
 		}
 		if (ql <= l && r <= qr) {
-			st[u] = x;
+			lazy[u] += x;
+			push(u, l, r);
 			return;
 		}
 		int m = (l + r) / 2;
@@ -46,31 +62,25 @@ struct SegmentTree {
 		pull(u);
 	}
 
-	T query(int ql, int x, int u, int l, int r) {
+	T query(int x, int u, int l, int r) {
+		push(u, l, r);
 		if (r - l == 1) {
-			if (l >= ql && st[u] >= x) {
-				return l;
-			}
-			return -1;
+			return l;
 		}
-
 		int m = (l + r) / 2;
-		int ret = -1;
-		if (m > ql && st[u * 2 + 1] >= x) {
-			ret = query(ql, x, u * 2 + 1, l, m);
+		if (st[u * 2 + 1] >= x) {
+			return query(x, u * 2 + 1, l, m);
+		} else {
+			return query(x, u * 2 + 2, m, r);
 		}
-		if (ret == -1) {
-			ret = query(ql, x, u * 2 + 2, m, r);
-		}
-		return ret;
 	}
 
 	void update(int l, int r, T x) {
 		update(l, r, x, 0, 0, n);
 	}
 
-	T query(int l, int x) {
-		return query(l, x, 0, 0, n);
+	T query(int x) {
+		return query(x, 0, 0, n);
 	}
 };
 
@@ -85,17 +95,17 @@ signed main() {
 		cin >> a[i];
 	}
 	SegmentTree<int> st(a);
+
 	while (m--) {
-		int op;
-		cin >> op;
-		if (op == 1) {
-			int i, x;
-			cin >> i >> x;
-			st.update(i, i + 1, x);
+		int x;
+		cin >> x;
+		if (st.st[0] >= x) {
+			int ans = st.query(x);
+			st.update(ans, ans + 1, -x);
+			cout << ans + 1;
 		} else {
-			int x, l;
-			cin >> x >> l;
-			cout << st.query(l, x) << '\n';
+			cout << 0;
 		}
+		cout << " \n"[m == 0];
 	}
 }

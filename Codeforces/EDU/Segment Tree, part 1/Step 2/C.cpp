@@ -8,12 +8,12 @@ struct SegmentTree {
 
 	SegmentTree(int _n) {
 		n = _n;
-		st.assign(4 * n, T());
+		st.assign(4 << __lg(n), T());
 	}
 
 	SegmentTree(vector<T> &a) {
 		n = (int)a.size();
-		st.resize(4 * n);
+		st.resize(4 << __lg(n));
 		build(a, 0, 0, n);
 	}
 	
@@ -73,11 +73,10 @@ signed main() {
 
 	int n, m;
 	cin >> n >> m;
-	vector<int> a(n + 1);
+	vector<int> a(n);
 	for (int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
-	a[n] = 1 << 30;
 	SegmentTree<int> st(a);
 	while (m--) {
 		int op;
@@ -89,8 +88,7 @@ signed main() {
 		} else {
 			int x;
 			cin >> x;
-			int ret = st.query(x);
-			cout << (ret == n ? -1 : ret) << '\n';
+			cout << (st.st[0] >= x ? st.query(x) : -1) << '\n';
 		}
 	}
 }

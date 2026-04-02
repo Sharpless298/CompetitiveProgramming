@@ -10,9 +10,9 @@ struct SegmentTree {
 
 	SegmentTree(auto &a) {
 		n = (int)a.size();
-		st.resize(4 << __lg(n));
-		lazy.assign(4 << __lg(n), 0x3f3f3f3f);
-		lazy2.assign(4 << __lg(n), 0);
+		st.resize(4 * n);
+		lazy.assign(4 * n, 0x3f3f3f3f);
+		lazy2.assign(4 * n, 0);
 		build(a, 0, 0, n);
 	}
 
@@ -110,24 +110,28 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n, m;
-	cin >> n >> m;
-	vector<int64_t> a(n);
+	int n, q;
+	cin >> n >> q;
+	vector<int> v(n);
 	for (int i = 0; i < n; i++) {
-		cin >> a[i];
+		cin >> v[i];
 	}
 
-	SegmentTree<int64_t> st(a);
-	while (m--) {
-		int type, x, y;
-		cin >> type >> x >> y;
-		x--;
+	SegmentTree<int64_t> st(v);
+	while (q--) {
+		int type, a, b;
+		cin >> type >> a >> b;
+		a--;
 		if (type == 1) {
-			int64_t k;
-			cin >> k;
-			st.update(x, y, k);
+			int x;
+			cin >> x;
+			st.update(a, b, x);
+		} else if (type == 2) {
+			int x;
+			cin >> x;
+			st.set(a, b, x);
 		} else {
-			cout << st.query(x, y) << '\n';
+			cout << st.query(a, b) << '\n';
 		}
 	}
 }

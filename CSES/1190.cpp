@@ -18,12 +18,12 @@ struct SegmentTree {
 
 	SegmentTree(int _n) {
 		n = _n;
-		segtree.assign(4 << __lg(n), T());
+		segtree.assign(4 * n, T());
 	}
 
 	SegmentTree(vector<T> &a) {
 		n = (int)a.size();
-		segtree.resize(4 << __lg(n));
+		segtree.resize(4 * n);
 		build(a, 0, 0, n);
 	}
 
@@ -71,10 +71,10 @@ signed main() {
 	}
 
 	SegmentTree st(a);
-	cout << max(int64_t(0), st.segtree[0].mx) << '\n';
 	for (int i = 0; i < m; i++) {
 		int x, y;
 		cin >> x >> y;
+		x--;
 		st.update(x, x + 1, (Node){y, y, y, y});
 		cout << max(int64_t(0), st.segtree[0].mx) << '\n';
 	}

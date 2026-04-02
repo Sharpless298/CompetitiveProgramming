@@ -5,35 +5,26 @@ template <typename T>
 struct SegmentTree {
 	int n;
 	vector<T> st;
-	vector<int64_t> lazy;
-	vector<int64_t> lazy2;
+	vector<int64_t> lazy_k, lazy_c;
 
 	SegmentTree(auto &a) {
 		n = (int)a.size();
-		st.resize(4 << __lg(n));
-		lazy.assign(4 << __lg(n), 0x3f3f3f3f);
-		lazy2.assign(4 << __lg(n), 0);
+		st.resize(4 * n);
+		lazy_k.assign(4 * n, 0);
+		lazy_c.assign(4 * n, 0);
 		build(a, 0, 0, n);
 	}
 
 	void push(int u, int l, int r) {
-		if (lazy[u] != 0x3f3f3f3f) {
-			st[u] = (r - l) * lazy[u];
+		if (lazy_k[u] != 0 || lazy_c[u] != 0) {
+			st[u] += lazy_k[u] * (l + r - 1) * (r - l) / 2 + lazy_c[u] * (r - l);
 			if (r - l > 1) {
-				lazy[u * 2 + 1] = lazy[u];
-				lazy[u * 2 + 2] = lazy[u];
-				lazy2[u * 2 + 1] = 0;
-				lazy2[u * 2 + 2] = 0;
+				lazy_k[u * 2 + 1] += lazy_k[u];
+				lazy_c[u * 2 + 1] += lazy_c[u];
+				lazy_k[u * 2 + 2] += lazy_k[u];
+				lazy_c[u * 2 + 2] += lazy_c[u];
 			}
-			lazy[u] = 0x3f3f3f3f;
-		}
-		if (lazy2[u]) {
-			st[u] += (r - l) * lazy2[u];
-			if (r - l > 1) {
-				lazy2[u * 2 + 1] += lazy2[u];
-				lazy2[u * 2 + 2] += lazy2[u];
-			}
-			lazy2[u] = 0;
+			lazy_k[u] = lazy_c[u] = 0;
 		}
 	}
 
@@ -48,36 +39,20 @@ struct SegmentTree {
 		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
 	}
 
-	void set(int ql, int qr, T x, int u, int l, int r) {
+	void update(int ql, int qr, int pos, int u, int l, int r) {
 		push(u, l, r);
 		if (qr <= l || r <= ql) {
 			return;
 		}
 		if (ql <= l && r <= qr) {
-			lazy[u] = x;
-			lazy2[u] = 0;
+			lazy_k[u]++;
+			lazy_c[u] += (1 - pos);
 			push(u, l, r);
 			return;
 		}
 		int m = (l + r) / 2;
-		set(ql, qr, x, u * 2 + 1, l, m);
-		set(ql, qr, x, u * 2 + 2, m, r);
-		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
-	}
-
-	void update(int ql, int qr, T x, int u, int l, int r) {
-		push(u, l, r);
-		if (qr <= l || r <= ql) {
-			return;
-		}
-		if (ql <= l && r <= qr) {
-			lazy2[u] += x;
-			push(u, l, r);
-			return;
-		}
-		int m = (l + r) / 2;
-		update(ql, qr, x, u * 2 + 1, l, m);
-		update(ql, qr, x, u * 2 + 2, m, r);
+		update(ql, qr, pos, u * 2 + 1, l, m);
+		update(ql, qr, pos, u * 2 + 2, m, r);
 		st[u] = st[u * 2 + 1] + st[u * 2 + 2];
 	}
 
@@ -93,12 +68,8 @@ struct SegmentTree {
 		return query(ql, qr, u * 2 + 1, l, m) + query(ql, qr, u * 2 + 2, m, r);
 	}
 
-	void set(int l, int r, T x) {
-		set(l, r, x, 0, 0, n);
-	}
-
-	void update(int l, int r, T x) {
-		update(l, r, x, 0, 0, n);
+	void update(int l, int r, int pos) {
+		update(l, r, pos, 0, 0, n);
 	}
 
 	T query(int l, int r) {
@@ -110,22 +81,19 @@ signed main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n, m;
-	cin >> n >> m;
+	int n, q;
+	cin >> n >> q;
 	vector<int64_t> a(n);
 	for (int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
-
 	SegmentTree<int64_t> st(a);
-	while (m--) {
+	while (q--) {
 		int type, x, y;
 		cin >> type >> x >> y;
 		x--;
 		if (type == 1) {
-			int64_t k;
-			cin >> k;
-			st.update(x, y, k);
+			st.update(x, y, x);
 		} else {
 			cout << st.query(x, y) << '\n';
 		}
