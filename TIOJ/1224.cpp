@@ -1,38 +1,37 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct Node1 {
-	int x1, x2, y, t;
+template <typename T>
+struct SegmentTree {
+	int n;
+	vector<T> st;
+	vector<int64_t> lazy;
 
-	bool operator<(Node1 &a) {
-		return y < a.y;
-	}
-};
-
-struct Node2 {
-	int data;
-	int tag;
-};
-
-vector<Node2> seg(4000004);
-
-void update(int l, int r, int x, int id = 0, int L = 0, int R = 1000001) {
-	if (l >= R || L >= r)
-		return;
-	if (l <= L && R <= r) {
-		seg[id].tag += x;
-		return;
+	SegmentTree(int _n) {
+		n = _n;
+		st.assign(4 << __lg(n), 0);
+		lazy.assign(4 << __lg(n), 0);
 	}
 
-	int M = (L + R) / 2;
-	update(l, r, x, id * 2 + 1, L, M);
-	update(l, r, x, id * 2 + 2, M, R);
+	void update(int ql, int qr, T x, int u, int l, int r) {
+		if (qr <= l || r <= ql) {
+			return;
+		}
+		if (ql <= l && r <= qr) {
+			lazy[u] += x;
+			return;
+		}
+		int m = (l + r) / 2;
+		update(ql, qr, x, u * 2 + 1, l, m);
+		update(ql, qr, x, u * 2 + 2, m, r);
+		st[u] = (lazy[u * 2 + 1] ? m - l : st[u * 2 + 1]) + 
+			(lazy[u * 2 + 2] ? r - m : st[u * 2 + 2]);
+	}
 
-	seg[id].data =
-		(seg[id * 2 + 1].tag ? M - L : seg[id * 2 + 1].data) + (seg[id * 2 + 2].tag ? R - M : seg[id * 2 + 2].data);
-}
+	void update(int l, int r, T x) {
+		update(l, r, x, 0, 0, n);
+	}
+};
 
 signed main() {
 	ios_base::sync_with_stdio(false);
@@ -40,26 +39,23 @@ signed main() {
 
 	int n;
 	cin >> n;
-	vector<Node1> v;
+	vector<array<int, 4>> a;
 	for (int i = 0; i < n; i++) {
 		int l, r, d, u;
 		cin >> l >> r >> d >> u;
-
-		v.push_back({l, r, d, 1});
-		v.push_back({l, r, u, -1});
+		a.push_back({l, r, d, 1});
+		a.push_back({l, r, u, -1});
 	}
-
-	sort(v.begin(), v.end());
-
-	int y0 = 0, t = 0;
-	long long int ans = 0;
-	for (int i = 0; i < 2 * n; i++) {
-		ans += (long long int)(v[i].y - y0) * t;
-
-		update(v[i].x1, v[i].x2, v[i].t);
-		y0 = v[i].y;
-		t = seg[0].data;
+	sort(a.begin(), a.end(), [](const auto &x, const auto &y) {
+		return x[2] < y[2];
+	});
+	SegmentTree<int64_t> st(1000001);
+	int64_t ans = 0;
+	int y0 = 0;
+	for (auto [l, r, y, t] : a) {
+		ans += (int64_t)(y - y0) * st.st[0];
+		st.update(l, r, t);
+		y0 = y;
 	}
-
 	cout << ans << '\n';
 }

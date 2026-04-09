@@ -1,12 +1,12 @@
 struct TwoSAT {
-	int n, timer, id;
+	int n, timer, cnt;
 	vector<vector<int>> G;
 	vector<bool> val;
 	vector<int> tin, low, comp;
 	stack<int> stk;
 
 	TwoSAT(int _n) : n(_n) {
-		timer = id = 0;
+		timer = cnt = 0;
 		G.assign(2 * n, vector<int>());
 		val.assign(n, false);
 		tin.assign(2 * n, -1);
@@ -32,9 +32,9 @@ struct TwoSAT {
 		}
 		if (tin[u] == low[u]) {
 			for (int v = -1; v != u; stk.pop()) {
-				v = stk.top(), comp[v] = id;
+				v = stk.top(), comp[v] = cnt;
 			}
-			id++;
+			cnt++;
 		}
 	}
 
